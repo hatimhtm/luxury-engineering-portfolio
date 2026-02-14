@@ -10,6 +10,7 @@ import CommandPalette from "@/components/ui/CommandPalette";
 import MagneticButton from "@/components/ui/MagneticButton";
 import Link from "next/link";
 import { themeScript } from "@/lib/theme-script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
@@ -128,6 +129,7 @@ export default function RootLayout({
                         </div>
                     </div>
                 </ThemeProvider>
+                <SpeedInsights />
             </body>
         </html>
     );
