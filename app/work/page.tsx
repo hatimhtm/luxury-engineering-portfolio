@@ -153,6 +153,7 @@ export default function WorkPage() {
                         <a
                             href="https://github.com/hatimhtm"
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="neo-card bg-cream text-ink px-6 py-3 font-heading font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-acid transition-colors group flex-shrink-0"
                         >
                             <Github size={18} />
