@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone *)",
+      "Bash(shopt -s dotglob)",
+      "Bash(mv _tmp_clone/* ./)",
+      "Bash(setopt dotglob *)",
+      "Bash(gh pr *)",
+      "Bash(python3 -c ' *)",
+      "Bash(gh api *)",
+      "Bash(git config *)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git pull *)",
+      "Bash(git rebase *)",
+      "Bash(git add *)",
+      "Bash(git push *)",
+      "Bash(grep -rn *)"
+    ]
+  }
+}
