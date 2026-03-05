@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProjectBySlug, type Project } from "@/lib/projects";
+import { getProjectBySlug } from "@/lib/projects";
 import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
 
 export default function CaseStudyClient({ slug }: { slug: string }) {
