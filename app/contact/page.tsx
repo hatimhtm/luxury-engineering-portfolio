@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, Mail, Send, Loader2, CheckCircle, MapPin, Clock, MessageCircle, Github, Linkedin, ChevronDown } from "lucide-react";
 import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
+import { isValidName, isValidEmail, isValidBudget, isValidBrief } from "@/lib/validation";
 
 /* ─── Data ─── */
 const contactInfo = [
@@ -79,10 +80,10 @@ export default function ContactPage() {
 
     const canAdvance = () => {
         switch (step) {
-            case 0: return formData.name.trim().length > 0;
-            case 1: return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
-            case 2: return formData.budget.length > 0;
-            case 3: return formData.brief.trim().length > 10;
+            case 0: return isValidName(formData.name);
+            case 1: return isValidEmail(formData.email);
+            case 2: return isValidBudget(formData.budget);
+            case 3: return isValidBrief(formData.brief);
             default: return false;
         }
     };
