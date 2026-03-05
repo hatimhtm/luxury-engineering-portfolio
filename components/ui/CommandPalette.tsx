@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ArrowRight, FileDown, Home, Briefcase, Layers, Code2, Mail, X } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -20,29 +20,31 @@ export default function CommandPalette() {
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
-    const commands: Command[] = [
-        { id: "home", label: "Go to Home", icon: <Home size={16} />, action: () => router.push("/"), shortcut: "H" },
-        { id: "work", label: "Go to Work", icon: <Briefcase size={16} />, action: () => router.push("/work"), shortcut: "W" },
-        { id: "stack", label: "Go to Stack", icon: <Layers size={16} />, action: () => router.push("/stack"), shortcut: "S" },
-        { id: "services", label: "Go to Services", icon: <Code2 size={16} />, action: () => router.push("/services") },
-        { id: "contact", label: "Go to Contact", icon: <Mail size={16} />, action: () => router.push("/contact"), shortcut: "C" },
-        {
-            id: "resume",
-            label: "Download Resume",
-            icon: <FileDown size={16} />,
-            action: () => {
-                const link = document.createElement("a");
-                link.href = "/resume.pdf";
-                link.download = "Hatim_El_Hassak_Resume.pdf";
-                link.click();
+    const filtered = useMemo(() => {
+        const commands: Command[] = [
+            { id: "home", label: "Go to Home", icon: <Home size={16} />, action: () => router.push("/"), shortcut: "H" },
+            { id: "work", label: "Go to Work", icon: <Briefcase size={16} />, action: () => router.push("/work"), shortcut: "W" },
+            { id: "stack", label: "Go to Stack", icon: <Layers size={16} />, action: () => router.push("/stack"), shortcut: "S" },
+            { id: "services", label: "Go to Services", icon: <Code2 size={16} />, action: () => router.push("/services") },
+            { id: "contact", label: "Go to Contact", icon: <Mail size={16} />, action: () => router.push("/contact"), shortcut: "C" },
+            {
+                id: "resume",
+                label: "Download Resume",
+                icon: <FileDown size={16} />,
+                action: () => {
+                    const link = document.createElement("a");
+                    link.href = "/resume.pdf";
+                    link.download = "Hatim_El_Hassak_Resume.pdf";
+                    link.click();
+                },
+                shortcut: "R",
             },
-            shortcut: "R",
-        },
-    ];
+        ];
 
-    const filtered = commands.filter((cmd) =>
-        cmd.label.toLowerCase().includes(search.toLowerCase())
-    );
+        return commands.filter((cmd) =>
+            cmd.label.toLowerCase().includes(search.toLowerCase())
+        );
+    }, [search, router]);
 
     const handleKeyDown = useCallback(
         (e: KeyboardEvent) => {
@@ -76,12 +78,15 @@ export default function CommandPalette() {
 
             if (e.key === "Enter" && filtered.length > 0) {
                 e.preventDefault();
-                filtered[selectedIndex]?.action();
+                setSelectedIndex((currentSelectedIndex) => {
+                    filtered[currentSelectedIndex]?.action();
+                    return currentSelectedIndex;
+                });
                 setIsOpen(false);
                 return;
             }
         },
-        [isOpen, filtered, selectedIndex]
+        [isOpen, filtered]
     );
 
     useEffect(() => {
