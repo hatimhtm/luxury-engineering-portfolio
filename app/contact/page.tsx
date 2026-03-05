@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, Mail, Send, Loader2, CheckCircle, MapPin, Clock, MessageCircle, Github, Linkedin, ChevronDown } from "lucide-react";
-import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
+import { CircuitPattern, CrossHatch } from "@/components/ui/Decorative";
 
 /* ─── Data ─── */
 const contactInfo = [
