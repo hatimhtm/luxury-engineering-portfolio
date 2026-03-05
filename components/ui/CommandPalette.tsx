@@ -13,7 +13,8 @@ interface Command {
     shortcut?: string;
 }
 
-export default function CommandPalette() {
+
+function useCommandPalette() {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState("");
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -44,7 +45,7 @@ export default function CommandPalette() {
         cmd.label.toLowerCase().includes(search.toLowerCase())
     );
 
-    const handleKeyDown = useCallback(
+    const handleGlobalKeyDown = useCallback(
         (e: KeyboardEvent) => {
             // Open with Cmd+K or Ctrl+K
             if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -54,7 +55,12 @@ export default function CommandPalette() {
                 setSelectedIndex(0);
                 return;
             }
+        },
+        []
+    );
 
+    const handleNavigationKeyDown = useCallback(
+        (e: KeyboardEvent) => {
             if (!isOpen) return;
 
             if (e.key === "Escape") {
@@ -85,9 +91,13 @@ export default function CommandPalette() {
     );
 
     useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            handleGlobalKeyDown(e);
+            handleNavigationKeyDown(e);
+        };
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
-    }, [handleKeyDown]);
+    }, [handleGlobalKeyDown, handleNavigationKeyDown]);
 
     useEffect(() => {
         if (isOpen && inputRef.current) {
@@ -98,6 +108,30 @@ export default function CommandPalette() {
     useEffect(() => {
         setSelectedIndex(0);
     }, [search]);
+
+    return {
+        isOpen,
+        setIsOpen,
+        search,
+        setSearch,
+        selectedIndex,
+        setSelectedIndex,
+        inputRef,
+        filtered
+    };
+}
+
+export default function CommandPalette() {
+    const {
+        isOpen,
+        setIsOpen,
+        search,
+        setSearch,
+        selectedIndex,
+        setSelectedIndex,
+        inputRef,
+        filtered
+    } = useCommandPalette();
 
     return (
         <AnimatePresence>
