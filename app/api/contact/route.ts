@@ -44,8 +44,7 @@ export async function POST(req: NextRequest) {
         });
 
         if (!formspreeResponse.ok) {
-            const errorText = await formspreeResponse.text();
-            console.error("Formspree error:", errorText);
+            console.error(`Formspree error: ${formspreeResponse.status} ${formspreeResponse.statusText}`);
             return NextResponse.json(
                 { error: "Failed to send message. Please try again or email directly." },
                 { status: 500 }
