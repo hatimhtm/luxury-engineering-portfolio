@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useInView, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
@@ -56,18 +56,18 @@ export const BentoGridItem = ({
     const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
     const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
 
-    function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const handleMouseMove = useCallback(({ currentTarget, clientX, clientY }: React.MouseEvent) => {
         const { left, top, width, height } = currentTarget.getBoundingClientRect();
         const xPct = (clientX - left) / width - 0.5;
         const yPct = (clientY - top) / height - 0.5;
         x.set(xPct);
         y.set(yPct);
-    }
+    }, [x, y]);
 
-    function handleMouseLeave() {
+    const handleMouseLeave = useCallback(() => {
         x.set(0);
         y.set(0);
-    }
+    }, [x, y]);
 
     const rotateX = useMotionTemplate`${mouseY.get() * -5}deg`;
     const rotateY = useMotionTemplate`${mouseX.get() * 5}deg`;
