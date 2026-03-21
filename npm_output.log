@@ -1,0 +1,13 @@
+
+> lord-decay-portfolio@0.1.0 dev
+> next dev
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3000
+
+ ✓ Ready in 1853ms
+ ○ Compiling /work/[slug] ...
+ ✓ Compiled /work/[slug] in 11.3s (1278 modules)
+
+ ⚠ metadata.metadataBase is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[?25h
