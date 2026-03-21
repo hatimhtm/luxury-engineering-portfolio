@@ -98,16 +98,19 @@ const fadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
+/* ─── System Status Heights ─── */
+const BAR_HEIGHTS = [73, 45, 88, 22, 91, 56, 34, 78, 62, 95, 41, 29, 84, 53, 76, 38, 92, 67, 49, 81, 25, 60, 87, 43];
+
 /* ─── Konami Code Easter Egg ─── */
 function useKonamiCode(callback: () => void) {
-    const sequence = [
-        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-        "b", "a",
-    ];
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
+        const sequence = [
+            "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+            "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+            "b", "a",
+        ];
         const handler = (e: KeyboardEvent) => {
             if (e.key === sequence[index]) {
                 const next = index + 1;
@@ -437,8 +440,8 @@ export default function Home() {
                             <div className="h-full w-full flex flex-col justify-between p-4">
                                 <div className="font-mono text-[0.6rem] font-bold text-cream/30 text-right tracking-widest uppercase">SYS://882-991-X</div>
                                 <div className="flex justify-between items-end h-16 w-full gap-[2px]">
-                                    {[...Array(24)].map((_, i) => (
-                                        <div key={i} className="bg-acid/50 w-[3px] transition-all duration-300" style={{ height: `${20 + Math.random() * 80}%` }} />
+                                    {BAR_HEIGHTS.map((height, i) => (
+                                        <div key={i} className="bg-acid/50 w-[3px] transition-all duration-300" style={{ height: `${height}%` }} />
                                     ))}
                                 </div>
                                 <div className="font-heading font-bold text-base text-cream uppercase tracking-tight">System Normal</div>
