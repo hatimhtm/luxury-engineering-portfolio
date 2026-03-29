@@ -20,24 +20,28 @@ export const CircuitPattern = ({ className = "" }: { className?: string }) => (
     </svg>
 );
 
+const GRID_DOTS = Array.from({ length: 10 }).flatMap((_, row) =>
+    Array.from({ length: 10 }).map((_, col) => (
+        <circle key={`${row}-${col}`} cx={5 + col * 10} cy={5 + row * 10} r="1.5" opacity={0.3} />
+    ))
+);
+
 export const GridDots = ({ className = "" }: { className?: string }) => (
     <svg className={className} viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        {Array.from({ length: 10 }).map((_, row) =>
-            Array.from({ length: 10 }).map((_, col) => (
-                <circle key={`${row}-${col}`} cx={5 + col * 10} cy={5 + row * 10} r="1.5" opacity={0.3} />
-            ))
-        )}
+        {GRID_DOTS}
     </svg>
 );
 
+const CROSS_HATCH_LINES = Array.from({ length: 8 }).map((_, i) => (
+    <g key={i}>
+        <line x1={0} y1={i * 15} x2={120} y2={i * 15} opacity="0.15" />
+        <line x1={i * 15} y1={0} x2={i * 15} y2={120} opacity="0.15" />
+    </g>
+));
+
 export const CrossHatch = ({ className = "" }: { className?: string }) => (
     <svg className={className} viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg">
-        {Array.from({ length: 8 }).map((_, i) => (
-            <g key={i}>
-                <line x1={0} y1={i * 15} x2={120} y2={i * 15} opacity="0.15" />
-                <line x1={i * 15} y1={0} x2={i * 15} y2={120} opacity="0.15" />
-            </g>
-        ))}
+        {CROSS_HATCH_LINES}
         <rect x="30" y="30" width="60" height="60" strokeWidth="2" opacity="0.3" />
         <line x1="30" y1="30" x2="90" y2="90" opacity="0.2" />
         <line x1="90" y1="30" x2="30" y2="90" opacity="0.2" />
