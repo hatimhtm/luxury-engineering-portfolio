@@ -8,6 +8,17 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 
+/* ─── Constants ─── */
+const BAR_HEIGHTS = Array.from({ length: 24 }, () => 20 + Math.random() * 80);
+
+/* ─── Easter Egg Sequence ─── */
+const KONAMI_CODE = [
+    "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+    "b", "a",
+];
+
+
 /* ─── Animated Counter Hook ─── */
 function useCounter(end: number, duration: number = 2000, startCounting: boolean = false) {
     const [count, setCount] = useState(0);
@@ -100,18 +111,14 @@ const fadeUp = {
 
 /* ─── Konami Code Easter Egg ─── */
 function useKonamiCode(callback: () => void) {
-    const sequence = [
-        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-        "b", "a",
-    ];
+
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
-            if (e.key === sequence[index]) {
+            if (e.key === KONAMI_CODE[index]) {
                 const next = index + 1;
-                if (next === sequence.length) {
+                if (next === KONAMI_CODE.length) {
                     callback();
                     setIndex(0);
                 } else {
@@ -437,8 +444,8 @@ export default function Home() {
                             <div className="h-full w-full flex flex-col justify-between p-4">
                                 <div className="font-mono text-[0.6rem] font-bold text-cream/30 text-right tracking-widest uppercase">SYS://882-991-X</div>
                                 <div className="flex justify-between items-end h-16 w-full gap-[2px]">
-                                    {[...Array(24)].map((_, i) => (
-                                        <div key={i} className="bg-acid/50 w-[3px] transition-all duration-300" style={{ height: `${20 + Math.random() * 80}%` }} />
+                                    {BAR_HEIGHTS.map((height, i) => (
+                                        <div key={i} className="bg-acid/50 w-[3px] transition-all duration-300" style={{ height: `${height}%` }} />
                                     ))}
                                 </div>
                                 <div className="font-heading font-bold text-base text-cream uppercase tracking-tight">System Normal</div>
