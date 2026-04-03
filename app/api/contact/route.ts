@@ -23,10 +23,17 @@ export async function POST(req: NextRequest) {
         }
 
         // Send to Formspree (free tier - up to 50/month)
-        // Replace YOUR_FORM_ID with your Formspree form endpoint
-        // Use environmental variable FORMSPREE_ID if present, otherwise fallback to endpoint
+        // Use environmental variable FORMSPREE_ID or FORMSPREE_ENDPOINT
         const FORMSPREE_ID = process.env.FORMSPREE_ID;
-        const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || (FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : "https://formspree.io/f/YOUR_FORM_ID");
+        const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || (FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : null);
+
+        if (!FORMSPREE_ENDPOINT) {
+            console.error("Formspree endpoint or ID is missing from environment variables.");
+            return NextResponse.json(
+                { error: "Server configuration error. Please try again later." },
+                { status: 500 }
+            );
+        }
 
         const formspreeResponse = await fetch(FORMSPREE_ENDPOINT, {
             method: "POST",
@@ -44,8 +51,7 @@ export async function POST(req: NextRequest) {
         });
 
         if (!formspreeResponse.ok) {
-            const errorText = await formspreeResponse.text();
-            console.error("Formspree error:", errorText);
+            console.error(`Formspree error: ${formspreeResponse.status} ${formspreeResponse.statusText}`);
             return NextResponse.json(
                 { error: "Failed to send message. Please try again or email directly." },
                 { status: 500 }
@@ -53,8 +59,12 @@ export async function POST(req: NextRequest) {
         }
 
         return NextResponse.json({ success: true, message: "Message sent successfully!" });
-    } catch (error) {
-        console.error("Contact form error:", error);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error("Contact form error:", error.message);
+        } else {
+            console.error("Contact form error:", error);
+        }
         return NextResponse.json(
             { error: "Something went wrong. Please email hatimelhassak.official@gmail.com directly." },
             { status: 500 }
