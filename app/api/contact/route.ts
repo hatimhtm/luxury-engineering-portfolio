@@ -26,7 +26,15 @@ export async function POST(req: NextRequest) {
         // Replace YOUR_FORM_ID with your Formspree form endpoint
         // Use environmental variable FORMSPREE_ID if present, otherwise fallback to endpoint
         const FORMSPREE_ID = process.env.FORMSPREE_ID;
-        const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || (FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : "https://formspree.io/f/YOUR_FORM_ID");
+        const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || (FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : null);
+
+        if (!FORMSPREE_ENDPOINT) {
+            console.error("Contact form error: Formspree endpoint is not configured.");
+            return NextResponse.json(
+                { error: "Server configuration error. Please try again later or email directly." },
+                { status: 500 }
+            );
+        }
 
         const formspreeResponse = await fetch(FORMSPREE_ENDPOINT, {
             method: "POST",
