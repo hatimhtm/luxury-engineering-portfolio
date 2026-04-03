@@ -40,8 +40,9 @@ export default function CommandPalette() {
         },
     ];
 
+    const lowerSearch = search.toLowerCase();
     const filtered = commands.filter((cmd) =>
-        cmd.label.toLowerCase().includes(search.toLowerCase())
+        cmd.label.toLowerCase().includes(lowerSearch)
     );
 
     const handleKeyDown = useCallback(
