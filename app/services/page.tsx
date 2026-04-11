@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Bot, ArrowUpRight, Check, X, Shield, Rocket, RefreshCw, Code2, Smartphone, Database, Brain } from "lucide-react";
+import { Zap, Bot, ArrowUpRight, Shield, Rocket, RefreshCw, Code2, Smartphone, Database, Brain } from "lucide-react";
 import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
 
 /* ─── Animations ─── */
