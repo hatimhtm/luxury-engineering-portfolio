@@ -143,7 +143,7 @@ export default function ContactPage() {
                                         <a href="/work" className="neo-card bg-ink text-cream px-4 py-2 font-mono text-sm font-bold uppercase">
                                             View Work
                                         </a>
-                                        <a href="https://github.com/hatimhtm" target="_blank" className="neo-card bg-ink text-cream px-4 py-2 font-mono text-sm font-bold uppercase flex items-center gap-2">
+                                        <a href="https://github.com/hatimhtm" target="_blank" rel="noopener noreferrer" className="neo-card bg-ink text-cream px-4 py-2 font-mono text-sm font-bold uppercase flex items-center gap-2">
                                             <Github size={14} /> GitHub
                                         </a>
                                     </div>
@@ -339,6 +339,7 @@ export default function ContactPage() {
                             <a
                                 href="https://github.com/hatimhtm"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="neo-card bg-cream p-4 text-center font-mono text-sm font-bold uppercase hover:bg-ink hover:text-cream transition-all flex items-center justify-center gap-2 group"
                             >
                                 <Github size={16} /> GitHub
@@ -346,6 +347,7 @@ export default function ContactPage() {
                             <a
                                 href="https://www.linkedin.com/in/hatim-elhassak/"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="neo-card bg-cream p-4 text-center font-mono text-sm font-bold uppercase hover:bg-electric hover:text-cream transition-all flex items-center justify-center gap-2 group"
                             >
                                 <Linkedin size={16} /> LinkedIn
