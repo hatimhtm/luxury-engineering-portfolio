@@ -1,5 +1,6 @@
 "use client";
 
+import { StatusBar } from "@/components/ui/StatusBar";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import Link from "next/link";
@@ -17,17 +18,10 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
     return (
         <div className="min-h-screen bg-cream pb-24">
             {/* Status bar */}
-            <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/50 uppercase tracking-widest">
-                        case://study-{project.id}
-                    </span>
-                </div>
-                <span className="font-mono text-xs font-bold text-cream/30 tracking-widest uppercase">
-                    {project.category}
-                </span>
-            </div>
+            <StatusBar
+                leftLabel={`case://study-${project.id}`}
+                rightLabel={project.category}
+            />
 
             {/* Back nav */}
             <div className="max-w-7xl mx-auto px-4 md:px-8 mt-6">

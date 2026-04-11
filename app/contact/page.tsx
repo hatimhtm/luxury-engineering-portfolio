@@ -1,5 +1,6 @@
 "use client";
 
+import { StatusBar } from "@/components/ui/StatusBar";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, Mail, Send, Loader2, CheckCircle, MapPin, Clock, MessageCircle, Github, Linkedin, ChevronDown } from "lucide-react";
@@ -91,13 +92,7 @@ export default function ContactPage() {
         <div className="min-h-screen bg-cream pb-24">
 
             {/* Status bar */}
-            <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/50 uppercase tracking-widest">secure://contact</span>
-                </div>
-                <span className="font-mono text-xs font-bold text-cream/30 tracking-widest uppercase">Encrypted</span>
-            </div>
+            <StatusBar leftLabel="secure://contact" rightLabel="Encrypted" />
 
             <div className="max-w-7xl mx-auto px-4 md:px-8">
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { StatusBar } from "@/components/ui/StatusBar";
 import { motion } from "framer-motion";
 import { Zap, Bot, ArrowUpRight, Check, X, Shield, Rocket, RefreshCw, Code2, Smartphone, Database, Brain } from "lucide-react";
 import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
@@ -45,13 +46,7 @@ export default function ServicesPage() {
         <div className="min-h-screen bg-cream pb-24">
 
             {/* Status bar */}
-            <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/50 uppercase tracking-widest">system://services</span>
-                </div>
-                <span className="font-mono text-xs font-bold text-cream/30 tracking-widest uppercase">2 Packages</span>
-            </div>
+            <StatusBar leftLabel="system://services" rightLabel="2 Packages" />
 
             {/* Header */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8 md:mt-16 mb-8 md:mb-12">
