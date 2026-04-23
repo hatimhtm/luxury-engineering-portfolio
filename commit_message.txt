@@ -1,0 +1,6 @@
+🧹 Remove unused imports in app/services/page.tsx
+
+🎯 **What:** Removed the unused `Check` and `X` imports from `lucide-react` in `app/services/page.tsx`. Additionally, fixed a minor lint error in `app/not-found.tsx` to allow `npm run build` to succeed without errors.
+💡 **Why:** Removing unused imports reduces clutter, improves code readability, and helps maintain a clean codebase.
+✅ **Verification:** Ran `npm run build` to verify the build process completes successfully and confirmed no side effects via manual inspection.
+✨ **Result:** A cleaner import statement in `app/services/page.tsx` and a warning-free build process.
