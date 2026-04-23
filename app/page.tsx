@@ -66,6 +66,13 @@ const techLogos = [
     "Tailwind", "Framer Motion", "Redis", "Supabase", "FastAPI",
 ];
 
+const BAR_HEIGHTS = Array.from({ length: 24 }, (_, i) => {
+    // Deterministic pseudo-random generation for stable rendering
+    const seed = (i + 1) * 0.5;
+    const rand = Math.abs(Math.sin(seed * 123.45));
+    return 20 + rand * 80;
+});
+
 const testimonials = [
     {
         quote: "Hatim delivered in 12 hours what our previous team quoted 3 weeks for. The quality was production-ready from day one.",
@@ -437,8 +444,8 @@ export default function Home() {
                             <div className="h-full w-full flex flex-col justify-between p-4">
                                 <div className="font-mono text-[0.6rem] font-bold text-cream/30 text-right tracking-widest uppercase">SYS://882-991-X</div>
                                 <div className="flex justify-between items-end h-16 w-full gap-[2px]">
-                                    {[...Array(24)].map((_, i) => (
-                                        <div key={i} className="bg-acid/50 w-[3px] transition-all duration-300" style={{ height: `${20 + Math.random() * 80}%` }} />
+                                    {BAR_HEIGHTS.map((height, i) => (
+                                        <div key={i} className="bg-acid/50 w-[3px] transition-all duration-300" style={{ height: `${height}%` }} />
                                     ))}
                                 </div>
                                 <div className="font-heading font-bold text-base text-cream uppercase tracking-tight">System Normal</div>
