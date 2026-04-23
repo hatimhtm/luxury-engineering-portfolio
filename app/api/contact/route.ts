@@ -13,6 +13,32 @@ export async function POST(req: NextRequest) {
             );
         }
 
+        // Length validation
+        if (typeof name !== 'string' || name.length > 100) {
+            return NextResponse.json(
+                { error: "Name is too long (maximum 100 characters)." },
+                { status: 400 }
+            );
+        }
+        if (typeof email !== 'string' || email.length > 500) {
+            return NextResponse.json(
+                { error: "Email is too long (maximum 500 characters)." },
+                { status: 400 }
+            );
+        }
+        if (typeof brief !== 'string' || brief.length > 5000) {
+            return NextResponse.json(
+                { error: "Project brief is too long (maximum 5000 characters)." },
+                { status: 400 }
+            );
+        }
+        if (budget && (typeof budget !== 'string' || budget.length > 100)) {
+            return NextResponse.json(
+                { error: "Budget is too long (maximum 100 characters)." },
+                { status: 400 }
+            );
+        }
+
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
