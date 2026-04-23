@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, Mail, Send, Loader2, CheckCircle, MapPin, Clock, MessageCircle, Github, Linkedin, ChevronDown } from "lucide-react";
 import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
+import { canAdvanceStep } from "@/lib/validation";
 
 /* ─── Data ─── */
 const contactInfo = [
@@ -77,15 +78,7 @@ export default function ContactPage() {
         }
     };
 
-    const canAdvance = () => {
-        switch (step) {
-            case 0: return formData.name.trim().length > 0;
-            case 1: return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
-            case 2: return formData.budget.length > 0;
-            case 3: return formData.brief.trim().length > 10;
-            default: return false;
-        }
-    };
+    const canAdvance = () => canAdvanceStep(step, formData);
 
     return (
         <div className="min-h-screen bg-cream pb-24">
