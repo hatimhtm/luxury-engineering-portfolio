@@ -647,16 +647,6 @@ body::before {
    ADDITIONAL UTILITIES
    ═══════════════════════════════════════════ */
 
-/* Blink animation for terminal cursor */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.animate-blink {
-  animation: blink 1s step-end infinite;
-}
-
 /* Custom cursor utility */
 .cursor-none {
   cursor: none;
