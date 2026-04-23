@@ -1,7 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Simple in-memory rate limiter
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 5;
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+
+function isRateLimited(ip: string): boolean {
+    const now = Date.now();
+    const record = rateLimitMap.get(ip);
+
+    if (!record) {
+        rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+        return false;
+    }
+
+    if (now > record.resetTime) {
+        rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+        return false;
+    }
+
+    if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+        return true;
+    }
+
+    record.count += 1;
+    return false;
+}
+
 export async function POST(req: NextRequest) {
     try {
+        const ip = req.ip ?? req.headers.get("x-forwarded-for") ?? "unknown";
+
+        if (isRateLimited(ip)) {
+            return NextResponse.json(
+                { error: "Too many requests. Please try again later." },
+                { status: 429 }
+            );
+        }
+
         const body = await req.json();
         const { name, email, budget, brief } = body;
 
