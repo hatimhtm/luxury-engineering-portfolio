@@ -73,6 +73,8 @@ const learning = [
     { name: "Solidity", reason: "Smart contracts. Web3 when it makes sense." },
 ];
 
+const TOTAL_TOOLS = categories.reduce((acc, c) => acc + c.tools.length, 0);
+
 export default function StackPage() {
     return (
         <div className="min-h-screen bg-cream pb-24">
@@ -84,7 +86,7 @@ export default function StackPage() {
                     <span className="font-mono text-xs font-bold text-cream/50 uppercase tracking-widest">system://arsenal</span>
                 </div>
                 <span className="font-mono text-xs font-bold text-cream/30 tracking-widest uppercase">
-                    {categories.reduce((acc, c) => acc + c.tools.length, 0)} TOOLS LOADED
+                    {TOTAL_TOOLS} TOOLS LOADED
                 </span>
             </div>
 
