@@ -23,10 +23,17 @@ export async function POST(req: NextRequest) {
         }
 
         // Send to Formspree (free tier - up to 50/month)
-        // Replace YOUR_FORM_ID with your Formspree form endpoint
         // Use environmental variable FORMSPREE_ID if present, otherwise fallback to endpoint
         const FORMSPREE_ID = process.env.FORMSPREE_ID;
-        const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || (FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : "https://formspree.io/f/YOUR_FORM_ID");
+        const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || (FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : null);
+
+        if (!FORMSPREE_ENDPOINT) {
+            console.error("Formspree configuration missing: FORMSPREE_ID or FORMSPREE_ENDPOINT must be set.");
+            return NextResponse.json(
+                { error: "Configuration error. Please contact the administrator." },
+                { status: 500 }
+            );
+        }
 
         const formspreeResponse = await fetch(FORMSPREE_ENDPOINT, {
             method: "POST",
