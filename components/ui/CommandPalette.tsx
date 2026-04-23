@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ArrowRight, FileDown, Home, Briefcase, Layers, Code2, Mail, X } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -20,7 +20,7 @@ export default function CommandPalette() {
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
-    const commands: Command[] = [
+    const commands: Command[] = useMemo(() => [
         { id: "home", label: "Go to Home", icon: <Home size={16} />, action: () => router.push("/"), shortcut: "H" },
         { id: "work", label: "Go to Work", icon: <Briefcase size={16} />, action: () => router.push("/work"), shortcut: "W" },
         { id: "stack", label: "Go to Stack", icon: <Layers size={16} />, action: () => router.push("/stack"), shortcut: "S" },
@@ -38,11 +38,11 @@ export default function CommandPalette() {
             },
             shortcut: "R",
         },
-    ];
+    ], [router]);
 
-    const filtered = commands.filter((cmd) =>
+    const filtered = useMemo(() => commands.filter((cmd) =>
         cmd.label.toLowerCase().includes(search.toLowerCase())
-    );
+    ), [commands, search]);
 
     const handleKeyDown = useCallback(
         (e: KeyboardEvent) => {
