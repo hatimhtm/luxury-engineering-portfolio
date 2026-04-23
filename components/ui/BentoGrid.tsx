@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useInView, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
