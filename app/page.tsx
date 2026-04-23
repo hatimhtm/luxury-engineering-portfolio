@@ -45,29 +45,23 @@ export default function Home() {
     const [konamiActive, setKonamiActive] = useState(false);
     useKonamiCode(() => setKonamiActive(true));
 
-    return (
-        <div className={`min-h-screen bg-cream pb-24 ${konamiActive ? "hue-rotate-180 transition-all duration-1000" : ""}`}>
+    const topTags = ["Full-stack engineer", "iOS · SwiftUI", "Web · Next.js", "AI pipelines", "Remote worldwide"];
 
-            {/* ══════════════════════════════════════
-                TOP MARQUEE
-               ══════════════════════════════════════ */}
+    return (
+        <div className={`min-h-screen bg-cream ${konamiActive ? "hue-rotate-180 transition-all duration-1000" : ""}`}>
+
+            {/* Top marquee */}
             <div className="w-full bg-acid border-b-[3px] border-ink py-2 overflow-hidden">
                 <div className="marquee-container font-mono font-bold text-ink uppercase tracking-widest text-xs">
                     <div className="marquee-content animate-marquee">
-                        <span className="px-4 md:px-6">FULL-STACK ENGINEER&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">SHIP IN HOURS NOT WEEKS&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">AI-POWERED&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">ANTI-BLOAT&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">FULL-STACK ENGINEER&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">SHIP IN HOURS NOT WEEKS&nbsp;///&nbsp;</span>
+                        {topTags.map((t) => (
+                            <span key={t} className="px-4 md:px-6">{t}&nbsp;///&nbsp;</span>
+                        ))}
                     </div>
                     <div className="marquee-content animate-marquee" aria-hidden="true">
-                        <span className="px-4 md:px-6">FULL-STACK ENGINEER&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">SHIP IN HOURS NOT WEEKS&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">AI-POWERED&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">ANTI-BLOAT&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">FULL-STACK ENGINEER&nbsp;///&nbsp;</span>
-                        <span className="px-4 md:px-6">SHIP IN HOURS NOT WEEKS&nbsp;///&nbsp;</span>
+                        {topTags.map((t) => (
+                            <span key={`dup-${t}`} className="px-4 md:px-6">{t}&nbsp;///&nbsp;</span>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -78,11 +72,9 @@ export default function Home() {
 
             <AboutSection />
 
-            {/* ══════════════════════════════════════
-                LIVE TERMINAL
-               ══════════════════════════════════════ */}
+            {/* Live terminal */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
-                <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/40 mb-2">Live Feed</div>
+                <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Live Feed</div>
                 <h2 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight text-ink mb-4">System Status</h2>
                 <LiveTerminal />
             </section>
@@ -99,26 +91,20 @@ export default function Home() {
 
             <CtaSection />
 
-            {/* ══════════════════════════════════════
-                BOTTOM MARQUEE
-               ══════════════════════════════════════ */}
+            {/* Bottom marquee */}
             <div className="w-full bg-acid border-t-[3px] border-ink py-3 overflow-hidden">
                 <div className="marquee-container font-mono font-bold text-ink uppercase tracking-widest text-sm">
                     <div className="marquee-content animate-marquee-reverse">
-                        <span className="px-6">AVAILABLE FOR HIRE&nbsp;///&nbsp;</span>
-                        <span className="px-6">OPEN FOR CONTRACT&nbsp;///&nbsp;</span>
-                        <span className="px-6">REMOTE READY&nbsp;///&nbsp;</span>
-                        <span className="px-6">AVAILABLE FOR HIRE&nbsp;///&nbsp;</span>
-                        <span className="px-6">OPEN FOR CONTRACT&nbsp;///&nbsp;</span>
-                        <span className="px-6">REMOTE READY&nbsp;///&nbsp;</span>
+                        <span className="px-6">Open for new work&nbsp;///&nbsp;</span>
+                        <span className="px-6">Contract &amp; freelance&nbsp;///&nbsp;</span>
+                        <span className="px-6">Remote worldwide&nbsp;///&nbsp;</span>
+                        <span className="px-6">Replies within a day&nbsp;///&nbsp;</span>
                     </div>
                     <div className="marquee-content animate-marquee-reverse" aria-hidden="true">
-                        <span className="px-6">AVAILABLE FOR HIRE&nbsp;///&nbsp;</span>
-                        <span className="px-6">OPEN FOR CONTRACT&nbsp;///&nbsp;</span>
-                        <span className="px-6">REMOTE READY&nbsp;///&nbsp;</span>
-                        <span className="px-6">AVAILABLE FOR HIRE&nbsp;///&nbsp;</span>
-                        <span className="px-6">OPEN FOR CONTRACT&nbsp;///&nbsp;</span>
-                        <span className="px-6">REMOTE READY&nbsp;///&nbsp;</span>
+                        <span className="px-6">Open for new work&nbsp;///&nbsp;</span>
+                        <span className="px-6">Contract &amp; freelance&nbsp;///&nbsp;</span>
+                        <span className="px-6">Remote worldwide&nbsp;///&nbsp;</span>
+                        <span className="px-6">Replies within a day&nbsp;///&nbsp;</span>
                     </div>
                 </div>
             </div>

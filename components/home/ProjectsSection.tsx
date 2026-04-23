@@ -1,9 +1,18 @@
+"use client";
+
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
 import { CircuitPattern } from "@/components/ui/Decorative";
-import { ArrowUpRight, Smartphone, Bot, Shield, Terminal, Code2 } from "lucide-react";
+import { ArrowUpRight, Smartphone, Bot, Terminal, Code2, Sparkles } from "lucide-react";
+
+/* Stable (non-random) bar heights so SSR and hydration match,
+   and the same heights show on every render */
+const BAR_HEIGHTS = [62, 38, 84, 46, 70, 32, 58, 78, 44, 66, 28, 90, 52, 40, 74, 36, 60, 82, 48, 68, 30, 72, 54, 86];
 
 export function ProjectsSection() {
+    const barHeights = useMemo(() => BAR_HEIGHTS, []);
+
     return (
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
             <motion.div
@@ -13,7 +22,7 @@ export function ProjectsSection() {
                 className="flex items-end justify-between mb-6"
             >
                 <div>
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/40 mb-2">Featured</div>
+                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Featured</div>
                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">Selected Work</h2>
                 </div>
                 <a href="/work" className="font-mono text-sm font-bold uppercase tracking-wider text-ink hover:text-electric transition-colors flex items-center gap-1 group">
@@ -22,93 +31,91 @@ export function ProjectsSection() {
             </motion.div>
 
             <BentoGrid className="md:auto-rows-[18rem] gap-5">
-                {/* AG1 Dashboard */}
+                {/* LeadSniper — featured large */}
                 <BentoGridItem
                     index={0}
                     className="md:col-span-2 md:row-span-2"
-                    title="AG1 Dashboard"
-                    description="iOS 17 • SwiftUI • 60FPS Analytics"
-                    bgColor="bg-electric"
-                    textColor="text-cream"
-                    icon={<Smartphone size={36} className="text-cream" />}
-                    href="/work/ag1-dashboard"
+                    title="LeadSniper"
+                    description="Full-stack AI prospecting engine · 23-factor scoring · $0 infra"
+                    bgColor="bg-acid"
+                    textColor="text-ink"
+                    icon={<Sparkles size={36} className="text-ink" />}
+                    href="/work/leadsniper"
                     header={
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <span className="text-[8rem] md:text-[14rem] font-heading font-bold tracking-tighter text-cream/8 leading-none select-none">iOS</span>
+                            <span className="text-[7rem] md:text-[12rem] font-heading font-bold tracking-tighter text-ink/10 leading-none select-none">AI</span>
                         </div>
                     }
                 />
 
-                {/* EchoScribe */}
+                {/* EchoScribe — tall */}
                 <BentoGridItem
                     index={1}
                     className="md:col-span-1 md:row-span-2"
                     title="EchoScribe"
-                    description="AI Agent • Python • OpenAI"
+                    description="Meeting → Slack pipeline · Python · GPT"
                     bgColor="bg-hotpink"
                     textColor="text-cream"
                     icon={<Bot size={36} className="text-cream" />}
                     href="/work/echoscribe"
                     header={
-                        <div className="h-full flex flex-col justify-center space-y-3 font-mono text-sm font-bold pl-3 border-l-[3px] border-cream/30 ml-4 mt-4">
-                            <p className="text-cream/60">&gt; Audio Transcribed.</p>
-                            <p className="text-cream/60">&gt; Summary Generated.</p>
-                            <p className="text-cream/60">&gt; Sent to Slack.</p>
+                        <div className="h-full flex flex-col justify-center space-y-3 font-mono text-sm font-bold pl-3 border-l-[3px] border-cream/40 ml-4 mt-4">
+                            <p className="text-cream/85">&gt; Audio transcribed.</p>
+                            <p className="text-cream/85">&gt; Summary generated.</p>
+                            <p className="text-cream/85">&gt; Sent to Slack.</p>
                             <p className="text-cream animate-blink">_</p>
                         </div>
                     }
                 />
 
-                {/* Fortress */}
+                {/* AG1 Dashboard */}
                 <BentoGridItem
                     index={2}
                     className="md:col-span-1"
-                    title="Fortress"
-                    description="Security CLI • Python"
-                    bgColor="bg-vivid"
+                    title="AG1 Dashboard"
+                    description="Meta Ads analytics · SwiftUI Charts · iOS 17"
+                    bgColor="bg-electric"
                     textColor="text-cream"
-                    icon={<Shield size={28} className="text-cream" />}
-                    href="/work/fortress"
+                    icon={<Smartphone size={28} className="text-cream" />}
+                    href="/work/ag1-dashboard"
                     header={
                         <div className="absolute inset-0 pointer-events-none">
-                            <CircuitPattern className="w-full h-full text-cream/10" />
+                            <CircuitPattern className="w-full h-full text-cream/15" />
                         </div>
                     }
                 />
 
-                {/* The Arsenal Link */}
+                {/* Rudratek Dashboard */}
                 <BentoGridItem
                     index={3}
                     className="md:col-span-1"
-                    title="The Arsenal"
-                    description="My full tech stack"
-                    bgColor="bg-acid"
-                    textColor="text-ink"
-                    icon={<Terminal size={28} className="text-ink" />}
-                    href="/stack"
-                    header={
-                        <div className="absolute top-3 right-3 animate-spin-slow">
-                            <Code2 size={40} className="opacity-10 text-ink" />
-                        </div>
-                    }
+                    title="Rudratek"
+                    description="Production SaaS dashboard · Next.js 14"
+                    bgColor="bg-vivid"
+                    textColor="text-cream"
+                    icon={<Terminal size={28} className="text-cream" />}
+                    href="/work/rudratek-dashboard"
                 />
 
-                {/* System status filler */}
+                {/* Arsenal link + System status */}
                 <BentoGridItem
                     index={4}
                     className="md:col-span-1"
-                    title=""
-                    description=""
+                    title="The Arsenal"
+                    description="Full stack · Tooling · Current focus"
                     bgColor="bg-ink"
+                    textColor="text-cream"
+                    icon={<Code2 size={28} className="text-cream" />}
+                    href="/stack"
                     header={
                         <div className="h-full w-full flex flex-col justify-between p-4">
-                            <div className="font-mono text-[0.6rem] font-bold text-cream/30 text-right tracking-widest uppercase">SYS://882-991-X</div>
+                            <div className="font-mono text-xs font-bold text-cream/60 text-right tracking-widest uppercase">SYS://882-991-X</div>
                             <div className="flex justify-between items-end h-16 w-full gap-[2px]">
-                                {[...Array(24)].map((_, i) => (
-                                    <div key={i} className="bg-acid/50 w-[3px] transition-all duration-300" style={{ height: `${20 + Math.random() * 80}%` }} />
+                                {barHeights.map((h, i) => (
+                                    <div key={i} className="bg-acid/60 w-[3px]" style={{ height: `${h}%` }} />
                                 ))}
                             </div>
-                            <div className="font-heading font-bold text-base text-cream uppercase tracking-tight">System Normal</div>
+                            <div className="font-heading font-bold text-base text-cream uppercase tracking-tight">Arsenal Loaded</div>
                         </div>
                     }
                 />
