@@ -7,31 +7,7 @@ import { Smartphone, Bot, Shield, Terminal, Code2, Zap, ArrowUpRight, Github, Ma
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-
-/* ─── Animated Counter Hook ─── */
-function useCounter(end: number, duration: number = 2000, startCounting: boolean = false) {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        if (!startCounting) return;
-        let startTime: number | null = null;
-        let animationFrame: number;
-
-        const step = (timestamp: number) => {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            setCount(Math.floor(progress * end));
-            if (progress < 1) {
-                animationFrame = requestAnimationFrame(step);
-            }
-        };
-
-        animationFrame = requestAnimationFrame(step);
-        return () => cancelAnimationFrame(animationFrame);
-    }, [end, duration, startCounting]);
-
-    return count;
-}
+import { useCounter } from "@/hooks/useCounter";
 
 /* ─── Animated Stat Component ─── */
 function AnimatedStat({ value, suffix = "", label }: { value: number; suffix?: string; label: string }) {
