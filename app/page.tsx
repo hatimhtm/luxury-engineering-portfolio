@@ -7,6 +7,7 @@ import { Smartphone, Bot, Shield, Terminal, Code2, Zap, ArrowUpRight, Github, Ma
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { useKonamiCode } from "@/hooks/useKonamiCode";
 
 /* ─── Animated Counter Hook ─── */
 function useCounter(end: number, duration: number = 2000, startCounting: boolean = false) {
@@ -97,34 +98,6 @@ const fadeUp = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
-
-/* ─── Konami Code Easter Egg ─── */
-function useKonamiCode(callback: () => void) {
-    const sequence = [
-        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-        "b", "a",
-    ];
-    const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        const handler = (e: KeyboardEvent) => {
-            if (e.key === sequence[index]) {
-                const next = index + 1;
-                if (next === sequence.length) {
-                    callback();
-                    setIndex(0);
-                } else {
-                    setIndex(next);
-                }
-            } else {
-                setIndex(0);
-            }
-        };
-        window.addEventListener("keydown", handler);
-        return () => window.removeEventListener("keydown", handler);
-    }, [index, callback]);
-}
 
 export default function Home() {
     const heroRef = useRef(null);
