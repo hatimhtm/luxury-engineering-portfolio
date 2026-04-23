@@ -69,7 +69,7 @@ export default function NotFound() {
                         transition={{ delay: 3, duration: 1 }}
                         className="mt-12 font-mono text-[0.6rem] font-bold text-ink/15 uppercase tracking-[0.3em]"
                     >
-                        // lord_decay was here too
+                        {"// lord_decay was here too"}
                     </motion.p>
                 </motion.div>
             </div>
