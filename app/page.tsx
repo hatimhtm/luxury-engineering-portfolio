@@ -5,33 +5,10 @@ import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative
 import LiveTerminal from "@/components/ui/LiveTerminal";
 import { Smartphone, Bot, Shield, Terminal, Code2, Zap, ArrowUpRight, Github, Mail, ChevronDown, Quote, Star, Linkedin } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-
-/* ─── Animated Counter Hook ─── */
-function useCounter(end: number, duration: number = 2000, startCounting: boolean = false) {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        if (!startCounting) return;
-        let startTime: number | null = null;
-        let animationFrame: number;
-
-        const step = (timestamp: number) => {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            setCount(Math.floor(progress * end));
-            if (progress < 1) {
-                animationFrame = requestAnimationFrame(step);
-            }
-        };
-
-        animationFrame = requestAnimationFrame(step);
-        return () => cancelAnimationFrame(animationFrame);
-    }, [end, duration, startCounting]);
-
-    return count;
-}
+import useCounter from "@/hooks/useCounter";
+import useKonamiCode from "@/hooks/useKonamiCode";
 
 /* ─── Animated Stat Component ─── */
 function AnimatedStat({ value, suffix = "", label }: { value: number; suffix?: string; label: string }) {
@@ -98,33 +75,6 @@ const fadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
-/* ─── Konami Code Easter Egg ─── */
-function useKonamiCode(callback: () => void) {
-    const sequence = [
-        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-        "b", "a",
-    ];
-    const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        const handler = (e: KeyboardEvent) => {
-            if (e.key === sequence[index]) {
-                const next = index + 1;
-                if (next === sequence.length) {
-                    callback();
-                    setIndex(0);
-                } else {
-                    setIndex(next);
-                }
-            } else {
-                setIndex(0);
-            }
-        };
-        window.addEventListener("keydown", handler);
-        return () => window.removeEventListener("keydown", handler);
-    }, [index, callback]);
-}
 
 export default function Home() {
     const heroRef = useRef(null);
