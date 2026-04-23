@@ -14,9 +14,9 @@ export default function ServicesPage() {
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/50 uppercase tracking-widest">system://services</span>
+                    <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">system://services</span>
                 </div>
-                <span className="font-mono text-xs font-bold text-cream/30 tracking-widest uppercase">2 Packages</span>
+                <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">2 Packages</span>
             </div>
 
             {/* Header */}
@@ -26,13 +26,14 @@ export default function ServicesPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/40 mb-3">What I Do</div>
+                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-3">What I Do</div>
                     <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
                         Services
                     </h1>
-                    <p className="font-mono text-sm md:text-base font-bold text-ink/60 max-w-lg leading-relaxed">
-                        No BS proposals. No scope creep. No junior devs hiding behind a brand.
-                        Just me, shipping your product at warp speed. Two ways we can work together:
+                    <p className="font-mono text-sm md:text-base text-ink/85 max-w-xl leading-relaxed">
+                        One engineer, not an agency. Two shapes of engagement depending on
+                        whether you&apos;re starting from zero or adding AI to something that
+                        already ships.
                     </p>
                 </motion.div>
             </section>

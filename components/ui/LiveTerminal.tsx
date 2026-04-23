@@ -62,7 +62,7 @@ export default function LiveTerminal() {
                 <div className="w-2.5 h-2.5 bg-hotpink" />
                 <div className="w-2.5 h-2.5 bg-acid" />
                 <div className="w-2.5 h-2.5 bg-electric" />
-                <span className="ml-2 text-cream/30 text-[0.6rem] uppercase tracking-widest">lord_decay@arsenal</span>
+                <span className="ml-2 text-cream/70 text-xs uppercase tracking-widest">lord_decay@arsenal</span>
             </div>
 
             {/* Lines */}

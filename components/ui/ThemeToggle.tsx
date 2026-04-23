@@ -9,7 +9,7 @@ export default function ThemeToggle() {
     return (
         <button
             onClick={toggleTheme}
-            className="relative px-2.5 md:px-3 py-1.5 border-[2px] md:border-[3px] border-cream/30 text-cream/60 font-mono text-[0.6rem] md:text-xs font-bold uppercase tracking-wider hover:bg-acid hover:text-ink hover:border-acid transition-all flex items-center gap-1.5"
+            className="relative px-3 py-2 border-[2px] md:border-[3px] border-cream/40 text-cream/85 font-mono text-xs font-bold uppercase tracking-wider hover:bg-acid hover:text-ink hover:border-acid transition-all flex items-center gap-1.5 min-h-[40px]"
             aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
         >
             <motion.span

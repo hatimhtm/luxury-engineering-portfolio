@@ -16,11 +16,11 @@ export function CTASection() {
                 <div className="absolute top-0 left-1/4 w-1/2 h-20 bg-acid/10 blur-3xl pointer-events-none" />
                 <div className="relative z-10">
                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight mb-4">
-                        Stop Debating.<br /><span className="gradient-text-acid">Start Shipping.</span>
+                        Think this is the<br /><span className="gradient-text-acid">right fit?</span>
                     </h2>
-                    <p className="font-mono text-sm font-bold text-cream/60 max-w-lg mx-auto mb-8">
-                        Every day you wait is a day your competitors get ahead.
-                        I&apos;m available now. Let&apos;s go.
+                    <p className="font-mono text-sm text-cream/85 max-w-lg mx-auto mb-8 leading-relaxed">
+                        Send me a brief of what you&apos;re building — current state, target,
+                        any deadline. I&apos;ll reply with a plan and a realistic price.
                     </p>
                     <a
                         href="/contact"

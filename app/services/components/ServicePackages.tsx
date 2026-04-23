@@ -12,10 +12,10 @@ const velocityFeatures = [
 ];
 
 const aiFeatures = [
-    { icon: <Brain size={20} />, label: "LLM Integration", desc: "OpenAI, Claude, Gemini — your pick" },
-    { icon: <Bot size={20} />, label: "Custom Agents", desc: "Autonomous workflows that think" },
-    { icon: <RefreshCw size={20} />, label: "RAG Pipelines", desc: "Your data, AI-searchable" },
-    { icon: <Rocket size={20} />, label: "Fine-Tuning", desc: "Models trained on your domain" },
+    { icon: <Brain size={20} />, label: "LLM Integration", desc: "OpenAI, Claude, Gemini — model of your choice" },
+    { icon: <Bot size={20} />, label: "Custom Agents", desc: "Task-specific workflows with retries and tools" },
+    { icon: <RefreshCw size={20} />, label: "RAG Pipelines", desc: "Vector search over your own data" },
+    { icon: <Rocket size={20} />, label: "Fine-Tuning", desc: "Domain-tuned models where it pays off" },
 ];
 
 export function ServicePackages() {
@@ -33,12 +33,13 @@ export function ServicePackages() {
                         <div className="relative z-10">
                             <div className="flex items-center gap-3 mb-4">
                                 <Zap size={28} />
-                                <span className="font-mono text-[0.6rem] font-bold uppercase tracking-[0.2em] opacity-50">Ship Fast</span>
+                                <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] opacity-80">Build a product</span>
                             </div>
-                            <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight mb-3">Velocity Launch</h2>
-                            <p className="font-mono text-sm font-bold opacity-70 leading-relaxed mb-6">
-                                Production-ready MVPs in 12–48 hours. Full-stack, deployed, and converting.
-                                Ideal for startups that need to validate fast.
+                            <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight mb-3">Ship It</h2>
+                            <p className="font-mono text-sm opacity-85 leading-relaxed mb-6">
+                                End-to-end builds for solo founders and small teams. Web, iOS, or both.
+                                You describe the product; I return a live, reviewed, and deployed version
+                                on a realistic timeline we agree on up front.
                             </p>
 
                             <div className="space-y-4 mb-6">
@@ -47,7 +48,7 @@ export function ServicePackages() {
                                         <div className="text-ink/60 mt-0.5">{f.icon}</div>
                                         <div>
                                             <div className="font-heading font-bold text-sm uppercase tracking-tight">{f.label}</div>
-                                            <div className="font-mono text-xs font-bold opacity-50">{f.desc}</div>
+                                            <div className="font-mono text-xs opacity-80">{f.desc}</div>
                                         </div>
                                     </div>
                                 ))}
@@ -76,12 +77,13 @@ export function ServicePackages() {
                         <div className="relative z-10">
                             <div className="flex items-center gap-3 mb-4">
                                 <Bot size={28} className="text-acid" />
-                                <span className="font-mono text-[0.6rem] font-bold uppercase tracking-[0.2em] text-cream/50">Think Different</span>
+                                <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-cream/80">Augment existing</span>
                             </div>
-                            <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight mb-3">AI Augmentation</h2>
-                            <p className="font-mono text-sm font-bold text-cream/70 leading-relaxed mb-6">
-                                LLM integration, custom agents, and RAG pipelines.
-                                Intelligence embedded into every layer of your product.
+                            <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight mb-3">Add AI</h2>
+                            <p className="font-mono text-sm text-cream/90 leading-relaxed mb-6">
+                                LLM workflows, custom agents, and RAG pipelines for products that
+                                already ship. I fit into your existing repo, write small PRs, and
+                                make the AI do a specific job — not just a demo.
                             </p>
 
                             <div className="space-y-4 mb-6">
@@ -90,7 +92,7 @@ export function ServicePackages() {
                                         <div className="text-acid mt-0.5">{f.icon}</div>
                                         <div>
                                             <div className="font-heading font-bold text-sm uppercase tracking-tight">{f.label}</div>
-                                            <div className="font-mono text-xs font-bold text-cream/50">{f.desc}</div>
+                                            <div className="font-mono text-xs text-cream/80">{f.desc}</div>
                                         </div>
                                     </div>
                                 ))}

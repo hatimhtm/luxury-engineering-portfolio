@@ -20,11 +20,11 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/50 uppercase tracking-widest">
+                    <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">
                         case://study-{project.id}
                     </span>
                 </div>
-                <span className="font-mono text-xs font-bold text-cream/30 tracking-widest uppercase">
+                <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">
                     {project.category}
                 </span>
             </div>
@@ -47,13 +47,13 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/40 mb-3">
+                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-3">
                         Project {project.id}
                     </div>
                     <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
                         {project.title}
                     </h1>
-                    <p className="font-mono text-sm md:text-base font-bold text-ink/60 max-w-2xl leading-relaxed">
+                    <p className="font-mono text-sm md:text-base text-ink/85 max-w-2xl leading-relaxed">
                         {project.longDescription}
                     </p>
                 </motion.div>
@@ -71,7 +71,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                             className="neo-card bg-ink text-cream p-4 text-center neo-glow"
                         >
                             <div className="font-heading font-bold text-2xl md:text-3xl text-acid">{m.value}</div>
-                            <div className="font-mono text-[0.6rem] font-bold uppercase tracking-widest mt-1 opacity-50">{m.label}</div>
+                            <div className="font-mono text-xs font-bold uppercase tracking-widest mt-1 opacity-80">{m.label}</div>
                         </motion.div>
                     ))}
                     <motion.div
@@ -81,7 +81,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                         className="neo-card bg-ink text-cream p-4 text-center neo-glow"
                     >
                         <div className="font-heading font-bold text-2xl md:text-3xl text-acid">{project.category}</div>
-                        <div className="font-mono text-[0.6rem] font-bold uppercase tracking-widest mt-1 opacity-50">Category</div>
+                        <div className="font-mono text-xs font-bold uppercase tracking-widest mt-1 opacity-80">Category</div>
                     </motion.div>
                 </div>
             </section>
@@ -172,7 +172,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                                     transition={{ delay: i * 0.1 }}
                                     className="flex items-start gap-3"
                                 >
-                                    <div className="w-6 h-6 bg-acid border-[2px] border-ink flex-shrink-0 flex items-center justify-center font-mono text-[0.6rem] font-bold">
+                                    <div className="w-6 h-6 bg-acid border-[2px] border-ink flex-shrink-0 flex items-center justify-center font-mono text-xs font-bold">
                                         ✓
                                     </div>
                                     <span className="font-mono text-sm font-bold text-ink/70">{outcome}</span>
