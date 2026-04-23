@@ -9,6 +9,7 @@ import LoadingScreen from "@/components/ui/LoadingScreen";
 import CommandPalette from "@/components/ui/CommandPalette";
 import MagneticButton from "@/components/ui/MagneticButton";
 import Link from "next/link";
+import { themeScript } from "@/lib/theme-script";
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
@@ -44,7 +45,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
+        <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: themeScript,
+                    }}
+                />
+            </head>
             <body className="font-mono font-bold bg-cream text-ink antialiased selection:bg-acid selection:text-ink cursor-none">
                 <ThemeProvider>
                     <LoadingScreen />
