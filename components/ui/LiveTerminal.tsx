@@ -19,9 +19,12 @@ export default function LiveTerminal() {
     useEffect(() => {
         if (!isInView) return;
 
+        const timeouts: ReturnType<typeof setTimeout>[] = [];
+        const intervals: ReturnType<typeof setInterval>[] = [];
+
         commands.forEach((cmd, i) => {
             // Start typing prompt
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 setVisibleLines(i + 1);
                 let charIndex = 0;
                 const typeInterval = setInterval(() => {
@@ -35,8 +38,15 @@ export default function LiveTerminal() {
                         clearInterval(typeInterval);
                     }
                 }, 30);
+                intervals.push(typeInterval);
             }, cmd.delay);
+            timeouts.push(timeoutId);
         });
+
+        return () => {
+            timeouts.forEach((t) => clearTimeout(t));
+            intervals.forEach((t) => clearInterval(t));
+        };
     }, [isInView]);
 
     return (
