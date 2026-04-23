@@ -1,3 +1,4 @@
+import { isValidName, isValidEmail, isValidBrief } from "@/lib/validation";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -6,20 +7,19 @@ export async function POST(req: NextRequest) {
         const { name, email, budget, brief } = body;
 
         // Basic validation
-        if (!name || !email || !brief) {
-            return NextResponse.json(
-                { error: "Name, email, and project brief are required." },
-                { status: 400 }
-            );
-        }
-
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return NextResponse.json(
-                { error: "Please provide a valid email address." },
-                { status: 400 }
-            );
+        if (!isValidName(name) || !isValidEmail(email) || !isValidBrief(brief)) {
+            if (!isValidName(name) || !email || !isValidBrief(brief)) {
+                return NextResponse.json(
+                    { error: "Name, email, and project brief are required." },
+                    { status: 400 }
+                );
+            }
+            if (!isValidEmail(email)) {
+                return NextResponse.json(
+                    { error: "Please provide a valid email address." },
+                    { status: 400 }
+                );
+            }
         }
 
         // Send to Formspree (free tier - up to 50/month)
