@@ -292,10 +292,10 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-3 mt-6 pt-4 border-t-[3px] border-ink/10 relative z-10">
-                            <a href="https://github.com/hatimhtm" target="_blank" className="neo-pill bg-ink text-cream hover:bg-acid hover:text-ink flex items-center gap-2">
+                            <a href="https://github.com/hatimhtm" target="_blank" rel="noopener noreferrer" className="neo-pill bg-ink text-cream hover:bg-acid hover:text-ink flex items-center gap-2">
                                 <Github size={14} /> GitHub
                             </a>
-                            <a href="https://www.linkedin.com/in/hatim-elhassak/" target="_blank" className="neo-pill bg-ink text-cream hover:bg-electric hover:text-cream flex items-center gap-2">
+                            <a href="https://www.linkedin.com/in/hatim-elhassak/" target="_blank" rel="noopener noreferrer" className="neo-pill bg-ink text-cream hover:bg-electric hover:text-cream flex items-center gap-2">
                                 <Linkedin size={14} /> LinkedIn
                             </a>
                             <a href="mailto:hatimelhassak.official@gmail.com" className="neo-pill bg-ink text-cream hover:bg-vivid hover:text-cream flex items-center gap-2">
