@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
-import { ArrowUpRight, BookOpen, Flame } from "lucide-react";
+import { CircuitPattern, GridDots } from "@/components/ui/Decorative";
+import { BookOpen, Flame } from "lucide-react";
 
 /* ─── Animations ─── */
 const stagger = {
