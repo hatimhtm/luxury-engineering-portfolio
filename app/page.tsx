@@ -99,12 +99,13 @@ const fadeUp = {
 };
 
 /* ─── Konami Code Easter Egg ─── */
+const sequence = [
+    "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+    "b", "a",
+];
+
 function useKonamiCode(callback: () => void) {
-    const sequence = [
-        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-        "b", "a",
-    ];
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
