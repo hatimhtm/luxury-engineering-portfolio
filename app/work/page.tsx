@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 import { projects } from "@/lib/projects";
