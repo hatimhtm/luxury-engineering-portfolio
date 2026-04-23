@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
-import { ArrowUpRight, BookOpen, Flame } from "lucide-react";
+import { BookOpen, Flame } from "lucide-react";
 
 /* ─── Animations ─── */
 const stagger = {

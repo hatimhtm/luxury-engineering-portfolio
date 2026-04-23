@@ -5,7 +5,7 @@ import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative
 import LiveTerminal from "@/components/ui/LiveTerminal";
 import { Smartphone, Bot, Shield, Terminal, Code2, Zap, ArrowUpRight, Github, Mail, ChevronDown, Quote, Star, Linkedin } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 
 /* ─── Animated Counter Hook ─── */
@@ -100,11 +100,11 @@ const fadeUp = {
 
 /* ─── Konami Code Easter Egg ─── */
 function useKonamiCode(callback: () => void) {
-    const sequence = [
+    const sequence = React.useMemo(() => [
         "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
         "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
         "b", "a",
-    ];
+    ], []);
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -123,7 +123,7 @@ function useKonamiCode(callback: () => void) {
         };
         window.addEventListener("keydown", handler);
         return () => window.removeEventListener("keydown", handler);
-    }, [index, callback]);
+    }, [index, callback, sequence]);
 }
 
 export default function Home() {
