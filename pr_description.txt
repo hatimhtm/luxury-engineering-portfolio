@@ -1,0 +1,9 @@
+🧪 [testing improvement] Add tests for Tailwind class merge utility
+
+🎯 **What:** The `cn` utility from `lib/utils.ts` was missing tests, preventing any regressions in case it needed updates or modifications later.
+📊 **Coverage:** The test suite `lib/utils.test.ts` now covers the following scenarios:
+- Basic concatenation of multiple Tailwind classes
+- Conditional class inclusion using falsy/truthy checks
+- Overriding of Tailwind classes
+- Handling of complex inputs (arrays and objects)
+✨ **Result:** Enhanced the codebase test coverage with tests capable of properly catching bugs. Also fixed minor linting and dependency array issues to ensure robust build.
