@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, ChevronDown, Calendar } from "lucide-react";
+import { ArrowUpRight, ChevronDown, CalendarDays } from "lucide-react";
 import { useRef } from "react";
 
 export function HeroSection() {
@@ -65,7 +65,7 @@ export function HeroSection() {
                                 target="_blank" rel="noopener noreferrer"
                                 className="neo-card bg-acid text-ink px-6 py-3 font-heading font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-ink hover:text-acid transition-all group neo-glow"
                             >
-                                <Calendar size={16} />
+                                <CalendarDays size={16} />
                                 Book a 15-min call
                                 <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </a>

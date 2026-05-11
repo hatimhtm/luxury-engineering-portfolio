@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GridDots } from "@/components/ui/Decorative";
-import { Mail, Calendar } from "lucide-react";
+import { Mail, CalendarDays } from "lucide-react";
 
 export function CtaSection() {
     return (
@@ -30,7 +30,7 @@ export function CtaSection() {
                             target="_blank" rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 bg-acid text-ink font-heading font-bold text-lg uppercase tracking-wider px-8 py-4 border-[3px] border-ink shadow-neo hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all hover-shake"
                         >
-                            <Calendar size={18} /> Book a 15-min call
+                            <CalendarDays size={18} /> Book a 15-min call
                         </a>
                         <a
                             href="/contact"
