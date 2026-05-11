@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useMemo } from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
 import { CircuitPattern } from "@/components/ui/Decorative";
-import { ArrowUpRight, Smartphone, Bot, Terminal, Code2, Sparkles } from "lucide-react";
+import { ArrowUpRight, Smartphone, Activity, Repeat, Sparkles, Code2 } from "lucide-react";
 
 /* Stable (non-random) bar heights so SSR and hydration match,
    and the same heights show on every render */
@@ -22,62 +22,63 @@ export function ProjectsSection() {
                 className="flex items-end justify-between mb-6"
             >
                 <div>
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Featured</div>
+                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Featured · Shipped 2025–2026</div>
                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">Selected Work</h2>
                 </div>
                 <a href="/work" className="font-mono text-sm font-bold uppercase tracking-wider text-ink hover:text-electric transition-colors flex items-center gap-1 group">
-                    View All <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    View All 19 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
             </motion.div>
 
             <BentoGrid className="md:auto-rows-[18rem] gap-5">
-                {/* LeadSniper — featured large */}
+                {/* TryIt — flagship, App Store live */}
                 <BentoGridItem
                     index={0}
                     className="md:col-span-2 md:row-span-2"
-                    title="LeadSniper"
-                    description="Full-stack AI prospecting engine · 23-factor scoring · $0 infra"
+                    title="TryIt · App Store"
+                    description="AI virtual try-on for iPhone. Photos stay on-device. SwiftUI · iOS 18 · Gemini 3."
                     bgColor="bg-acid"
                     textColor="text-ink"
-                    icon={<Sparkles size={36} className="text-ink" />}
-                    href="/work/leadsniper"
+                    icon={<Smartphone size={36} className="text-ink" />}
+                    href="/work/tryit"
                     header={
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <span className="text-[7rem] md:text-[12rem] font-heading font-bold tracking-tighter text-ink/10 leading-none select-none">AI</span>
+                            <span className="text-[7rem] md:text-[12rem] font-heading font-bold tracking-tighter text-ink/10 leading-none select-none">iOS</span>
                         </div>
                     }
                 />
 
-                {/* EchoScribe — tall */}
+                {/* Viral OS — tall, command center */}
                 <BentoGridItem
                     index={1}
                     className="md:col-span-1 md:row-span-2"
-                    title="EchoScribe"
-                    description="Meeting → Slack pipeline · Python · GPT"
-                    bgColor="bg-hotpink"
+                    title="Viral OS"
+                    description="AI command center for a portfolio of iOS apps · 14 API routes · pLTV + anomaly alerts"
+                    bgColor="bg-electric"
                     textColor="text-cream"
-                    icon={<Bot size={36} className="text-cream" />}
-                    href="/work/echoscribe"
+                    icon={<Activity size={36} className="text-cream" />}
+                    href="/work/viralos"
                     header={
                         <div className="h-full flex flex-col justify-center space-y-3 font-mono text-sm font-bold pl-3 border-l-[3px] border-cream/40 ml-4 mt-4">
-                            <p className="text-cream/85">&gt; Audio transcribed.</p>
-                            <p className="text-cream/85">&gt; Summary generated.</p>
-                            <p className="text-cream/85">&gt; Sent to Slack.</p>
+                            <p className="text-cream/85">&gt; App Store sync.</p>
+                            <p className="text-cream/85">&gt; RevenueCat webhook.</p>
+                            <p className="text-cream/85">&gt; Anomaly detected.</p>
+                            <p className="text-cream/85">&gt; Slack notified.</p>
                             <p className="text-cream animate-blink">_</p>
                         </div>
                     }
                 />
 
-                {/* AG1 Dashboard */}
+                {/* Together Tasks — couples AI OS */}
                 <BentoGridItem
                     index={2}
                     className="md:col-span-1"
-                    title="AG1 Dashboard"
-                    description="Meta Ads analytics · SwiftUI Charts · iOS 17"
-                    bgColor="bg-electric"
+                    title="Together Tasks"
+                    description="AI-native task OS for couples · type or speak · realtime sync"
+                    bgColor="bg-hotpink"
                     textColor="text-cream"
-                    icon={<Smartphone size={28} className="text-cream" />}
-                    href="/work/ag1-dashboard"
+                    icon={<Repeat size={28} className="text-cream" />}
+                    href="/work/together-tasks"
                     header={
                         <div className="absolute inset-0 pointer-events-none">
                             <CircuitPattern className="w-full h-full text-cream/15" />
@@ -85,16 +86,16 @@ export function ProjectsSection() {
                     }
                 />
 
-                {/* Rudratek Dashboard */}
+                {/* LeadSniper — AI prospecting */}
                 <BentoGridItem
                     index={3}
                     className="md:col-span-1"
-                    title="Rudratek"
-                    description="Production SaaS dashboard · Next.js 14"
+                    title="LeadSniper"
+                    description="B2B prospecting engine · 23-factor AI scoring · $0 infra"
                     bgColor="bg-vivid"
                     textColor="text-cream"
-                    icon={<Terminal size={28} className="text-cream" />}
-                    href="/work/rudratek-dashboard"
+                    icon={<Sparkles size={28} className="text-cream" />}
+                    href="/work/leadsniper"
                 />
 
                 {/* Arsenal link + System status */}

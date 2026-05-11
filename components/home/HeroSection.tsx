@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Calendar } from "lucide-react";
 import { useRef } from "react";
 
 export function HeroSection() {
@@ -37,23 +37,43 @@ export function HeroSection() {
                                 </span>
                             </h1>
                             <p className="font-mono text-sm md:text-lg text-ink/80 mt-6 max-w-xl leading-relaxed">
-                                Full-stack engineer. I build iOS apps, AI pipelines, and production
-                                web tools end-to-end — from brief to App Store, or brief to
-                                Vercel, on tight timelines.
+                                Full-stack engineer. I ship iOS apps to the App Store, AI pipelines
+                                to Vercel, and production web tools end-to-end — solo, on tight
+                                timelines, with the public commits to prove it.
                             </p>
+                            <div className="mt-5 flex flex-wrap gap-2 max-w-xl">
+                                <span className="inline-flex items-center gap-1.5 bg-ink/[0.05] border-[2px] border-ink/15 px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider text-ink/80">
+                                    2 apps live · App Store
+                                </span>
+                                <span className="inline-flex items-center gap-1.5 bg-ink/[0.05] border-[2px] border-ink/15 px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider text-ink/80">
+                                    19 shipped projects
+                                </span>
+                                <span className="inline-flex items-center gap-1.5 bg-ink/[0.05] border-[2px] border-ink/15 px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider text-ink/80">
+                                    Same-day reply
+                                </span>
+                            </div>
                         </motion.div>
 
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex flex-col items-start md:items-end gap-4"
+                            className="flex flex-col items-start md:items-end gap-3"
                         >
                             <a
-                                href="/contact"
-                                className="neo-card bg-ink text-cream px-6 py-3 font-heading font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-acid hover:text-ink transition-all group neo-glow"
+                                href="https://cal.com/hatimelhassak/engineering-discovery"
+                                target="_blank" rel="noopener noreferrer"
+                                className="neo-card bg-acid text-ink px-6 py-3 font-heading font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-ink hover:text-acid transition-all group neo-glow"
                             >
-                                Start a Project
+                                <Calendar size={16} />
+                                Book a 15-min call
+                                <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </a>
+                            <a
+                                href="/contact"
+                                className="neo-card bg-ink text-cream px-6 py-3 font-heading font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-acid hover:text-ink transition-all group"
+                            >
+                                Start a project
                                 <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </a>
                             <div className="flex items-center gap-3 text-ink/70">

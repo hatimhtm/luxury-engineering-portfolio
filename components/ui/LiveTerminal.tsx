@@ -4,10 +4,10 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const commands = [
-    { prompt: "$ deploying echoscribe", result: "✓ Live on production", delay: 0 },
-    { prompt: "$ running fortress --scan", result: "✓ 0 vulnerabilities found", delay: 800 },
-    { prompt: "$ building ag1-dashboard", result: "✓ 60fps. Shipped.", delay: 1600 },
-    { prompt: "$ initializing lord_decay", result: "✓ Ready to build", delay: 2400 },
+    { prompt: "$ tryit · App Store review", result: "✓ Cleared 2.1 + 2.1(a)", delay: 0 },
+    { prompt: "$ viralos · cron daily", result: "✓ ASC sync · RC snapshot · alerts", delay: 800 },
+    { prompt: "$ together-tasks · realtime", result: "✓ Both phones in sync", delay: 1600 },
+    { prompt: "$ fortress · pip install", result: "✓ Published to PyPI", delay: 2400 },
 ];
 
 export default function LiveTerminal() {

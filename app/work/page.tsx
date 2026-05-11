@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Github, ExternalLink, Apple } from "lucide-react";
 import Link from "next/link";
 import { useRef, useMemo } from "react";
 import { projects, type Project } from "@/lib/projects";
@@ -36,8 +36,25 @@ function ProjectCard({ project }: { project: Project }) {
                     </div>
 
                     <div className="relative z-10">
-                        <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] opacity-80 mb-3">
-                            {project.category}
+                        <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] opacity-80">
+                                {project.category}
+                            </div>
+                            {project.appStore && (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
+                                    <Apple size={10} /> App Store
+                                </span>
+                            )}
+                            {project.liveDemo && (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
+                                    <ExternalLink size={10} /> Live
+                                </span>
+                            )}
+                            {project.private && (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider opacity-70">
+                                    Private
+                                </span>
+                            )}
                         </div>
                         <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-3 group-hover:translate-x-1 transition-transform">
                             {project.title}

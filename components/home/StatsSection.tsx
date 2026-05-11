@@ -61,10 +61,10 @@ function StatCard({ stat }: { stat: Stat }) {
 }
 
 const stats: Stat[] = [
-    { value: 10, suffix: "+", label: "Projects Shipped" },
-    { value: 5, suffix: "yr", label: "Building" },
-    { display: "4", label: "Languages Spoken" },
-    { display: "Remote", label: "Worldwide" },
+    { value: 19, suffix: "", label: "Projects Shipped" },
+    { value: 2, suffix: "", label: "Live on App Store" },
+    { display: "Solo", label: "Brief → Ship" },
+    { display: "Same-Day", label: "Reply Window" },
 ];
 
 export function StatsSection() {
