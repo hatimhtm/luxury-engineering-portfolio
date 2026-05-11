@@ -17,7 +17,7 @@ export function CtaSection() {
                 <GridDots className="absolute inset-0 w-full h-full text-cream/5" />
                 <div className="absolute top-0 left-1/4 w-1/2 h-32 bg-acid/10 blur-3xl pointer-events-none" />
                 <div className="relative z-10">
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-acid mb-3">/// Open for new work · Same-day reply ///</div>
+                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-acid mb-3">{"/// Open for new work · Same-day reply ///"}</div>
                     <h2 className="font-heading font-bold text-3xl md:text-6xl uppercase tracking-tight mb-4">Have something to build?</h2>
                     <p className="font-mono text-sm md:text-base opacity-90 mb-8 max-w-xl mx-auto leading-relaxed">
                         Brief to App Store. Brief to Vercel. On tight timelines. Tell me what
