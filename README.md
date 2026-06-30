@@ -1,152 +1,112 @@
-# Hatim El Hassak — Luxury Engineering Portfolio
-
-![Next.js](https://img.shields.io/badge/next.js_14-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-
-> A **Luxury Neo-Brutalist** portfolio built from scratch — no templates, no UI libraries. Every component hand-crafted to showcase modern frontend engineering at its most expressive.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets-readme/hero-banner-dark.svg" />
+    <img src="assets-readme/hero-banner.svg" alt="Luxury Engineering Portfolio" width="100%" />
+  </picture>
+</p>
 
 <p align="center">
-  <a href="https://hatimelhassak.is-a.dev"><strong>🔗 Live Site →</strong></a>
+  <img src="https://img.shields.io/badge/STATUS-LIVE-1A1A1A?style=for-the-badge&labelColor=1A1A1A&color=CCFF00" alt="Status" />
+  <img src="https://img.shields.io/badge/NEXT.JS_14-1A1A1A?style=for-the-badge&logo=nextdotjs&logoColor=CCFF00" alt="Next.js" />
+  <img src="https://img.shields.io/badge/REACT-1A1A1A?style=for-the-badge&logo=react&logoColor=CCFF00" alt="React" />
+  <img src="https://img.shields.io/badge/TYPESCRIPT-1A1A1A?style=for-the-badge&logo=typescript&logoColor=CCFF00" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/FRAMER_MOTION-1A1A1A?style=for-the-badge&logo=framer&logoColor=CCFF00" alt="Framer Motion" />
+  <img src="https://img.shields.io/badge/TAILWIND-1A1A1A?style=for-the-badge&logo=tailwindcss&logoColor=CCFF00" alt="Tailwind CSS" />
+</p>
+
+<p align="center">
+  <em>A Luxury Neo-Brutalist personal portfolio for Hatim El Hassak, built from scratch on Next.js 14 with no templates and no third-party UI libraries. Five hand-built pages — home, work, stack, services, contact — wired with a custom design system, a ⌘K command palette, magnetic interactions, a custom cursor, and full dark/light theming. Deployed on Vercel at <a href="https://hatimelhassak.is-a.dev">hatimelhassak.is-a.dev</a>.</em>
 </p>
 
 ---
 
-## ✨ Highlights
+### `/// WHAT IT IS`
 
-| Feature | Description |
-|---------|-------------|
-| 🎨 Custom Design System | Neo-brutalist aesthetic with acid colors, film grain, glassmorphism, and 3D depth — all from scratch |
-| ⌘K Command Palette | Keyboard-navigable quick navigation with fuzzy search, shortcuts, and resume download |
-| 🖱️ Custom Cursor | Hardware-accelerated animated cursor that reacts to interactive elements |
-| 🌗 Dark / Light Mode | Full theme system with CSS variables and persistent preference via `ThemeProvider` |
-| 🧲 Magnetic Buttons | Physics-based hover interactions using Framer Motion spring animations |
-| 📊 Scroll Progress | Real-time animated progress bar tracking page scroll position |
-| ⚡ Loading Screen | Branded boot sequence animation on initial visit |
-| 🎮 Konami Code Easter Egg | Hidden `lord_decay` mode activated by the classic cheat code |
+A production frontend portfolio that treats the site itself as the work sample. Rather than dropping content into a template, every interactive piece — the command palette, the magnetic buttons, the 3D bento grid, the custom cursor, the theme system — is engineered by hand so the codebase reads as evidence of the craft it advertises. The aesthetic is deliberately "Luxury Neo-Brutalist": high-contrast acid palette, raw borders and grid, layered with glassmorphism and premium typography (Space Grotesk + JetBrains Mono via `next/font`).
 
 ---
 
-## 📄 Pages
+### `/// HIGHLIGHTS`
 
-### `/` — Home
-The hero section features **mouse-aware parallax gradient blobs**, a rotating marquee ticker, an animated stats strip (projects shipped, years of experience, response time), and a **3D Bento Grid** showcasing featured work with depth and glow effects. Includes an about/bio section with headshot, a philosophy & process breakdown, service previews (Velocity Launch & AI Augmentation), and a bold CTA.
-
-### `/work` — Work
-Displays all projects as interactive cards with staggered entrance animations, category tags, tech badges, and metrics. Each card links to a **dynamic case study page** (`/work/[slug]`) built with `generateStaticParams`, featuring problem/solution/outcomes narratives and live GitHub links.
-
-### `/stack` — Stack
-A skills dashboard organized into **Frontend**, **Backend**, **AI/ML**, and **DevOps** categories. Each tool has a proficiency bar and a one-liner description. Includes a "Currently Learning" section (Rust, Kubernetes, Three.js, Solidity).
-
-### `/services` — Services
-Two service packages — **Velocity Launch** (production MVPs in 12 hours) and **AI Augmentation** (LLM integration, RAG pipelines, custom agents). Features a side-by-side **Agency vs. Me** comparison table with detailed feature breakdowns.
-
-### `/contact` — Contact
-A **multi-step contact form** (name → email → budget → brief) powered by Formspree, with an animated FAQ accordion, social links, and contact info (location, response time, languages spoken: English, French, Arabic, Mandarin).
+| | |
+|---|---|
+| **⌘K Command Palette** | Keyboard-driven navigation in `CommandPalette.tsx` — opens on `⌘/Ctrl+K`, arrow-key list traversal, `Escape` to close, plus resume download. |
+| **Custom design system** | Neo-brutalist tokens (acid lime, raw borders, grid, film grain, glassmorphism) defined in `globals.css` and `tailwind.config.ts` — zero UI libraries. |
+| **Magnetic buttons** | `MagneticButton.tsx` uses Framer Motion spring physics so interactive elements pull toward the cursor on hover. |
+| **Custom cursor** | `CustomCursor.tsx` swaps the native pointer (`md:cursor-none`) for a hardware-accelerated cursor that reacts to interactive targets. |
+| **Dark / light theming** | `ThemeProvider.tsx` + an inline `theme-script.ts` apply the saved preference before paint to avoid flash; `ThemeToggle.tsx` flips it at runtime. |
+| **Dynamic case studies** | `app/work/[slug]/page.tsx` renders per-project case studies from `lib/projects.ts` via `generateStaticParams`, with problem / solution / outcomes narratives. |
+| **Multi-step contact form** | `ContactForm.tsx` walks name → email → budget → brief, posting through the `/api/contact` route to Formspree. |
+| **Konami easter egg** | A hidden `lord_decay` mode wired into `app/page.tsx` and the custom 404, triggered by the classic cheat code. |
+| **SEO + social** | App Router `sitemap.ts`, `robots.ts`, and a dynamic `opengraph-image.tsx` generated at the edge. |
 
 ---
 
-## 🛠️ Tech Stack
-
-| Layer | Technologies |
-|-------|-------------|
-| **Framework** | Next.js 14 (App Router, React Server Components) |
-| **Language** | TypeScript (strict mode) |
-| **Styling** | Tailwind CSS 3, custom design tokens, CSS variables |
-| **Animation** | Framer Motion (springs, parallax, staggered reveals, 3D tilt, `AnimatePresence`) |
-| **Icons** | Lucide React |
-| **Utilities** | `clsx`, `tailwind-merge` |
-| **Typography** | Space Grotesk (headings), JetBrains Mono (body/code) — via `next/font` |
-| **Forms** | Formspree (API route at `/api/contact`) |
-| **Deployment** | Vercel |
-
----
-
-## 🧩 Component Architecture
+### `/// PROJECT STRUCTURE`
 
 ```
-components/ui/
-├── BentoGrid.tsx         # 3D interactive project grid with glow & depth
-├── CommandPalette.tsx     # ⌘K quick nav with keyboard support
-├── CustomCursor.tsx       # Animated hardware-accelerated cursor
-├── Decorative.tsx         # SVG patterns (circuit, dots, crosshatch)
-├── LiveTerminal.tsx       # Simulated terminal typing animation
-├── LoadingScreen.tsx      # Branded boot sequence
-├── MagneticButton.tsx     # Physics-based hover interactions
-├── ScrollProgress.tsx     # Scroll position indicator
-├── ThemeProvider.tsx       # Dark/light mode context provider
-└── ThemeToggle.tsx         # Theme switcher button
-
 app/
-├── page.tsx               # Home — hero, stats, bento, about, services, CTA
-├── work/page.tsx           # Project listing with animated cards
-├── work/[slug]/page.tsx    # Dynamic case study pages
-├── stack/page.tsx          # Skills & proficiency dashboard
-├── services/page.tsx       # Service packages & comparison
-├── contact/page.tsx        # Multi-step contact form + FAQ
-├── not-found.tsx           # Custom 404
-├── layout.tsx              # Root layout with nav, cursor, command palette
-├── globals.css             # Design system & custom animations
-└── api/contact/route.ts    # Formspree integration endpoint
-
+├── page.tsx               # Home — hero, stats, 3D bento, about, services, CTA
+├── work/page.tsx          # Project listing with animated cards
+├── work/[slug]/           # Dynamic case study pages (generateStaticParams)
+├── stack/page.tsx         # Skills & proficiency dashboard
+├── services/              # Service packages + agency-vs-me comparison
+├── contact/page.tsx       # Multi-step contact form + FAQ
+├── api/contact/route.ts   # Formspree integration endpoint
+├── opengraph-image.tsx    # Dynamic OG image
+├── sitemap.ts / robots.ts # SEO surface
+├── layout.tsx             # Root layout — nav, cursor, command palette
+└── globals.css            # Design system & custom animations
+components/
+├── ui/                    # CommandPalette, CustomCursor, MagneticButton,
+│                          #   BentoGrid, ThemeProvider, ScrollProgress, …
+├── home/                  # Hero, Stats, Projects, Services, Philosophy, CTA
+├── stack/                 # Stack dashboard content
+└── contact/               # Multi-step ContactForm
 lib/
-├── projects.ts             # Project data & case study content
-└── utils.ts                # Shared utility functions
+├── projects.ts            # Project data & case study content
+├── theme-script.ts        # Pre-paint theme application
+└── utils.ts               # Shared helpers
 ```
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
+### `/// LOCAL DEV`
 
 ```bash
-# Clone the repository
 git clone https://github.com/hatimhtm/luxury-engineering-portfolio.git
 cd luxury-engineering-portfolio
 
-# Install dependencies
 npm install
+npm run dev          # http://localhost:3000
 
-# Start the dev server
-npm run dev
+npm run build        # production build
+npm start            # serve the build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it locally.
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
+Optional: set `FORMSPREE_ID` in the environment to route the contact form to your own Formspree endpoint.
 
 ---
 
-## 🎨 Design Decisions
+### `/// TECH`
 
-- **No UI libraries** — every component (`BentoGrid`, `CommandPalette`, `MagneticButton`, etc.) is built from scratch for full creative control
-- **Neo-Brutalist meets Luxury** — high-contrast acid palette (`#CDFF00`, `#FF006E`, `#3A86FF`) combined with glassmorphism, film grain overlays, and premium typography
-- **Motion as a first-class citizen** — staggered reveals, spring physics, 3D tilt, parallax, and page transitions via Framer Motion
-- **Performance-first** — React Server Components where possible, `next/font` for zero layout shift, optimized SVG patterns
+`Next.js 14 (App Router)` · `React 18` · `TypeScript` · `Tailwind CSS 3` · `Framer Motion` · `Lucide React` · `Space Grotesk + JetBrains Mono` · `Formspree` · `Vercel`
 
 ---
 
-## 📬 Contact
+### `/// STATUS`
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hatim-elhassak/)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hatimelhassak.official@gmail.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://hatimelhassak.is-a.dev)
+Live and personally maintained at [hatimelhassak.is-a.dev](https://hatimelhassak.is-a.dev). No `LICENSE` file is present — this is a personal portfolio, shared publicly for reference; all rights reserved by the author.
 
 ---
 
 <p align="center">
-  <sub>Designed & engineered by <strong>Hatim El Hassak</strong> — no templates, no shortcuts.</sub>
+  <a href="https://hatimelhassak.is-a.dev"><img src="https://img.shields.io/badge/PORTFOLIO-1A1A1A?style=for-the-badge&logo=vercel&logoColor=CCFF00" alt="Portfolio" /></a>
+  <a href="https://cal.com/hatimelhassak/engineering-discovery"><img src="https://img.shields.io/badge/BOOK_A_CALL-CCFF00?style=for-the-badge&logo=googlecalendar&logoColor=1A1A1A" alt="Book a call" /></a>
+  <a href="https://www.linkedin.com/in/hatim-elhassak/"><img src="https://img.shields.io/badge/LINKEDIN-1A1A1A?style=for-the-badge&logo=linkedin&logoColor=CCFF00" alt="LinkedIn" /></a>
+  <a href="mailto:hatimelhassak.official@gmail.com"><img src="https://img.shields.io/badge/EMAIL-1A1A1A?style=for-the-badge&logo=gmail&logoColor=CCFF00" alt="Email" /></a>
+</p>
+
+<p align="center">
+  <code>///&nbsp;&nbsp;OPEN FOR NEW WORK&nbsp;&nbsp;///&nbsp;&nbsp;CONTRACT &amp; FREELANCE&nbsp;&nbsp;///&nbsp;&nbsp;REMOTE WORLDWIDE&nbsp;&nbsp;///</code>
 </p>
