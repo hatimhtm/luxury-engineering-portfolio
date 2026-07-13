@@ -1,25 +1,38 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, CalendarDays } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { projectCount, appStoreCount } from "@/lib/projects";
 
 export function HeroSection() {
     const heroRef = useRef(null);
+    const prefersReduced = useReducedMotion();
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        const mq = window.matchMedia("(max-width: 768px)");
+        const update = () => setIsMobile(mq.matches);
+        update();
+        mq.addEventListener("change", update);
+        return () => mq.removeEventListener("change", update);
+    }, []);
+    // Scroll parallax + infinite loops compete with scroll on low-end devices —
+    // static hero on mobile and for reduced-motion users.
+    const animationsOff = prefersReduced || isMobile;
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
     const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
     const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
     return (
         <section ref={heroRef} className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
                 <div className="absolute -top-20 -right-20 w-72 md:w-[500px] h-72 md:h-[500px] bg-acid/10 rounded-full blur-3xl animate-blob" />
                 <div className="absolute bottom-10 -left-20 w-60 md:w-[400px] h-60 md:h-[400px] bg-electric/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: "2s" }} />
                 <div className="absolute top-1/3 left-1/3 w-48 md:w-[300px] h-48 md:h-[300px] bg-hotpink/8 rounded-full blur-3xl animate-blob" style={{ animationDelay: "4s" }} />
             </div>
 
             <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24 w-full relative z-10">
-                <motion.div style={{ y: heroY, opacity: heroOpacity }}>
+                <motion.div style={animationsOff ? undefined : { y: heroY, opacity: heroOpacity }}>
                     <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
                         <motion.div
                             initial={{ opacity: 0, x: -60 }}
@@ -37,16 +50,16 @@ export function HeroSection() {
                                 </span>
                             </h1>
                             <p className="font-mono text-sm md:text-lg text-ink/80 mt-6 max-w-xl leading-relaxed">
-                                Full-stack engineer. I ship iOS apps to the App Store, AI pipelines
-                                to Vercel, and production web tools end-to-end — solo, on tight
-                                timelines, with the public commits to prove it.
+                                Full-stack engineer. I ship iOS apps to the App Store, native macOS
+                                apps, AI pipelines, and production web tools end-to-end — solo, on
+                                tight timelines, with the public commits to prove it.
                             </p>
                             <div className="mt-5 flex flex-wrap gap-2 max-w-xl">
                                 <span className="inline-flex items-center gap-1.5 bg-ink/[0.05] border-[2px] border-ink/15 px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider text-ink/80">
-                                    2 apps live · App Store
+                                    {appStoreCount} apps live · App Store
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 bg-ink/[0.05] border-[2px] border-ink/15 px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider text-ink/80">
-                                    19 shipped projects
+                                    {projectCount} shipped projects
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 bg-ink/[0.05] border-[2px] border-ink/15 px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider text-ink/80">
                                     Same-day reply
@@ -84,7 +97,7 @@ export function HeroSection() {
                     </header>
 
                     <motion.div
-                        animate={{ y: [0, 8, 0] }}
+                        animate={animationsOff ? undefined : { y: [0, 8, 0] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                         className="mt-12 md:mt-20 flex justify-center"
                     >

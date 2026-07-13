@@ -36,7 +36,8 @@ A production frontend portfolio that treats the site itself as the work sample. 
 | **Custom cursor** | `CustomCursor.tsx` swaps the native pointer (`md:cursor-none`) for a hardware-accelerated cursor that reacts to interactive targets. |
 | **Dark / light theming** | `ThemeProvider.tsx` + an inline `theme-script.ts` apply the saved preference before paint to avoid flash; `ThemeToggle.tsx` flips it at runtime. |
 | **Dynamic case studies** | `app/work/[slug]/page.tsx` renders per-project case studies from `lib/projects.ts` via `generateStaticParams`, with problem / solution / outcomes narratives. |
-| **Multi-step contact form** | `ContactForm.tsx` walks name → email → budget → brief, posting through the `/api/contact` route to Formspree. |
+| **Division architecture** | 30 projects organised into four purpose divisions (Apps / AI & Systems / Client Web / Tools & Play) in `lib/projects.ts` — all site stats derived from the data, never hardcoded. |
+| **Contact form** | `ContactForm.tsx` collects name, email, budget, and brief, posting through the `/api/contact` route to Formspree. |
 | **Konami easter egg** | A hidden `lord_decay` mode wired into `app/page.tsx` and the custom 404, triggered by the classic cheat code. |
 | **SEO + social** | App Router `sitemap.ts`, `robots.ts`, and a dynamic `opengraph-image.tsx` generated at the edge. |
 
@@ -47,7 +48,7 @@ A production frontend portfolio that treats the site itself as the work sample. 
 ```
 app/
 ├── page.tsx               # Home — hero, stats, 3D bento, about, services, CTA
-├── work/page.tsx          # Project listing with animated cards
+├── work/page.tsx          # Division-indexed project showcase
 ├── work/[slug]/           # Dynamic case study pages (generateStaticParams)
 ├── stack/page.tsx         # Skills & proficiency dashboard
 ├── services/              # Service packages + agency-vs-me comparison

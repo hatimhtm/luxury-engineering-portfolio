@@ -10,7 +10,7 @@ import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative
 /* ─── Data ─── */
 const contactInfo = [
     { icon: <Mail size={18} />, label: "Email", value: "hatimelhassak.official@gmail.com", href: "mailto:hatimelhassak.official@gmail.com" },
-    { icon: <MapPin size={18} />, label: "Location", value: "Philippines · Remote worldwide" },
+    { icon: <MapPin size={18} />, label: "Location", value: "Remote worldwide" },
     { icon: <Clock size={18} />, label: "Response", value: "Usually same day" },
     { icon: <MessageCircle size={18} />, label: "Languages", value: "English, French, Arabic, Mandarin" },
 ];
@@ -43,9 +43,9 @@ export default function ContactPage() {
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">secure://contact</span>
+                    <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">{"/// contact"}</span>
                 </div>
-                <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">Encrypted</span>
+                <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">Same-day reply</span>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 md:px-8">

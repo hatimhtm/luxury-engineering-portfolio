@@ -7,12 +7,13 @@ export default function LoadingScreen() {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        // Only show on first visit per session
+        // Only show on first visit per session; never for reduced-motion users
         const hasVisited = sessionStorage.getItem("portfolio-loaded");
-        if (!hasVisited) {
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!hasVisited && !reducedMotion) {
             setShow(true);
             sessionStorage.setItem("portfolio-loaded", "true");
-            const timer = setTimeout(() => setShow(false), 2200);
+            const timer = setTimeout(() => setShow(false), 1400);
             return () => clearTimeout(timer);
         }
     }, []);
@@ -63,8 +64,8 @@ export default function LoadingScreen() {
                                 initial={{ x: "-100%" }}
                                 animate={{ x: "100%" }}
                                 transition={{
-                                    duration: 1,
-                                    delay: 0.8,
+                                    duration: 0.7,
+                                    delay: 0.5,
                                     ease: [0.25, 0.46, 0.45, 0.94],
                                 }}
                                 className="h-full w-full bg-gradient-to-r from-transparent via-acid to-transparent"
@@ -75,7 +76,7 @@ export default function LoadingScreen() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 1, duration: 0.5 }}
+                            transition={{ delay: 0.7, duration: 0.4 }}
                             className="mt-4 font-mono text-xs font-bold text-cream/30 uppercase tracking-[0.3em]"
                         >
                             Loading arsenal...

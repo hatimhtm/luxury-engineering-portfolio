@@ -29,7 +29,7 @@ function isRateLimited(ip: string): boolean {
 
 export async function POST(req: NextRequest) {
     try {
-        const ip = req.ip ?? req.headers.get("x-forwarded-for") ?? "unknown";
+        const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
 
         if (isRateLimited(ip)) {
             return NextResponse.json(
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
         if (!FORMSPREE_ENDPOINT) {
             console.error("Formspree configuration missing: FORMSPREE_ID or FORMSPREE_ENDPOINT must be set.");
             return NextResponse.json(
-                { error: "Configuration error. Please contact the administrator." },
+                { error: "The form is temporarily down — email hatimelhassak.official@gmail.com directly and I'll reply the same day." },
                 { status: 500 }
             );
         }
@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
         if (!formspreeResponse.ok) {
             console.error(`Formspree error: ${formspreeResponse.status} ${formspreeResponse.statusText}`);
             return NextResponse.json(
-                { error: "Failed to send message. Please try again or email directly." },
+                { error: "Failed to send — email hatimelhassak.official@gmail.com directly and I'll reply the same day." },
                 { status: 500 }
             );
         }

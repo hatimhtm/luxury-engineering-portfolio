@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Github, ExternalLink, Apple } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, type Project } from "@/lib/projects";
 import { CircuitPattern, GridDots, CrossHatch } from "@/components/ui/Decorative";
@@ -57,7 +58,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                         {project.longDescription}
                     </p>
 
-                    {(project.liveDemo || project.appStore || (!project.private && project.link)) && (
+                    {(project.liveDemo || project.appStore || project.private || project.link) && (
                         <div className="mt-6 flex flex-wrap gap-2">
                             {project.appStore && (
                                 <a
@@ -94,6 +95,24 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                         </div>
                     )}
                 </motion.div>
+
+                {project.image && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.15 }}
+                        className="mt-8 neo-card bg-ink overflow-hidden relative aspect-[16/9] max-w-4xl"
+                    >
+                        <Image
+                            src={project.image}
+                            alt={`${project.title} — screenshot`}
+                            fill
+                            className={project.imageFit === "contain" ? "object-contain" : "object-cover object-top"}
+                            sizes="(max-width: 768px) 100vw, 896px"
+                            priority
+                        />
+                    </motion.div>
+                )}
             </section>
 
             {/* Metrics strip */}

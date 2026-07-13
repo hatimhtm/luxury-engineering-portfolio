@@ -32,12 +32,13 @@ export const categories: Category[] = [
         color: "bg-acid",
         textColor: "text-ink",
         tools: [
-            { name: "Next.js 14 / React", depth: "daily", detail: "App Router, RSC, Server Actions — the default for every web build." },
+            { name: "Next.js / React", depth: "daily", detail: "App Router, RSC, Server Actions — the default for every web-app build." },
             { name: "TypeScript", depth: "daily", detail: "Strict mode across every project. The type system is part of the design." },
             { name: "Tailwind CSS", depth: "daily", detail: "Utility-first with a custom design system layered on top." },
             { name: "Framer Motion", depth: "frequent", detail: "For motion systems where I want physics, not just easing curves." },
-            { name: "SwiftUI", depth: "daily", detail: "Native iOS UI. Charts, Live Activities, symbol effects on iOS 17+." },
+            { name: "SwiftUI", depth: "daily", detail: "Native iOS + macOS. Liquid Glass, SwiftData, Live Activities, menu-bar apps, Core Audio." },
             { name: "GSAP", depth: "frequent", detail: "When a marketing site needs scroll-driven choreography, not just reveals." },
+            { name: "Astro", depth: "frequent", detail: "Static editorial sites — three shipped client/studio builds on Astro 5." },
         ],
     },
     {
@@ -59,7 +60,8 @@ export const categories: Category[] = [
         textColor: "text-cream",
         tools: [
             { name: "OpenAI / GPT", depth: "daily", detail: "Prompt design, function calling, structured outputs, embeddings." },
-            { name: "Gemini 2.5", depth: "frequent", detail: "Primary for cost-sensitive draft generation (used in LeadSniper)." },
+            { name: "Gemini 2.5 / 3", depth: "daily", detail: "Image gen, vision, and structured parsing — TryIt, Eli, Lumi, LeadSniper." },
+            { name: "Claude / Anthropic API", depth: "frequent", detail: "Closed-enum triage and agent workflows with drift-guarded prompts." },
             { name: "LangChain", depth: "frequent", detail: "For agent loops and retry-aware chains — not for simple prompts." },
             { name: "RAG pipelines", depth: "frequent", detail: "Vector search + retrieval over domain docs, not generic wrappers." },
             { name: "Speech-to-Text", depth: "frequent", detail: "Google Cloud STT for non-English; Whisper for offline contexts." },
@@ -91,7 +93,7 @@ export function StatusBar() {
         <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
             <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">system://arsenal</span>
+                <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">{"/// arsenal"}</span>
             </div>
             <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">
                 {total} TOOLS · {categories.length} CATEGORIES

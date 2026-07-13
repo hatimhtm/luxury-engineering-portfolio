@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { projectCount, appStoreCount, macAppCount } from "@/lib/projects";
 
 /* Animated counter for numeric stats */
 function useCounter(end: number, duration: number = 1600, startCounting: boolean = false) {
@@ -61,9 +62,9 @@ function StatCard({ stat }: { stat: Stat }) {
 }
 
 const stats: Stat[] = [
-    { value: 19, suffix: "", label: "Projects Shipped" },
-    { value: 2, suffix: "", label: "Live on App Store" },
-    { display: "Solo", label: "Brief → Ship" },
+    { value: projectCount, suffix: "", label: "Projects Shipped" },
+    { value: appStoreCount, suffix: "", label: "Live on App Store" },
+    { value: macAppCount, suffix: "", label: "macOS Apps" },
     { display: "Same-Day", label: "Reply Window" },
 ];
 

@@ -513,7 +513,8 @@ body::before {
 
 .neo-pill {
   border: 2px solid var(--ink);
-  padding: 6px 14px;
+  padding: 10px 14px;
+  min-height: 44px; /* touch-target floor */
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
@@ -598,6 +599,42 @@ body::before {
   :root {
     --shadow-x: 3px;
     --shadow-y: 3px;
+  }
+}
+
+/* Gate continuous decorative animations on mobile — battery + low-end jank.
+   Marquees and pulse dots stay (cheap transforms, part of the brand). */
+@media (max-width: 768px) {
+  .animate-blob,
+  .animate-blob-delay,
+  .animate-blob-delay-2,
+  .animate-glow-pulse,
+  .animate-shimmer,
+  .animate-gradient,
+  .animate-spin-slow,
+  .gradient-border::before,
+  .gradient-top-accent::after {
+    animation: none;
+  }
+
+  /* Film grain is a full-viewport fixed composite layer — decorative only,
+     skip it on phones. */
+  body::before {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

@@ -1,10 +1,10 @@
 const techLogos = [
-    "Next.js 14", "TypeScript", "SwiftUI", "Swift",
+    "Next.js", "TypeScript", "SwiftUI", "Swift",
     "Python", "Node.js", "FastAPI",
     "PostgreSQL", "Supabase", "Redis",
-    "OpenAI", "Gemini 2.5", "LangChain",
+    "OpenAI", "Gemini", "Claude", "LangChain",
     "Playwright", "Docker", "Tailwind",
-    "Framer Motion", "GSAP", "Vite",
+    "Framer Motion", "GSAP", "Astro", "Vite",
 ];
 
 export function TechLogoMarquee() {

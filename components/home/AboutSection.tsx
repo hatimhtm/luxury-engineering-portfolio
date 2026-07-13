@@ -25,7 +25,7 @@ export function AboutSection() {
                         priority
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/80 to-transparent p-6">
-                        <div className="font-mono text-xs font-bold text-cream tracking-widest uppercase">Based in the Philippines · Remote worldwide</div>
+                        <div className="font-mono text-xs font-bold text-cream tracking-widest uppercase">Remote worldwide · Every time zone</div>
                     </div>
                     <div className="absolute top-3 right-3 w-8 h-8 border-[3px] border-ink bg-acid animate-spin-slow" />
                 </div>
@@ -38,7 +38,7 @@ export function AboutSection() {
                             End-to-end<br />product engineer
                         </h2>
                         <p className="font-mono text-sm md:text-base text-ink/85 leading-relaxed mb-4">
-                            Tangier → Nanchang → the Philippines. Five years building products —
+                            Three continents, one craft. Years of building products —
                             native iOS in Swift, web apps in Next.js, AI pipelines in Python —
                             most of them shipped for solo founders and small teams who needed a
                             full-stack engineer, not a committee.

@@ -94,7 +94,7 @@ export default function OpengraphImage() {
                             display: "flex",
                         }}
                     >
-                        Full-stack engineer — iOS, web, and AI pipelines, end-to-end.
+                        Full-stack engineer — iOS, macOS, web, and AI pipelines, end-to-end.
                     </div>
                 </div>
 

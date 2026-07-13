@@ -39,7 +39,7 @@ export default function NotFound() {
                     </h1>
 
                     <p className="font-mono text-sm md:text-base font-bold text-ink/60 leading-relaxed mb-2 max-w-md mx-auto">
-                        But so was I — from Tangier to Nanchang to Manila.
+                        But so was I — three continents and counting.
                     </p>
                     <p className="font-mono text-sm font-bold text-ink/40 leading-relaxed mb-8 max-w-md mx-auto">
                         The difference is, I always find my way. Let me help you find yours.

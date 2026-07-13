@@ -14,7 +14,7 @@ export default function ServicesPage() {
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">system://services</span>
+                    <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">{"/// services"}</span>
                 </div>
                 <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">2 Packages</span>
             </div>

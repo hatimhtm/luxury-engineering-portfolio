@@ -44,7 +44,7 @@ export function TestimonialsSection() {
             viewport={{ once: true, margin: "-50px" }}
             className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20"
         >
-            <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">What clients say</div>
+            <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">What people say</div>
             <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink mb-8">In Their Words</h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">

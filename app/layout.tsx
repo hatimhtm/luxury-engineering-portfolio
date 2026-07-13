@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         template: "%s · Hatim El Hassak",
     },
     description:
-        "Hatim El Hassak — full-stack engineer. iOS (SwiftUI), web (Next.js), AI pipelines (Python). End-to-end product builds for solo founders and small teams. Based in the Philippines, remote worldwide.",
+        "Hatim El Hassak — full-stack engineer. iOS + macOS (SwiftUI), web (Next.js), AI pipelines (Python). End-to-end product builds for solo founders and small teams. Remote worldwide.",
     keywords: ["full-stack engineer", "iOS developer", "SwiftUI", "Next.js", "AI engineer", "freelance engineer", "Hatim El Hassak"],
     authors: [{ name: "Hatim El Hassak", url: SITE_URL }],
     creator: "Hatim El Hassak",

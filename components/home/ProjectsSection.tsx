@@ -1,17 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
 import { CircuitPattern } from "@/components/ui/Decorative";
-import { ArrowUpRight, Smartphone, Activity, Repeat, Sparkles, Code2 } from "lucide-react";
+import { ArrowUpRight, Smartphone, Activity, Globe, Wrench, Code2 } from "lucide-react";
+import { projects, divisions, getProjectsByDivision } from "@/lib/projects";
 
-/* Stable (non-random) bar heights so SSR and hydration match,
-   and the same heights show on every render */
+/* Stable (non-random) bar heights so SSR and hydration match */
 const BAR_HEIGHTS = [62, 38, 84, 46, 70, 32, 58, 78, 44, 66, 28, 90, 52, 40, 74, 36, 60, 82, 48, 68, 30, 72, 54, 86];
 
+/** "TryIt · Relay · Fader +5" — first few titles of a division. */
+function divisionNames(id: (typeof divisions)[number]["id"], take: number): string {
+    const items = getProjectsByDivision(id);
+    const names = items.slice(0, take).map((p) => p.title);
+    const rest = items.length - take;
+    return rest > 0 ? `${names.join(" · ")} +${rest}` : names.join(" · ");
+}
+
 export function ProjectsSection() {
-    const barHeights = useMemo(() => BAR_HEIGHTS, []);
+    const apps = getProjectsByDivision("apps");
+    const systems = getProjectsByDivision("systems");
+    const client = getProjectsByDivision("client");
+    const tools = getProjectsByDivision("tools");
 
     return (
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
@@ -22,63 +33,99 @@ export function ProjectsSection() {
                 className="flex items-end justify-between mb-6"
             >
                 <div>
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Featured · Shipped 2025–2026</div>
-                    <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">Selected Work</h2>
+                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Four divisions · {projects.length} shipped</div>
+                    <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">The Work</h2>
                 </div>
                 <a href="/work" className="font-mono text-sm font-bold uppercase tracking-wider text-ink hover:text-electric transition-colors flex items-center gap-1 group">
-                    View All 19 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    View All {projects.length} <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
             </motion.div>
 
             <BentoGrid className="md:auto-rows-[18rem] gap-5">
-                {/* TryIt — flagship, App Store live */}
+                {/* 01 · Apps — flagship division, real App Store screenshot */}
                 <BentoGridItem
                     index={0}
                     className="md:col-span-2 md:row-span-2"
-                    title="TryIt · App Store"
-                    description="AI virtual try-on for iPhone. Photos stay on-device. SwiftUI · iOS 18 · Gemini 3."
+                    title={`01 / Apps · ${apps.length} shipped`}
+                    description={divisionNames("apps", 6)}
                     bgColor="bg-acid"
                     textColor="text-ink"
                     icon={<Smartphone size={36} className="text-ink" />}
-                    href="/work/tryit"
+                    href="/work#apps"
                     header={
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <span className="text-[7rem] md:text-[12rem] font-heading font-bold tracking-tighter text-ink/10 leading-none select-none">iOS</span>
+                        <div className="absolute inset-0 pointer-events-none">
+                            <span className="absolute left-6 top-6 text-[5rem] md:text-[9rem] font-heading font-bold tracking-tighter text-ink/10 leading-none select-none">
+                                APPS
+                            </span>
+                            <div className="absolute right-6 md:right-12 top-6 bottom-16 w-[38%] max-w-[240px] border-[3px] border-ink shadow-neo overflow-hidden bg-ink hidden sm:block">
+                                <Image
+                                    src="/projects/tryit-1.jpg"
+                                    alt="TryIt on the App Store"
+                                    fill
+                                    className="object-cover object-top"
+                                    sizes="240px"
+                                    loading="lazy"
+                                />
+                            </div>
                         </div>
                     }
                 />
 
-                {/* Viral OS — tall, command center */}
+                {/* 02 · AI & Systems — tall, terminal aesthetic */}
                 <BentoGridItem
                     index={1}
                     className="md:col-span-1 md:row-span-2"
-                    title="Viral OS"
-                    description="AI command center for a portfolio of iOS apps · 14 API routes · pLTV + anomaly alerts"
+                    title={`02 / AI & Systems · ${systems.length}`}
+                    description={divisionNames("systems", 4)}
                     bgColor="bg-electric"
                     textColor="text-cream"
                     icon={<Activity size={36} className="text-cream" />}
-                    href="/work/viralos"
+                    href="/work#systems"
                     header={
                         <div className="h-full flex flex-col justify-center space-y-3 font-mono text-sm font-bold pl-3 border-l-[3px] border-cream/40 ml-4 mt-4">
-                            <p className="text-cream/85">&gt; App Store sync.</p>
-                            <p className="text-cream/85">&gt; RevenueCat webhook.</p>
+                            <p className="text-cream/85">&gt; Webhook ingested.</p>
                             <p className="text-cream/85">&gt; Anomaly detected.</p>
+                            <p className="text-cream/85">&gt; Appointment booked.</p>
                             <p className="text-cream/85">&gt; Slack notified.</p>
                             <p className="text-cream animate-blink">_</p>
                         </div>
                     }
                 />
 
-                {/* Together Tasks — couples AI OS */}
+                {/* 03 · Client Web — real client-site capture */}
                 <BentoGridItem
                     index={2}
                     className="md:col-span-1"
-                    title="Together Tasks"
-                    description="AI-native task OS for couples · type or speak · realtime sync"
+                    title={`03 / Client Web · ${client.length}`}
+                    description={divisionNames("client", 3)}
                     bgColor="bg-hotpink"
                     textColor="text-cream"
-                    icon={<Repeat size={28} className="text-cream" />}
-                    href="/work/together-tasks"
+                    icon={<Globe size={28} className="text-cream" />}
+                    href="/work#client"
+                    header={
+                        <div className="absolute inset-0 pointer-events-none">
+                            <Image
+                                src="/projects/nota-parfum.jpg"
+                                alt="Nota Parfum — client site"
+                                fill
+                                className="object-cover object-top opacity-50"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                                loading="lazy"
+                            />
+                        </div>
+                    }
+                />
+
+                {/* 04 · Tools & Play */}
+                <BentoGridItem
+                    index={3}
+                    className="md:col-span-1"
+                    title={`04 / Tools & Play · ${tools.length}`}
+                    description={divisionNames("tools", 3)}
+                    bgColor="bg-vivid"
+                    textColor="text-cream"
+                    icon={<Wrench size={28} className="text-cream" />}
+                    href="/work#tools"
                     header={
                         <div className="absolute inset-0 pointer-events-none">
                             <CircuitPattern className="w-full h-full text-cream/15" />
@@ -86,19 +133,7 @@ export function ProjectsSection() {
                     }
                 />
 
-                {/* LeadSniper — AI prospecting */}
-                <BentoGridItem
-                    index={3}
-                    className="md:col-span-1"
-                    title="LeadSniper"
-                    description="B2B prospecting engine · 23-factor AI scoring · $0 infra"
-                    bgColor="bg-vivid"
-                    textColor="text-cream"
-                    icon={<Sparkles size={28} className="text-cream" />}
-                    href="/work/leadsniper"
-                />
-
-                {/* Arsenal link + System status */}
+                {/* Stack link */}
                 <BentoGridItem
                     index={4}
                     className="md:col-span-1"
@@ -110,9 +145,9 @@ export function ProjectsSection() {
                     href="/stack"
                     header={
                         <div className="h-full w-full flex flex-col justify-between p-4">
-                            <div className="font-mono text-xs font-bold text-cream/60 text-right tracking-widest uppercase">SYS://882-991-X</div>
+                            <div className="font-mono text-xs font-bold text-cream/60 text-right tracking-widest uppercase">{"/// stack index"}</div>
                             <div className="flex justify-between items-end h-16 w-full gap-[2px]">
-                                {barHeights.map((h, i) => (
+                                {BAR_HEIGHTS.map((h, i) => (
                                     <div key={i} className="bg-acid/60 w-[3px]" style={{ height: `${h}%` }} />
                                 ))}
                             </div>
