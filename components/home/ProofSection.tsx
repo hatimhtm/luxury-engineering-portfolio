@@ -21,6 +21,13 @@ const receipts = [
         accent: "bg-hotpink",
     },
     {
+        icon: <Apple size={18} />,
+        label: "Sunz",
+        value: "Live on the App Store",
+        href: "https://apps.apple.com/us/app/sunz-bronzage/id6771540928",
+        accent: "bg-vivid",
+    },
+    {
         icon: <Package size={18} />,
         label: "Relay v1.0.7",
         value: "Shipped · signed Sparkle updates",
@@ -76,7 +83,7 @@ export function ProofSection() {
                 </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {receipts.map((r, i) => (
                     <a
                         key={r.label}

@@ -607,6 +607,38 @@ export const projects: Project[] = [
         ],
     },
 
+    {
+        id: "031",
+        slug: "sunz",
+        title: "Sunz",
+        description: "UV-aware tanning coach for iPhone — reads the live UV index, crosses it with your skin type, and plans safe progressive sun exposure. French-first. Live on the App Store.",
+        longDescription: "Sunz turns sun exposure from guesswork into a plan. The app reads the real-time UV index for your location, crosses it with your skin phototype, and gives you a concrete exposure window — when to go out, how long to stay, and when you're done for the day — so tanning is progressive instead of a day-one burn. Built French-first as a commission for the same consumer-app studio behind GoPilates and TryIt, and shipped to the App Store as a native SwiftUI build.",
+        tech: ["SwiftUI", "iOS", "Live UV index"],
+        metrics: [
+            { label: "Status", value: "App Store" },
+            { label: "Version", value: "v1.1.0" },
+            { label: "Locale", value: "French-first" },
+        ],
+        color: "bg-vivid",
+        textColor: "text-cream",
+        link: "https://github.com/hatimhtm",
+        appStore: "https://apps.apple.com/us/app/sunz-bronzage/id6771540928",
+        private: true,
+        clientWork: true,
+        division: "apps",
+        image: "/projects/sunz-1.jpg",
+        imageFit: "contain",
+        category: "iOS",
+        problem: "Tanning is guesswork: people either burn on day one or give up. Safe exposure depends on the live UV index and your skin type — numbers nobody calculates by hand on the beach.",
+        solution: "Read the real-time UV index, cross it with the user's declared skin phototype, and turn it into a plan: a personalised exposure window with clear stop signals, updated as conditions change.",
+        outcomes: [
+            "Live on the App Store (v1.1.0)",
+            "Real-time UV index × skin-phototype exposure planning",
+            "French-first consumer health app",
+            "Third App Store ship for the same studio, alongside GoPilates and TryIt",
+        ],
+    },
+
     /* ─────────── 2026-07 SYNC · NATIVE macOS SUITE ─────────── */
 
     {

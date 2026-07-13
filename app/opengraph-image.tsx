@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { projectCount } from "@/lib/projects";
 
 export const runtime = "edge";
 export const alt = "Hatim El Hassak — Full-Stack Engineer";
@@ -111,7 +112,7 @@ export default function OpengraphImage() {
                     }}
                 >
                     <div style={{ display: "flex", gap: 16 }}>
-                        {["Apps", "AI & Systems", "Client Web", "30 Shipped"].map((t) => (
+                        {["Apps", "AI & Systems", "Client Web", `${projectCount} Shipped`].map((t) => (
                             <div
                                 key={t}
                                 style={{
