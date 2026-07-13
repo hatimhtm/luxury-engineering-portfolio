@@ -9,6 +9,8 @@ export function AboutSection() {
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 reveal-up">
             <div className="grid md:grid-cols-5 gap-5">
                 <div className="md:col-span-2 neo-card bg-acid p-0 relative overflow-hidden min-h-[300px] md:min-h-[400px]">
+                    {/* 29KB source — served raw so the About image has zero
+                        dependency on the image-optimizer service */}
                     <Image
                         src="/headshot.png"
                         alt="Hatim El Hassak"
@@ -16,6 +18,7 @@ export function AboutSection() {
                         className="object-cover object-center"
                         sizes="(max-width: 768px) 100vw, 40vw"
                         priority
+                        unoptimized
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/80 to-transparent p-6">
                         <div className="font-mono text-xs font-bold text-cream tracking-widest uppercase">Remote worldwide · Every time zone</div>
