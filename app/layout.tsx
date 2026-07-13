@@ -7,6 +7,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import CommandPalette from "@/components/ui/CommandPalette";
+import CmdKButton from "@/components/ui/CmdKButton";
 import MagneticButton from "@/components/ui/MagneticButton";
 import Link from "next/link";
 import { themeScript } from "@/lib/theme-script";
@@ -121,6 +122,8 @@ export default function RootLayout({
                                     </MagneticButton>
                                 </div>
 
+                                <CmdKButton />
+
                                 <ThemeToggle />
 
                                 <MagneticButton>
@@ -135,13 +138,6 @@ export default function RootLayout({
                         </div>
                     </nav>
 
-                    {/* Keyboard shortcut hint — desktop only */}
-                    <div className="fixed bottom-16 right-4 hidden lg:block z-[99]">
-                        <div className="font-mono text-xs font-bold text-ink/50 uppercase tracking-wider flex items-center gap-1">
-                            <kbd className="px-1.5 py-0.5 border-2 border-ink/25 text-ink/60">⌘K</kbd>
-                            Quick Nav
-                        </div>
-                    </div>
                 </ThemeProvider>
                 <SpeedInsights />
             </body>

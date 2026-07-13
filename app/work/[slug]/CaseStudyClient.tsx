@@ -22,7 +22,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-acid animate-pulse-dot" />
                     <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">
-                        case://study-{project.id}
+                        {"/// case study " + project.id}
                     </span>
                 </div>
                 <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">

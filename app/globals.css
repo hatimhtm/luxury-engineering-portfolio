@@ -680,6 +680,62 @@ body::before {
   border-color: #1A1A1A;
 }
 
+/* ── Dark mode: alpha-variant remaps ──
+   Tailwind bakes the alpha into the color value (`text-ink/85` →
+   rgb(26 26 26 / .85)), so the exact-class overrides above never catch
+   them. Every alpha variant used on THEMED (page/cream/ink) surfaces
+   gets an explicit dark remap here. */
+[data-theme="dark"] .text-ink\/85 { color: rgb(255 253 245 / 0.85); }
+[data-theme="dark"] .text-ink\/80 { color: rgb(255 253 245 / 0.80); }
+[data-theme="dark"] .text-ink\/75 { color: rgb(255 253 245 / 0.75); }
+[data-theme="dark"] .text-ink\/70 { color: rgb(255 253 245 / 0.70); }
+[data-theme="dark"] .text-ink\/60 { color: rgb(255 253 245 / 0.60); }
+[data-theme="dark"] .text-ink\/50 { color: rgb(255 253 245 / 0.50); }
+[data-theme="dark"] .text-ink\/40 { color: rgb(255 253 245 / 0.40); }
+[data-theme="dark"] .text-ink\/30 { color: rgb(255 253 245 / 0.30); }
+[data-theme="dark"] .text-ink\/20 { color: rgb(255 253 245 / 0.20); }
+[data-theme="dark"] .text-ink\/15 { color: rgb(255 253 245 / 0.15); }
+[data-theme="dark"] .text-ink\/10 { color: rgb(255 253 245 / 0.10); }
+[data-theme="dark"] .text-ink\/5 { color: rgb(255 253 245 / 0.05); }
+[data-theme="dark"] .border-ink\/10 { border-color: rgb(255 253 245 / 0.10); }
+[data-theme="dark"] .border-ink\/15 { border-color: rgb(255 253 245 / 0.15); }
+[data-theme="dark"] .border-ink\/20 { border-color: rgb(255 253 245 / 0.20); }
+[data-theme="dark"] .border-ink\/25 { border-color: rgb(255 253 245 / 0.25); }
+[data-theme="dark"] .border-ink\/30 { border-color: rgb(255 253 245 / 0.30); }
+[data-theme="dark"] .border-ink\/40 { border-color: rgb(255 253 245 / 0.40); }
+[data-theme="dark"] .hover\:border-ink\/40:hover { border-color: rgb(255 253 245 / 0.40); }
+[data-theme="dark"] .bg-ink\/\[0\.02\] { background-color: rgb(255 253 245 / 0.02); }
+[data-theme="dark"] .bg-ink\/\[0\.04\] { background-color: rgb(255 253 245 / 0.04); }
+[data-theme="dark"] .bg-ink\/\[0\.05\] { background-color: rgb(255 253 245 / 0.05); }
+[data-theme="dark"] .placeholder\:text-ink\/30::placeholder { color: rgb(255 253 245 / 0.30); }
+
+/* ── Dark mode: colored-surface exceptions ──
+   Acid/electric/pink/orange surfaces keep their light-mode ink text and
+   borders — the theme flips the page, never the brand tiles. Higher
+   specificity than the remaps above. */
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink,
+[data-theme="dark"] .bg-acid.text-ink,
+[data-theme="dark"] .bg-electric.text-ink,
+[data-theme="dark"] .bg-hotpink.text-ink,
+[data-theme="dark"] .bg-vivid.text-ink {
+  color: #1A1A1A;
+}
+
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink,
+[data-theme="dark"] .bg-acid.border-ink,
+[data-theme="dark"] .bg-electric.border-ink,
+[data-theme="dark"] .bg-hotpink.border-ink,
+[data-theme="dark"] .bg-vivid.border-ink {
+  border-color: #1A1A1A;
+}
+
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink\/80 { color: rgb(26 26 26 / 0.80); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink\/60 { color: rgb(26 26 26 / 0.60); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink\/10 { color: rgb(26 26 26 / 0.10); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink\/40 { border-color: rgb(26 26 26 / 0.40); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink\/30 { border-color: rgb(26 26 26 / 0.30); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink\/20 { border-color: rgb(26 26 26 / 0.20); }
+
 /* ═══════════════════════════════════════════
    ADDITIONAL UTILITIES
    ═══════════════════════════════════════════ */

@@ -5,9 +5,9 @@ import { motion, useInView } from "framer-motion";
 
 const commands = [
     { prompt: "$ tryit · App Store review", result: "✓ Cleared 2.1 + 2.1(a)", delay: 0 },
-    { prompt: "$ viralos · cron daily", result: "✓ ASC sync · RC snapshot · alerts", delay: 800 },
-    { prompt: "$ together-tasks · realtime", result: "✓ Both phones in sync", delay: 1600 },
-    { prompt: "$ fortress · pip install", result: "✓ Published to PyPI", delay: 2400 },
+    { prompt: "$ relay · sparkle appcast", result: "✓ v1.0.7 signed · Intel + AS", delay: 450 },
+    { prompt: "$ viralos · cron daily", result: "✓ ASC sync · RC snapshot · alerts", delay: 900 },
+    { prompt: "$ fortress · pip install", result: "✓ Published to PyPI", delay: 1350 },
 ];
 
 export default function LiveTerminal() {
@@ -37,7 +37,7 @@ export default function LiveTerminal() {
                     if (charIndex >= cmd.prompt.length) {
                         clearInterval(typeInterval);
                     }
-                }, 30);
+                }, 18);
                 intervalIds.push(typeInterval);
             }, cmd.delay);
             timeoutIds.push(timeoutId);

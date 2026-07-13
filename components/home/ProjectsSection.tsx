@@ -46,18 +46,19 @@ export function ProjectsSection() {
                 <BentoGridItem
                     index={0}
                     className="md:col-span-2 md:row-span-2"
-                    title={`01 / Apps · ${apps.length} shipped`}
+                    title={`01 / Apps · ${apps.length}`}
                     description={divisionNames("apps", 6)}
                     bgColor="bg-acid"
                     textColor="text-ink"
                     icon={<Smartphone size={36} className="text-ink" />}
                     href="/work#apps"
+                    mediaHeader
                     header={
                         <div className="absolute inset-0 pointer-events-none">
                             <span className="absolute left-6 top-6 text-[5rem] md:text-[9rem] font-heading font-bold tracking-tighter text-ink/10 leading-none select-none">
                                 APPS
                             </span>
-                            <div className="absolute right-6 md:right-12 top-6 bottom-16 w-[38%] max-w-[240px] border-[3px] border-ink shadow-neo overflow-hidden bg-ink hidden sm:block">
+                            <div className="absolute right-6 md:right-12 top-8 bottom-24 w-[38%] max-w-[240px] border-[3px] border-ink shadow-neo overflow-hidden bg-ink hidden sm:block">
                                 <Image
                                     src="/projects/tryit-1.jpg"
                                     alt="TryIt on the App Store"
@@ -102,16 +103,19 @@ export function ProjectsSection() {
                     textColor="text-cream"
                     icon={<Globe size={28} className="text-cream" />}
                     href="/work#client"
+                    mediaHeader
                     header={
                         <div className="absolute inset-0 pointer-events-none">
                             <Image
                                 src="/projects/nota-parfum.jpg"
                                 alt="Nota Parfum — client site"
                                 fill
-                                className="object-cover object-top opacity-50"
+                                className="object-cover object-top"
                                 sizes="(max-width: 768px) 100vw, 33vw"
                                 loading="lazy"
                             />
+                            {/* scrim so the tile text stays legible over the capture */}
+                            <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-hotpink via-hotpink/80 to-transparent" />
                         </div>
                     }
                 />
@@ -144,14 +148,13 @@ export function ProjectsSection() {
                     icon={<Code2 size={28} className="text-cream" />}
                     href="/stack"
                     header={
-                        <div className="h-full w-full flex flex-col justify-between p-4">
+                        <div className="h-full w-full flex flex-col p-4 pb-24">
                             <div className="font-mono text-xs font-bold text-cream/60 text-right tracking-widest uppercase">{"/// stack index"}</div>
-                            <div className="flex justify-between items-end h-16 w-full gap-[2px]">
+                            <div className="flex justify-between items-end h-16 w-full gap-[2px] mt-auto">
                                 {BAR_HEIGHTS.map((h, i) => (
                                     <div key={i} className="bg-acid/60 w-[3px]" style={{ height: `${h}%` }} />
                                 ))}
                             </div>
-                            <div className="font-heading font-bold text-base text-cream uppercase tracking-tight">Arsenal Loaded</div>
                         </div>
                     }
                 />

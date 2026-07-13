@@ -89,6 +89,17 @@ export default function CommandPalette() {
         return () => document.removeEventListener("keydown", handleKeyDown);
     }, [handleKeyDown]);
 
+    // Open via the nav ⌘K button (see CmdKButton)
+    useEffect(() => {
+        const open = () => {
+            setIsOpen(true);
+            setSearch("");
+            setSelectedIndex(0);
+        };
+        window.addEventListener("open-command-palette", open);
+        return () => window.removeEventListener("open-command-palette", open);
+    }, []);
+
     useEffect(() => {
         if (isOpen && inputRef.current) {
             inputRef.current.focus();

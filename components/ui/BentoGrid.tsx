@@ -35,6 +35,7 @@ export const BentoGridItem = ({
     textColor = "text-ink",
     href,
     index = 0,
+    mediaHeader = false,
 }: {
     className?: string;
     title?: string | ReactNode;
@@ -45,6 +46,8 @@ export const BentoGridItem = ({
     textColor?: string;
     href?: string;
     index?: number;
+    /** Header contains real imagery — render it at full opacity. */
+    mediaHeader?: boolean;
 }) => {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -86,7 +89,7 @@ export const BentoGridItem = ({
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             className={cn(
-                "row-span-1 relative overflow-hidden group neo-card h-full flex flex-col justify-between p-6 cursor-pointer neo-glow perspective-1000",
+                "row-span-1 relative overflow-hidden group neo-card h-full w-full flex flex-col justify-between p-6 cursor-pointer neo-glow perspective-1000",
                 bgColor,
                 textColor,
                 className
@@ -97,8 +100,15 @@ export const BentoGridItem = ({
                 <div className="absolute inset-[-2px] bg-gradient-to-r from-acid via-electric to-hotpink rounded-[inherit] -z-10 animate-gradient" />
             </div>
 
-            {/* Background Pattern / Header */}
-            <div className="absolute inset-0 z-0 opacity-40 transition-opacity duration-300 group-hover:opacity-80" style={{ transform: "translateZ(20px)" }}>
+            {/* Background Pattern / Header — decorative patterns are dimmed,
+                real imagery renders at full strength */}
+            <div
+                className={cn(
+                    "absolute inset-0 z-0 transition-opacity duration-300",
+                    mediaHeader ? "opacity-100" : "opacity-40 group-hover:opacity-80"
+                )}
+                style={{ transform: "translateZ(20px)" }}
+            >
                 {header}
             </div>
 
@@ -125,8 +135,10 @@ export const BentoGridItem = ({
     );
 
     if (href) {
+        // The Link is the grid child — col/row span classes must live on it,
+        // not only on the inner card, or the grid ignores them.
         return (
-            <Link href={href} className="flex h-full w-full">
+            <Link href={href} className={cn("flex h-full w-full", className)}>
                 {content}
             </Link>
         );
