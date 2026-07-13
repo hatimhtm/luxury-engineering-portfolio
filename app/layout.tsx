@@ -12,6 +12,7 @@ import MagneticButton from "@/components/ui/MagneticButton";
 import Link from "next/link";
 import { themeScript } from "@/lib/theme-script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
@@ -109,19 +110,6 @@ export default function RootLayout({
 
                             {/* Trailing controls */}
                             <div className="flex items-center gap-1 md:gap-2">
-                                <div className="hidden md:block">
-                                    <MagneticButton>
-                                        <a
-                                            href="/resume.pdf"
-                                            download="Hatim_El_Hassak_Resume.pdf"
-                                            className="flex items-center gap-1 font-mono text-xs font-bold uppercase tracking-wider text-cream/80 hover:text-acid transition-colors px-3 py-2 border-[2px] border-cream/40 hover:border-acid min-h-[40px]"
-                                            aria-label="Download Resume"
-                                        >
-                                            CV ↓
-                                        </a>
-                                    </MagneticButton>
-                                </div>
-
                                 <CmdKButton />
 
                                 <ThemeToggle />
@@ -140,6 +128,7 @@ export default function RootLayout({
 
                 </ThemeProvider>
                 <SpeedInsights />
+                <Analytics />
             </body>
         </html>
     );

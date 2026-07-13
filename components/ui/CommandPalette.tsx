@@ -26,18 +26,6 @@ export default function CommandPalette() {
         { id: "stack", label: "Go to Stack", icon: <Layers size={16} />, action: () => router.push("/stack"), shortcut: "S" },
         { id: "services", label: "Go to Services", icon: <Code2 size={16} />, action: () => router.push("/services") },
         { id: "contact", label: "Go to Contact", icon: <Mail size={16} />, action: () => router.push("/contact"), shortcut: "C" },
-        {
-            id: "resume",
-            label: "Download Resume",
-            icon: <FileDown size={16} />,
-            action: () => {
-                const link = document.createElement("a");
-                link.href = "/resume.pdf";
-                link.download = "Hatim_El_Hassak_Resume.pdf";
-                link.click();
-            },
-            shortcut: "R",
-        },
     ];
 
     const filtered = commands.filter((cmd) =>

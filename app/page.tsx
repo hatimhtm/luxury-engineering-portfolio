@@ -9,7 +9,7 @@ import { AboutSection } from "@/components/home/AboutSection";
 import { TechLogoMarquee } from "@/components/home/TechLogoMarquee";
 import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { PhilosophySection } from "@/components/home/PhilosophySection";
-import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { ProofSection } from "@/components/home/ProofSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { CtaSection } from "@/components/home/CtaSection";
 
@@ -85,7 +85,7 @@ export default function Home() {
 
             <PhilosophySection />
 
-            <TestimonialsSection />
+            <ProofSection />
 
             <ServicesSection />
 

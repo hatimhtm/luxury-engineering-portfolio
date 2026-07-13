@@ -1,19 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { CrossHatch, CircuitPattern } from "@/components/ui/Decorative";
 import { ArrowUpRight, Zap, Bot } from "lucide-react";
-import { stagger, fadeUp } from "./animations";
 
 export function ServicesSection() {
     return (
-        <motion.section
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20"
-        >
+        <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 reveal-up">
             <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">What I Do</div>
             <div className="flex items-end justify-between mb-6">
                 <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">Services</h2>
@@ -23,7 +15,7 @@ export function ServicesSection() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-5">
-                <motion.div variants={fadeUp}>
+                <div className="reveal-up">
                     <div className="neo-card bg-acid text-ink p-6 md:p-8 h-full relative overflow-hidden group gradient-top-accent neo-glow">
                         <CrossHatch className="absolute top-0 right-0 w-24 h-24 text-ink opacity-50" />
                         <div className="relative z-10">
@@ -43,8 +35,8 @@ export function ServicesSection() {
                             </a>
                         </div>
                     </div>
-                </motion.div>
-                <motion.div variants={fadeUp}>
+                </div>
+                <div className="reveal-up" style={{ animationDelay: "0.06s" }}>
                     <div className="neo-card bg-electric text-cream p-6 md:p-8 h-full relative overflow-hidden group gradient-top-accent neo-glow-blue">
                         <CircuitPattern className="absolute bottom-0 left-0 w-32 h-32 text-cream/10" />
                         <div className="relative z-10">
@@ -64,8 +56,8 @@ export function ServicesSection() {
                             </a>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

@@ -1,18 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { GridDots } from "@/components/ui/Decorative";
 import { Mail, CalendarDays } from "lucide-react";
 
 export function CtaSection() {
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="max-w-7xl mx-auto px-4 md:px-8 mb-12"
-        >
+        <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 reveal-up">
             <div className="neo-card bg-hotpink text-cream p-8 md:p-12 text-center relative overflow-hidden gradient-top-accent">
                 <GridDots className="absolute inset-0 w-full h-full text-cream/5" />
                 <div className="absolute top-0 left-1/4 w-1/2 h-32 bg-acid/10 blur-3xl pointer-events-none" />
@@ -47,6 +40,6 @@ export function CtaSection() {
                     </div>
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

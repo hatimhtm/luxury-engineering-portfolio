@@ -1,19 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { CrossHatch } from "@/components/ui/Decorative";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export function AboutSection() {
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20"
-        >
+        <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 reveal-up">
             <div className="grid md:grid-cols-5 gap-5">
                 <div className="md:col-span-2 neo-card bg-acid p-0 relative overflow-hidden min-h-[300px] md:min-h-[400px]">
                     <Image
@@ -62,6 +55,6 @@ export function AboutSection() {
                     </div>
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useInView } from "framer-motion";
 import { projectCount, appStoreCount, macAppCount } from "@/lib/projects";
 
 /* Animated counter for numeric stats */
@@ -31,24 +31,27 @@ function useCounter(end: number, duration: number = 1600, startCounting: boolean
 
 type Stat = { value: number; suffix?: string; prefix?: string; label: string } | { display: string; label: string };
 
-function StatCard({ stat }: { stat: Stat }) {
+function StatCard({ stat, index }: { stat: Stat; index: number }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-50px" });
+    // SSR and no-JS render the FINAL value; the count-up only runs
+    // client-side once the card scrolls into view.
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
     const animated = "value" in stat;
     const count = useCounter(animated ? stat.value : 0, 1600, animated && isInView);
+    const shown = animated ? (mounted && isInView ? count : stat.value) : null;
 
     return (
-        <motion.div
+        <div
             ref={ref}
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.4 }}
-            className="neo-card bg-ink text-cream p-4 md:p-6 text-center relative overflow-hidden neo-glow"
+            className="neo-card bg-ink text-cream p-4 md:p-6 text-center relative overflow-hidden neo-glow reveal-up"
+            style={{ animationDelay: `${index * 0.08}s` }}
         >
             <div className="relative z-10">
                 <div className="font-heading font-bold text-3xl md:text-4xl text-acid">
                     {animated ? (
-                        <>{stat.prefix}{count}{stat.suffix}</>
+                        <>{stat.prefix}{shown}{stat.suffix}</>
                     ) : (
                         stat.display
                     )}
@@ -57,7 +60,7 @@ function StatCard({ stat }: { stat: Stat }) {
                     {stat.label}
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }
 
@@ -72,8 +75,8 @@ export function StatsSection() {
     return (
         <section className="max-w-7xl mx-auto px-4 md:px-8 -mt-4 mb-12 md:mb-20 relative z-20">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {stats.map((s) => (
-                    <StatCard key={s.label} stat={s} />
+                {stats.map((s, i) => (
+                    <StatCard key={s.label} stat={s} index={i} />
                 ))}
             </div>
         </section>

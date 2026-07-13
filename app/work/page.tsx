@@ -7,20 +7,9 @@ import Image from "next/image";
 import { projects, divisions, getProjectsByDivision, type Project } from "@/lib/projects";
 import { CircuitPattern, GridDots } from "@/components/ui/Decorative";
 
-/* Animations */
-const stagger = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
-};
-
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
     return (
-        <motion.div variants={fadeUp}>
+        <div className="reveal-up" style={{ animationDelay: `${Math.min(index * 0.06, 0.4)}s` }}>
             <Link href={`/work/${project.slug}`} className="block h-full group">
                 <div className={`neo-card ${project.color} ${project.textColor} h-full flex flex-col justify-between min-h-[20rem] md:min-h-[22rem] relative overflow-hidden neo-glow`}>
                     {project.image && (
@@ -104,7 +93,7 @@ function ProjectCard({ project }: { project: Project }) {
                     </div>
                 </div>
             </Link>
-        </motion.div>
+        </div>
     );
 }
 
@@ -179,29 +168,18 @@ export default function WorkPage() {
                                 </p>
                             </div>
 
-                            <motion.div
-                                variants={stagger}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-50px" }}
-                                className="grid md:grid-cols-2 gap-5"
-                            >
-                                {items.map((project) => (
-                                    <ProjectCard key={project.id} project={project} />
+                            <div className="grid md:grid-cols-2 gap-5">
+                                {items.map((project, index) => (
+                                    <ProjectCard key={project.id} project={project} index={index} />
                                 ))}
-                            </motion.div>
+                            </div>
                         </section>
                     );
                 })}
             </div>
 
             {/* GitHub CTA */}
-            <motion.section
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="max-w-7xl mx-auto px-4 md:px-8 mb-12"
-            >
+            <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 reveal-up">
                 <div className="neo-card bg-ink text-cream p-6 md:p-10 relative overflow-hidden gradient-top-accent">
                     <GridDots className="absolute inset-0 w-full h-full text-cream/5" />
                     <div className="absolute top-0 left-1/4 w-1/2 h-20 bg-acid/10 blur-3xl pointer-events-none" />
@@ -227,7 +205,7 @@ export default function WorkPage() {
                         </a>
                     </div>
                 </div>
-            </motion.section>
+            </section>
         </div>
     );
 }

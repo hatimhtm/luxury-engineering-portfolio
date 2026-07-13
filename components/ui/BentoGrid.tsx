@@ -1,10 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { motion, useInView, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 
 export const BentoGrid = ({
     className,
@@ -49,9 +49,6 @@ export const BentoGridItem = ({
     /** Header contains real imagery — render it at full opacity. */
     mediaHeader?: boolean;
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
-
     // 3D Tilt Effect
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -77,19 +74,16 @@ export const BentoGridItem = ({
 
     const content = (
         <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
                 rotateX,
                 rotateY,
                 transformStyle: "preserve-3d",
+                animationDelay: `${index * 0.1}s`,
             }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             className={cn(
-                "row-span-1 relative overflow-hidden group neo-card h-full w-full flex flex-col justify-between p-6 cursor-pointer neo-glow perspective-1000",
+                "row-span-1 relative overflow-hidden group neo-card h-full w-full flex flex-col justify-between p-6 cursor-pointer neo-glow perspective-1000 reveal-up",
                 bgColor,
                 textColor,
                 className

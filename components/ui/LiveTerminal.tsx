@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const commands = [
     { prompt: "$ tryit · App Store review", result: "✓ Cleared 2.1 + 2.1(a)", delay: 0 },
@@ -11,14 +11,11 @@ const commands = [
 ];
 
 export default function LiveTerminal() {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
     const [visibleLines, setVisibleLines] = useState(0);
     const [typedChars, setTypedChars] = useState<number[]>([]);
 
+    // Types on mount (not scroll-gated) so the terminal is never an empty box.
     useEffect(() => {
-        if (!isInView) return;
-
         const timeoutIds: ReturnType<typeof setTimeout>[] = [];
         const intervalIds: ReturnType<typeof setInterval>[] = [];
 
@@ -47,16 +44,10 @@ export default function LiveTerminal() {
             timeoutIds.forEach(clearTimeout);
             intervalIds.forEach(clearInterval);
         };
-    }, [isInView]);
+    }, []);
 
     return (
-        <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="neo-card bg-ink text-cream p-5 md:p-6 font-mono text-xs md:text-sm relative overflow-hidden"
-        >
+        <div className="neo-card bg-ink text-cream p-5 md:p-6 font-mono text-xs md:text-sm relative overflow-hidden reveal-up">
             {/* Terminal header */}
             <div className="flex items-center gap-2 mb-4 pb-3 border-b border-cream/10">
                 <div className="w-2.5 h-2.5 bg-hotpink" />
@@ -102,6 +93,6 @@ export default function LiveTerminal() {
                     </div>
                 )}
             </div>
-        </motion.div>
+        </div>
     );
 }

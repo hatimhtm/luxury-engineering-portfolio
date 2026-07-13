@@ -23,17 +23,6 @@ const faqs = [
     { q: "How do you handle existing codebases?", a: "Read-before-rewrite. I'll start by understanding the repo's conventions, then ship changes as small PRs you can review. No surprise rewrites without a conversation first." },
 ];
 
-/* ─── Animations ─── */
-const stagger = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export default function ContactPage() {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -148,19 +137,13 @@ export default function ContactPage() {
                 </div>
 
                 {/* ─── FAQ ─── */}
-                <motion.section
-                    variants={stagger}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="mb-12 md:mb-20"
-                >
+                <section className="mb-12 md:mb-20 reveal-up">
                     <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Common Questions</div>
                     <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight text-ink mb-6">FAQ</h2>
 
                     <div className="space-y-3">
                         {faqs.map((faq, i) => (
-                            <motion.div key={i} variants={fadeUp}>
+                            <div key={i} className="reveal-up" style={{ animationDelay: `${Math.min(i * 0.06, 0.4)}s` }}>
                                 <button
                                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                                     className="neo-card w-full bg-cream p-5 text-left group"
@@ -190,10 +173,10 @@ export default function ContactPage() {
                                         )}
                                     </AnimatePresence>
                                 </button>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
-                </motion.section>
+                </section>
             </div>
         </div>
     );

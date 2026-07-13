@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
 import { CircuitPattern } from "@/components/ui/Decorative";
@@ -26,12 +25,7 @@ export function ProjectsSection() {
 
     return (
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
-            <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="flex items-end justify-between mb-6"
-            >
+            <div className="flex items-end justify-between mb-6 reveal-up">
                 <div>
                     <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Four divisions · {projects.length} shipped</div>
                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">The Work</h2>
@@ -39,7 +33,7 @@ export function ProjectsSection() {
                 <a href="/work" className="font-mono text-sm font-bold uppercase tracking-wider text-ink hover:text-electric transition-colors flex items-center gap-1 group">
                     View All {projects.length} <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
-            </motion.div>
+            </div>
 
             <BentoGrid className="md:auto-rows-[18rem] gap-5">
                 {/* 01 · Apps — flagship division, real App Store screenshot */}

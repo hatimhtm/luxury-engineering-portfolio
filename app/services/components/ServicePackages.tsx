@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Zap, Bot, ArrowUpRight, Check, X, Shield, Rocket, RefreshCw, Code2, Smartphone, Database, Brain } from "lucide-react";
 import { CircuitPattern, CrossHatch } from "@/components/ui/Decorative";
 
@@ -23,11 +22,7 @@ export function ServicePackages() {
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
             <div className="grid md:grid-cols-2 gap-5">
                 {/* Velocity Launch */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
+                <div className="reveal-up">
                     <div className="neo-card bg-acid text-ink p-6 md:p-8 h-full relative overflow-hidden group gradient-top-accent">
                         <CrossHatch className="absolute top-0 right-0 w-32 h-32 text-ink opacity-[0.04]" />
                         <div className="relative z-10">
@@ -63,15 +58,10 @@ export function ServicePackages() {
                             </a>
                         </div>
                     </div>
-                </motion.div>
+                </div>
 
                 {/* AI Augmentation */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                >
+                <div className="reveal-up" style={{ animationDelay: "0.1s" }}>
                     <div className="neo-card bg-electric text-cream p-6 md:p-8 h-full relative overflow-hidden group gradient-top-accent neo-glow-blue">
                         <CircuitPattern className="absolute bottom-0 left-0 w-40 h-40 text-cream/5" />
                         <div className="relative z-10">
@@ -107,7 +97,7 @@ export function ServicePackages() {
                             </a>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

@@ -4,17 +4,6 @@ import { motion } from "framer-motion";
 import { CircuitPattern, GridDots } from "@/components/ui/Decorative";
 import { BookOpen, Flame } from "lucide-react";
 
-/* Animations */
-const stagger = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.06 } },
-};
-
-const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
 /* Proficiency tag — categorical, not quantitative */
 type Depth = "daily" | "frequent" | "proficient";
 type Tool = { name: string; depth: Depth; detail: string };
@@ -141,12 +130,10 @@ export function CategoriesSection() {
     return (
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 space-y-5">
             {categories.map((cat, catIndex) => (
-                <motion.div
+                <div
                     key={cat.name}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: catIndex * 0.05 }}
+                    className="reveal-up"
+                    style={{ animationDelay: `${Math.min(catIndex * 0.06, 0.4)}s` }}
                 >
                     <div className={`neo-card ${cat.color} ${cat.textColor} p-6 md:p-8 relative overflow-hidden`}>
                         {catIndex % 2 === 0 ? (
@@ -176,7 +163,7 @@ export function CategoriesSection() {
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             ))}
         </section>
     );
@@ -184,13 +171,7 @@ export function CategoriesSection() {
 
 export function CurrentlyLearningSection() {
     return (
-        <motion.section
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20"
-        >
+        <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 reveal-up">
             <div className="flex items-center gap-2 mb-2">
                 <Flame size={16} className="text-hotpink" />
                 <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60">Level Up</div>
@@ -198,8 +179,8 @@ export function CurrentlyLearningSection() {
             <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight text-ink mb-6">Currently Learning</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                {learning.map((item) => (
-                    <motion.div key={item.name} variants={fadeUp}>
+                {learning.map((item, i) => (
+                    <div key={item.name} className="reveal-up" style={{ animationDelay: `${Math.min(i * 0.06, 0.4)}s` }}>
                         <div className="neo-card bg-cream p-5 h-full group hover:bg-ink hover:text-cream transition-all">
                             <div className="flex items-center gap-2 mb-2">
                                 <BookOpen size={16} className="opacity-60 group-hover:text-acid" />
@@ -207,21 +188,16 @@ export function CurrentlyLearningSection() {
                             </div>
                             <p className="font-mono text-xs opacity-80 leading-relaxed">{item.reason}</p>
                         </div>
-                    </motion.div>
+                    </div>
                 ))}
             </div>
-        </motion.section>
+        </section>
     );
 }
 
 export function CTASection() {
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-7xl mx-auto px-4 md:px-8 mb-12"
-        >
+        <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 reveal-up">
             <div className="neo-card bg-ink text-cream p-8 md:p-12 text-center relative overflow-hidden gradient-top-accent">
                 <GridDots className="absolute inset-0 w-full h-full text-cream/5" />
                 <div className="relative z-10">
@@ -240,6 +216,6 @@ export function CTASection() {
                     </a>
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

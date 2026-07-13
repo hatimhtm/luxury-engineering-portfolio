@@ -111,7 +111,7 @@ export default function OpengraphImage() {
                     }}
                 >
                     <div style={{ display: "flex", gap: 16 }}>
-                        {["SwiftUI", "Next.js", "Python", "AI"].map((t) => (
+                        {["Apps", "AI & Systems", "Client Web", "30 Shipped"].map((t) => (
                             <div
                                 key={t}
                                 style={{

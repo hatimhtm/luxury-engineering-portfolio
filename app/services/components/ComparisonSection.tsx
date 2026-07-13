@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const comparisonData = [
     { feature: "Delivery shape", agency: "4–8 weeks", me: "Days to a few weeks, scope-dependent" },
     { feature: "Who does the work", agency: "Whoever's billable", me: "Me, personally, every commit" },
@@ -14,12 +12,7 @@ const comparisonData = [
 
 export function ComparisonSection() {
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20"
-        >
+        <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 reveal-up">
             <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Trade-offs</div>
             <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight text-ink mb-8">Solo vs. Agency</h2>
 
@@ -44,6 +37,6 @@ export function ComparisonSection() {
                     </div>
                 ))}
             </div>
-        </motion.section>
+        </section>
     );
 }

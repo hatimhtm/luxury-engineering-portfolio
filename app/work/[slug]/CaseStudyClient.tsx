@@ -118,38 +118,30 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
             {/* Metrics strip */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 mb-10 md:mb-16">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {project.metrics.map((m) => (
-                        <motion.div
+                    {project.metrics.map((m, i) => (
+                        <div
                             key={m.label}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="neo-card bg-ink text-cream p-4 text-center neo-glow"
+                            className="neo-card bg-ink text-cream p-4 text-center neo-glow reveal-up"
+                            style={{ animationDelay: `${Math.min(i * 0.06, 0.4)}s` }}
                         >
                             <div className="font-heading font-bold text-2xl md:text-3xl text-acid">{m.value}</div>
                             <div className="font-mono text-xs font-bold uppercase tracking-widest mt-1 opacity-80">{m.label}</div>
-                        </motion.div>
+                        </div>
                     ))}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="neo-card bg-ink text-cream p-4 text-center neo-glow"
+                    <div
+                        className="neo-card bg-ink text-cream p-4 text-center neo-glow reveal-up"
+                        style={{ animationDelay: `${Math.min(project.metrics.length * 0.06, 0.4)}s` }}
                     >
                         <div className="font-heading font-bold text-2xl md:text-3xl text-acid">{project.category}</div>
                         <div className="font-mono text-xs font-bold uppercase tracking-widest mt-1 opacity-80">Category</div>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* Problem / Solution */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 mb-10 md:mb-16">
                 <div className="grid md:grid-cols-2 gap-5">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
+                    <div className="reveal-up">
                         <div className={`neo-card ${project.color} ${project.textColor} p-6 md:p-8 h-full relative overflow-hidden`}>
                             <CircuitPattern className="absolute top-0 right-0 w-32 h-32 opacity-[0.08]" />
                             <div className="relative z-10">
@@ -160,14 +152,9 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                                 </p>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                    >
+                    <div className="reveal-up" style={{ animationDelay: "0.1s" }}>
                         <div className="neo-card bg-ink text-cream p-6 md:p-8 h-full relative overflow-hidden gradient-top-accent">
                             <GridDots className="absolute top-0 right-0 w-32 h-32 text-cream/5" />
                             <div className="relative z-10">
@@ -180,17 +167,13 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                                 </p>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* Tech Stack */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 mb-10 md:mb-16">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
+                <div className="reveal-up">
                     <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/40 mb-2">Stack</div>
                     <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight text-ink mb-6">Technologies Used</h2>
                     <div className="flex flex-wrap gap-3">
@@ -203,40 +186,32 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                             </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             </section>
 
             {/* Outcomes */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 mb-10 md:mb-16">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="neo-card bg-cream p-6 md:p-8 relative overflow-hidden"
-                >
+                <div className="neo-card bg-cream p-6 md:p-8 relative overflow-hidden reveal-up">
                     <CrossHatch className="absolute top-0 right-0 w-32 h-32 text-ink" />
                     <div className="relative z-10">
                         <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/40 mb-2">Results</div>
                         <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight text-ink mb-6">Key Outcomes</h2>
                         <div className="grid md:grid-cols-2 gap-4">
                             {project.outcomes.map((outcome, i) => (
-                                <motion.div
+                                <div
                                     key={i}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="flex items-start gap-3"
+                                    className="flex items-start gap-3 reveal-up"
+                                    style={{ animationDelay: `${Math.min(i * 0.06, 0.4)}s` }}
                                 >
                                     <div className="w-6 h-6 bg-acid border-[2px] border-ink flex-shrink-0 flex items-center justify-center font-mono text-xs font-bold">
                                         ✓
                                     </div>
                                     <span className="font-mono text-sm font-bold text-ink/70">{outcome}</span>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </section>
 
             {/* CTA */}
