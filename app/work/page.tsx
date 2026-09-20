@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { projects, divisions, getProjectsByDivision, type Project } from "@/lib/projects";
 import { CircuitPattern, GridDots } from "@/components/ui/Decorative";
+import { ReelSection } from "@/components/work/ReelSection";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
     return (
@@ -118,7 +119,7 @@ export default function WorkPage() {
                 >
                     <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-3">Portfolio</div>
                     <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
-                        Selected<br />Work
+                        The<br />Work
                     </h1>
                     <p className="font-sans text-sm md:text-base text-ink/85 max-w-xl leading-relaxed mb-8">
                         {projects.length} shipped projects across four divisions. Every one was built
@@ -142,6 +143,8 @@ export default function WorkPage() {
                     </div>
                 </motion.div>
             </section>
+
+            <ReelSection />
 
             {/* Division sections */}
             <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 space-y-14 md:space-y-24">
