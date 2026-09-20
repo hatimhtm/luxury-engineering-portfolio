@@ -19,6 +19,8 @@ function divisionNames(id: (typeof divisions)[number]["id"], take: number): stri
 
 export function ProjectsSection() {
     const apps = getProjectsByDivision("apps");
+    const live = apps.filter((p) => p.appStore);
+    const rest = apps.filter((p) => !p.appStore);
     const systems = getProjectsByDivision("systems");
     const client = getProjectsByDivision("client");
     const tools = getProjectsByDivision("tools");
@@ -35,31 +37,41 @@ export function ProjectsSection() {
             </div>
 
             <BentoGrid className="md:auto-rows-[18rem] gap-5">
-                {/* 01 · Apps: flagship division, real App Store screenshot */}
+                {/* Apps: the flagship division. The tile carries the live
+                    App Store ships by name, which is the proof worth showing. */}
                 <BentoGridItem
                     index={0}
                     className="md:col-span-2 md:row-span-2"
                     title={`Apps · ${apps.length}`}
-                    description={divisionNames("apps", 6)}
                     bgColor="bg-acid"
                     textColor="text-ink"
                     icon={<Smartphone size={36} className="text-ink" />}
                     href="/work#apps"
                     mediaHeader
                     header={
-                        <div className="absolute inset-0 pointer-events-none">
-                            <span className="absolute left-6 top-6 text-[5rem] md:text-[9rem] font-heading font-bold tracking-tighter text-ink/10 leading-none select-none">
-                                APPS
-                            </span>
-                            <div className="absolute right-6 md:right-12 top-8 bottom-24 w-[38%] max-w-[240px] border-[3px] border-ink shadow-neo overflow-hidden bg-ink hidden sm:block">
-                                <Image
-                                    src="/projects/tryit-1.jpg"
-                                    alt="TryIt on the App Store"
-                                    fill
-                                    className="object-cover object-top"
-                                    sizes="240px"
-                                    loading="lazy"
-                                />
+                        <div className="h-full flex flex-col justify-start pl-4 md:pl-6 pr-4 md:pr-6 pt-6 md:pt-7">
+                            <div className="font-heading font-bold text-ink/80 text-sm uppercase tracking-[0.2em] mb-4">
+                                Live on the App Store
+                            </div>
+                            <ul className="space-y-2.5">
+                                {live.map((app) => (
+                                    <li key={app.slug} className="flex items-baseline gap-3 border-b-2 border-ink/15 pb-2">
+                                        <span className="font-heading font-bold text-ink text-lg md:text-2xl uppercase tracking-tight leading-none">
+                                            {app.title}
+                                        </span>
+                                        <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider text-ink/70 ml-auto whitespace-nowrap">
+                                            {app.category}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="mt-6 pt-5 border-t-2 border-ink/15">
+                                <div className="font-heading font-bold text-ink/80 text-sm uppercase tracking-[0.2em] mb-2">
+                                    Also shipped
+                                </div>
+                                <p className="font-mono text-[11px] md:text-xs font-bold uppercase tracking-wider text-ink/70 leading-relaxed">
+                                    {rest.map((p) => p.title).join(" · ")}
+                                </p>
                             </div>
                         </div>
                     }

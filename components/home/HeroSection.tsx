@@ -34,7 +34,7 @@ export function HeroSection() {
                 <motion.div style={animationsOff ? undefined : { y: heroY, opacity: heroOpacity }}>
                     <div className="grid md:grid-cols-12 gap-10 md:gap-10 items-center">
                         <motion.div
-                            className="md:col-span-7"
+                            className="md:col-span-6"
                             initial={{ opacity: 0, x: -48 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -70,26 +70,26 @@ export function HeroSection() {
                             </div>
                         </motion.div>
 
-                        {/* Real proof instead of empty space: a shipped App Store build. */}
+                        {/* A real client site, shown at the size it deserves. */}
                         <motion.div
-                            className="md:col-span-5 flex md:justify-end"
-                            initial={{ opacity: 0, y: 32 }}
+                            className="md:col-span-6"
+                            initial={{ opacity: 0, y: 28 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            <figure className="relative w-[220px] sm:w-[260px] md:w-full md:max-w-[300px]">
-                                <div className="relative aspect-[600/1299] border-[3px] border-ink shadow-neo overflow-hidden bg-ink">
+                            <figure>
+                                <div className="relative aspect-[16/10] border-[3px] border-ink shadow-neo overflow-hidden bg-ink">
                                     <Image
-                                        src="/projects/tryit-1.jpg"
-                                        alt="TryIt, one of four apps live on the App Store"
+                                        src="/projects/lorani.jpg"
+                                        alt="Lorani, an editorial site built for a Moroccan hijab house"
                                         fill
-                                        sizes="(max-width: 768px) 260px, 300px"
+                                        sizes="(max-width: 768px) 100vw, 46vw"
                                         className="object-cover object-top"
                                         priority
                                     />
                                 </div>
                                 <figcaption className="mt-3 font-mono text-[11px] font-bold uppercase tracking-wider text-ink/60">
-                                    TryIt. One of four live on the App Store.
+                                    Lorani. Trilingual editorial site, built without a framework.
                                 </figcaption>
                             </figure>
                         </motion.div>
