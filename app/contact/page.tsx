@@ -16,10 +16,10 @@ const contactInfo = [
 ];
 
 const faqs = [
-    { q: "What's a typical turnaround?", a: "It depends on scope — a focused MVP usually lands in a week or two; a larger full-stack app runs 3–6 weeks. I give you a realistic estimate before we start and flag any slip the moment it's on the horizon." },
+    { q: "What's a typical turnaround?", a: "It depends on scope: a focused MVP usually lands in a week or two; a larger full-stack app runs 3–6 weeks. I give you a realistic estimate before we start and flag any slip the moment it's on the horizon." },
     { q: "Do you work with startups or established companies?", a: "Both. Most of my work is for solo founders and small teams, but I've also contracted with established businesses that needed a specific slice built fast. The process is the same either way." },
     { q: "What do you specialise in?", a: "Product engineering end-to-end: Next.js for web, SwiftUI for iOS, Python for backend and AI pipelines. I pick tools that fit the project, not the trend cycle." },
-    { q: "Do you handle the whole thing, or just development?", a: "End-to-end — design direction, architecture, shipping, and post-launch support. If you have an existing designer or PM, I slot into their workflow; if you don't, I can run the whole loop." },
+    { q: "Do you handle the whole thing, or just development?", a: "End-to-end: design direction, architecture, shipping, and post-launch support. If you have an existing designer or PM, I slot into their workflow; if you don't, I can run the whole loop." },
     { q: "How do you handle existing codebases?", a: "Read-before-rewrite. I'll start by understanding the repo's conventions, then ship changes as small PRs you can review. No surprise rewrites without a conversation first." },
 ];
 
@@ -27,7 +27,7 @@ export default function ContactPage() {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     return (
-        <div className="min-h-screen bg-cream pb-24">
+        <div className="min-h-[100dvh] bg-cream pb-24">
             {/* Status bar */}
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
                 <div className="flex items-center gap-2">
@@ -49,8 +49,8 @@ export default function ContactPage() {
                         <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
                             Let&apos;s<br />Build
                         </h1>
-                        <p className="font-mono text-sm md:text-base text-ink/85 max-w-xl leading-relaxed">
-                            Tell me what you&apos;re working on — current state, what you need built,
+                        <p className="font-sans text-sm md:text-base text-ink/85 max-w-xl leading-relaxed">
+                            Tell me what you&apos;re working on: current state, what you need built,
                             and any deadline or constraint I should know about. I reply with a
                             realistic plan, not a pitch deck.
                         </p>
@@ -166,7 +166,7 @@ export default function ContactPage() {
                                                 transition={{ duration: 0.3 }}
                                                 className="overflow-hidden"
                                             >
-                                                <p className="font-mono text-sm text-ink/85 leading-relaxed mt-4 pt-4 border-t-[2px] border-ink/10">
+                                                <p className="font-sans text-sm text-ink/85 leading-relaxed mt-4 pt-4 border-t-[2px] border-ink/10">
                                                     {faq.a}
                                                 </p>
                                             </motion.div>

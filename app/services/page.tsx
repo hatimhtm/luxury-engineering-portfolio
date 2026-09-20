@@ -8,7 +8,7 @@ import { CTASection } from "./components/CTASection";
 
 export default function ServicesPage() {
     return (
-        <div className="min-h-screen bg-cream pb-24">
+        <div className="min-h-[100dvh] bg-cream pb-24">
 
             {/* Status bar */}
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
@@ -30,7 +30,7 @@ export default function ServicesPage() {
                     <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
                         Services
                     </h1>
-                    <p className="font-mono text-sm md:text-base text-ink/85 max-w-xl leading-relaxed">
+                    <p className="font-sans text-sm md:text-base text-ink/85 max-w-xl leading-relaxed">
                         One engineer, not an agency. Two shapes of engagement depending on
                         whether you&apos;re starting from zero or adding AI to something that
                         already ships.

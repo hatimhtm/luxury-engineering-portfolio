@@ -9,7 +9,7 @@ import { projects, divisions, getProjectsByDivision } from "@/lib/projects";
 /* Stable (non-random) bar heights so SSR and hydration match */
 const BAR_HEIGHTS = [62, 38, 84, 46, 70, 32, 58, 78, 44, 66, 28, 90, 52, 40, 74, 36, 60, 82, 48, 68, 30, 72, 54, 86];
 
-/** "TryIt · Relay · Fader +5" — first few titles of a division. */
+/** "TryIt · Relay · Fader +5": first few titles of a division. */
 function divisionNames(id: (typeof divisions)[number]["id"], take: number): string {
     const items = getProjectsByDivision(id);
     const names = items.slice(0, take).map((p) => p.title);
@@ -27,7 +27,6 @@ export function ProjectsSection() {
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
             <div className="flex items-end justify-between mb-6 reveal-up">
                 <div>
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Four divisions · {projects.length} shipped</div>
                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">The Work</h2>
                 </div>
                 <a href="/work" className="font-mono text-sm font-bold uppercase tracking-wider text-ink hover:text-electric transition-colors flex items-center gap-1 group">
@@ -36,11 +35,11 @@ export function ProjectsSection() {
             </div>
 
             <BentoGrid className="md:auto-rows-[18rem] gap-5">
-                {/* 01 · Apps — flagship division, real App Store screenshot */}
+                {/* 01 · Apps: flagship division, real App Store screenshot */}
                 <BentoGridItem
                     index={0}
                     className="md:col-span-2 md:row-span-2"
-                    title={`01 / Apps · ${apps.length}`}
+                    title={`Apps · ${apps.length}`}
                     description={divisionNames("apps", 6)}
                     bgColor="bg-acid"
                     textColor="text-ink"
@@ -66,11 +65,11 @@ export function ProjectsSection() {
                     }
                 />
 
-                {/* 02 · AI & Systems — tall, terminal aesthetic */}
+                {/* 02 · AI & Systems: tall, terminal aesthetic */}
                 <BentoGridItem
                     index={1}
                     className="md:col-span-1 md:row-span-2"
-                    title={`02 / AI & Systems · ${systems.length}`}
+                    title={`AI & Systems · ${systems.length}`}
                     description={divisionNames("systems", 4)}
                     bgColor="bg-electric"
                     textColor="text-cream"
@@ -87,11 +86,11 @@ export function ProjectsSection() {
                     }
                 />
 
-                {/* 03 · Client Web — real client-site capture */}
+                {/* 03 · Client Web: real client-site capture */}
                 <BentoGridItem
                     index={2}
                     className="md:col-span-1"
-                    title={`03 / Client Web · ${client.length}`}
+                    title={`Client Web · ${client.length}`}
                     description={divisionNames("client", 3)}
                     bgColor="bg-hotpink"
                     textColor="text-cream"
@@ -102,7 +101,7 @@ export function ProjectsSection() {
                         <div className="absolute inset-0 pointer-events-none">
                             <Image
                                 src="/projects/nota-parfum.jpg"
-                                alt="Nota Parfum — client site"
+                                alt="Nota Parfum: client site"
                                 fill
                                 className="object-cover object-top"
                                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -118,7 +117,7 @@ export function ProjectsSection() {
                 <BentoGridItem
                     index={3}
                     className="md:col-span-1"
-                    title={`04 / Tools & Play · ${tools.length}`}
+                    title={`Tools & Play · ${tools.length}`}
                     description={divisionNames("tools", 3)}
                     bgColor="bg-vivid"
                     textColor="text-cream"
@@ -135,7 +134,7 @@ export function ProjectsSection() {
                 <BentoGridItem
                     index={4}
                     className="md:col-span-1"
-                    title="The Arsenal"
+                    title="The Stack"
                     description="Full stack · Tooling · Current focus"
                     bgColor="bg-ink"
                     textColor="text-cream"
@@ -143,7 +142,6 @@ export function ProjectsSection() {
                     href="/stack"
                     header={
                         <div className="h-full w-full flex flex-col p-4 pb-24">
-                            <div className="font-mono text-xs font-bold text-cream/60 text-right tracking-widest uppercase">{"/// stack index"}</div>
                             <div className="flex justify-between items-end h-16 w-full gap-[2px] mt-auto">
                                 {BAR_HEIGHTS.map((h, i) => (
                                     <div key={i} className="bg-acid/60 w-[3px]" style={{ height: `${h}%` }} />

@@ -9,7 +9,7 @@ export function AboutSection() {
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 reveal-up">
             <div className="grid md:grid-cols-5 gap-5">
                 <div className="md:col-span-2 neo-card bg-acid p-0 relative overflow-hidden min-h-[300px] md:min-h-[400px]">
-                    {/* 29KB source — served raw so the About image has zero
+                    {/* 29KB source: served raw so the About image has zero
                         dependency on the image-optimizer service */}
                     <Image
                         src="/headshot.png"
@@ -29,17 +29,14 @@ export function AboutSection() {
                 <div className="md:col-span-3 neo-card bg-cream p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
                     <CrossHatch className="absolute top-0 right-0 w-32 h-32 text-ink" />
                     <div className="relative z-10">
-                        <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-3">About</div>
                         <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight text-ink mb-6 leading-tight">
                             End-to-end<br />product engineer
                         </h2>
-                        <p className="font-mono text-sm md:text-base text-ink/85 leading-relaxed mb-4">
-                            Three continents, one craft. Years of building products —
-                            native iOS in Swift, web apps in Next.js, AI pipelines in Python —
-                            most of them shipped for solo founders and small teams who needed a
+                        <p className="font-sans text-sm md:text-base text-ink/85 leading-relaxed mb-4">
+                            Three continents, one craft. Years of building products: native iOS in Swift, web apps in Next.js, AI pipelines in Python. Most of them shipped for solo founders and small teams who needed a
                             full-stack engineer, not a committee.
                         </p>
-                        <p className="font-mono text-sm md:text-base text-ink/85 leading-relaxed">
+                        <p className="font-sans text-sm md:text-base text-ink/85 leading-relaxed">
                             I own the whole loop: design choices, architecture, shipping,
                             and staying on-call after launch. I speak English, French, Arabic,
                             and Mandarin, which helps when the client&apos;s not in my time zone.

@@ -46,7 +46,7 @@ export const BentoGridItem = ({
     textColor?: string;
     href?: string;
     index?: number;
-    /** Header contains real imagery — render it at full opacity. */
+    /** Header contains real imagery: render it at full opacity. */
     mediaHeader?: boolean;
 }) => {
     // 3D Tilt Effect
@@ -94,7 +94,7 @@ export const BentoGridItem = ({
                 <div className="absolute inset-[-2px] bg-gradient-to-r from-acid via-electric to-hotpink rounded-[inherit] -z-10 animate-gradient" />
             </div>
 
-            {/* Background Pattern / Header — decorative patterns are dimmed,
+            {/* Background Pattern / Header: decorative patterns are dimmed,
                 real imagery renders at full strength */}
             <div
                 className={cn(
@@ -129,7 +129,7 @@ export const BentoGridItem = ({
     );
 
     if (href) {
-        // The Link is the grid child — col/row span classes must live on it,
+        // The Link is the grid child: col/row span classes must live on it,
         // not only on the inner card, or the grid ignores them.
         return (
             <Link href={href} className={cn("flex h-full w-full", className)}>

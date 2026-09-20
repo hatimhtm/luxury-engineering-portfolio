@@ -16,7 +16,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                         <div className="relative w-full aspect-[2/1] border-b-[3px] border-current/30 overflow-hidden bg-ink/10">
                             <Image
                                 src={project.image}
-                                alt={`${project.title} — screenshot`}
+                                alt={`${project.title}: screenshot`}
                                 fill
                                 className={`${project.imageFit === "contain" ? "object-contain" : "object-cover object-top"} group-hover:scale-[1.02] transition-transform duration-500`}
                                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -63,7 +63,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                             <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-3 group-hover:translate-x-1 transition-transform">
                                 {project.title}
                             </h3>
-                            <p className="font-mono text-sm opacity-90 leading-relaxed max-w-md">
+                            <p className="font-sans text-sm opacity-90 leading-relaxed max-w-md">
                                 {project.description}
                             </p>
                         </div>
@@ -99,7 +99,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export default function WorkPage() {
     return (
-        <div className="min-h-screen bg-cream pb-24">
+        <div className="min-h-[100dvh] bg-cream pb-24">
             {/* Status bar */}
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
                 <div className="flex items-center gap-2">
@@ -120,7 +120,7 @@ export default function WorkPage() {
                     <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
                         Selected<br />Work
                     </h1>
-                    <p className="font-mono text-sm md:text-base text-ink/85 max-w-xl leading-relaxed mb-8">
+                    <p className="font-sans text-sm md:text-base text-ink/85 max-w-xl leading-relaxed mb-8">
                         {projects.length} shipped projects across four divisions. Every one was built
                         for a real user or client. Code is open where I could make it open;
                         private client work is described without the repo. Click any card for
@@ -135,7 +135,7 @@ export default function WorkPage() {
                                 href={`#${d.id}`}
                                 className="neo-pill bg-cream text-ink hover:bg-ink hover:text-cream"
                             >
-                                <span className="opacity-60">{d.index}</span> {d.title}
+                                {d.title}
                                 <span className="opacity-60">· {getProjectsByDivision(d.id).length}</span>
                             </a>
                         ))}
@@ -153,9 +153,6 @@ export default function WorkPage() {
                             {/* Division header */}
                             <div className="mb-6 md:mb-8">
                                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-2">
-                                    <span className="font-heading font-bold text-5xl md:text-7xl text-ink/10 leading-none tracking-tighter select-none">
-                                        {division.index}
-                                    </span>
                                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">
                                         {division.title}
                                     </h2>
@@ -163,7 +160,7 @@ export default function WorkPage() {
                                         {items.length} {items.length === 1 ? "project" : "projects"}
                                     </span>
                                 </div>
-                                <p className="font-mono text-sm text-ink/70 max-w-xl leading-relaxed border-l-[3px] border-acid pl-4">
+                                <p className="font-sans text-sm text-ink/70 max-w-xl leading-relaxed border-l-[3px] border-acid pl-4">
                                     {division.tagline}
                                 </p>
                             </div>
@@ -189,7 +186,7 @@ export default function WorkPage() {
                             <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-2">
                                 See the source
                             </h3>
-                            <p className="font-mono text-sm text-cream/80 max-w-md leading-relaxed">
+                            <p className="font-sans text-sm text-cream/80 max-w-md leading-relaxed">
                                 Most of these repos are public. Fork them, read them, or hire me to build
                                 something like them for you.
                             </p>

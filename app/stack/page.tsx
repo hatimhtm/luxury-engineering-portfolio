@@ -4,7 +4,7 @@ import { StatusBar, HeaderSection, CategoriesSection, CurrentlyLearningSection, 
 
 export default function StackPage() {
     return (
-        <div className="min-h-screen bg-cream pb-24">
+        <div className="min-h-[100dvh] bg-cream pb-24">
             {/* Status bar */}
             <StatusBar />
 

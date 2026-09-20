@@ -21,8 +21,8 @@ export function ServicesSection() {
                         <div className="relative z-10">
                             <Zap size={32} className="mb-4" />
                             <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-3">Ship a Product</h3>
-                            <p className="font-mono text-sm opacity-85 leading-relaxed mb-4">
-                                End-to-end builds for solo founders and small teams — iOS, web, or both.
+                            <p className="font-sans text-sm opacity-85 leading-relaxed mb-4">
+                                End-to-end builds for solo founders and small teams: iOS, web, or both.
                                 You describe the thing; I return a live product on a tight timeline.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
@@ -42,8 +42,8 @@ export function ServicesSection() {
                         <div className="relative z-10">
                             <Bot size={32} className="mb-4 text-acid" />
                             <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-3">AI Integration</h3>
-                            <p className="font-mono text-sm opacity-85 leading-relaxed mb-4">
-                                LLM workflows, custom agents, and RAG pipelines — designed to do one
+                            <p className="font-sans text-sm opacity-85 leading-relaxed mb-4">
+                                LLM workflows, custom agents, and RAG pipelines: designed to do one
                                 job well inside an existing product, not tacked on as a demo.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">

@@ -3,8 +3,7 @@
 import { ArrowUpRight, Apple, Package, Github, Globe, Boxes } from "lucide-react";
 import { projects, clientWorkCount } from "@/lib/projects";
 
-/* Every item below is independently verifiable by clicking it —
-   evidence instead of testimonials. */
+/* Every item below is independently verifiable by clicking it: evidence instead of testimonials. */
 const receipts = [
     {
         icon: <Apple size={18} />,
@@ -18,28 +17,28 @@ const receipts = [
         label: "GoPilates",
         value: "Live on the App Store",
         href: "https://apps.apple.com/us/app/gopilates-app/id6760300479",
-        accent: "bg-hotpink",
+        accent: "bg-acid",
     },
     {
         icon: <Apple size={18} />,
         label: "Sunz",
         value: "Live on the App Store",
         href: "https://apps.apple.com/us/app/sunz-bronzage/id6771540928",
-        accent: "bg-vivid",
+        accent: "bg-acid",
     },
     {
         icon: <Package size={18} />,
         label: "Relay v1.0.7",
         value: "Shipped · signed Sparkle updates",
         href: "https://github.com/hatimhtm/Relay/releases/latest",
-        accent: "bg-electric",
+        accent: "bg-acid",
     },
     {
         icon: <Package size={18} />,
         label: "Fader v1.2 · Deck v1.1.6 · Eli",
         value: "Native macOS · public releases",
         href: "https://github.com/hatimhtm?tab=repositories",
-        accent: "bg-vivid",
+        accent: "bg-acid",
     },
     {
         icon: <Boxes size={18} />,
@@ -53,21 +52,21 @@ const receipts = [
         label: `${clientWorkCount} client builds`,
         value: "Shipped for real clients · live links",
         href: "/work#client",
-        accent: "bg-hotpink",
+        accent: "bg-acid",
     },
     {
         icon: <Github size={18} />,
         label: "The commits",
-        value: "Most of it public — read the source",
+        value: "Most of it public: read the source",
         href: "https://github.com/hatimhtm",
-        accent: "bg-electric",
+        accent: "bg-acid",
     },
     {
         icon: <Boxes size={18} />,
         label: `${projects.length} shipped projects`,
         value: "Every one documented as a case study",
         href: "/work",
-        accent: "bg-vivid",
+        accent: "bg-acid",
     },
 ];
 
@@ -77,7 +76,7 @@ export function ProofSection() {
             <div className="reveal-up">
                 <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">Proof, not promises</div>
                 <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink mb-2">The Receipts</h2>
-                <p className="font-mono text-sm text-ink/70 max-w-xl leading-relaxed mb-8">
+                <p className="font-sans text-sm text-ink/70 max-w-xl leading-relaxed mb-8">
                     No borrowed praise. Every claim on this site is a link you can click
                     and check yourself.
                 </p>

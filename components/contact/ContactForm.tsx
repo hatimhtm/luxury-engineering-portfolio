@@ -44,7 +44,7 @@ export function ContactForm() {
             setIsSuccess(true);
         } catch (err) {
             console.error(err);
-            setError("Something went wrong. Please try again — or email me directly.");
+            setError("Something went wrong. Please try again, or email me directly.");
         } finally {
             setIsSubmitting(false);
         }
@@ -63,7 +63,7 @@ export function ContactForm() {
                     <h3 className="font-heading font-bold text-3xl uppercase tracking-tight mb-3">
                         Message sent
                     </h3>
-                    <p className="font-mono text-sm opacity-85 max-w-sm mx-auto leading-relaxed">
+                    <p className="font-sans text-sm opacity-85 max-w-sm mx-auto leading-relaxed">
                         I&apos;ll get back to you shortly. In the meantime, browse the work or
                         poke around the repos.
                     </p>

@@ -4,7 +4,7 @@
 
 /* ═══════════════════════════════════════════
    NEO-BRUTALIST × LUXURY DESIGN SYSTEM
-   Hatim El Hassak — Portfolio
+   Hatim El Hassak - Portfolio
    ═══════════════════════════════════════════ */
 
 :root {
@@ -32,7 +32,7 @@
 body {
   color: var(--ink);
   background: var(--cream);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -370,7 +370,7 @@ body::before {
   }
 }
 
-/* CSS-only entrance — plays on load with `both` fill, so content can
+/* CSS-only entrance - plays on load with `both` fill, so content can
    never be JS-gated invisible (crawlers, no-JS, slow hydration).
    The reduced-motion block truncates it to the final visible state. */
 .reveal-up {
@@ -609,7 +609,7 @@ body::before {
   }
 }
 
-/* Gate continuous decorative animations on mobile — battery + low-end jank.
+/* Gate continuous decorative animations on mobile - battery + low-end jank.
    Marquees and pulse dots stay (cheap transforms, part of the brand). */
 @media (max-width: 768px) {
   .animate-blob,
@@ -624,7 +624,7 @@ body::before {
     animation: none;
   }
 
-  /* Film grain is a full-viewport fixed composite layer — decorative only,
+  /* Film grain is a full-viewport fixed composite layer - decorative only,
      skip it on phones. */
   body::before {
     display: none;
@@ -718,7 +718,7 @@ body::before {
 
 /* ── Dark mode: colored-surface exceptions ──
    Acid/electric/pink/orange surfaces keep their light-mode ink text and
-   borders — the theme flips the page, never the brand tiles. Higher
+   borders - the theme flips the page, never the brand tiles. Higher
    specificity than the remaps above. */
 [data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink,
 [data-theme="dark"] .bg-acid.text-ink,
@@ -748,14 +748,6 @@ body::before {
    ═══════════════════════════════════════════ */
 
 /* Custom cursor utility */
-.cursor-none {
-  cursor: none;
-}
-
-.cursor-none * {
-  cursor: none;
-}
-
 /* Print styles */
 @media print {
   .neo-card {

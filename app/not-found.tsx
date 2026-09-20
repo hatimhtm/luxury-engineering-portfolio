@@ -7,7 +7,7 @@ import { CircuitPattern, GridDots } from "@/components/ui/Decorative";
 
 export default function NotFound() {
     return (
-        <div className="min-h-screen bg-cream flex items-center justify-center pb-24">
+        <div className="min-h-[100dvh] bg-cream flex items-center justify-center pb-24">
             <div className="max-w-2xl mx-auto px-4 text-center relative">
                 <CircuitPattern className="absolute top-0 right-0 w-48 h-48 text-ink/5" />
                 <GridDots className="absolute bottom-0 left-0 w-32 h-32 text-ink/5" />
@@ -38,10 +38,10 @@ export default function NotFound() {
                         You&apos;re Lost
                     </h1>
 
-                    <p className="font-mono text-sm md:text-base font-bold text-ink/60 leading-relaxed mb-2 max-w-md mx-auto">
-                        But so was I — three continents and counting.
+                    <p className="font-sans text-sm md:text-base font-bold text-ink/60 leading-relaxed mb-2 max-w-md mx-auto">
+                        But so was I: three continents and counting.
                     </p>
-                    <p className="font-mono text-sm font-bold text-ink/40 leading-relaxed mb-8 max-w-md mx-auto">
+                    <p className="font-sans text-sm font-bold text-ink/40 leading-relaxed mb-8 max-w-md mx-auto">
                         The difference is, I always find my way. Let me help you find yours.
                     </p>
 

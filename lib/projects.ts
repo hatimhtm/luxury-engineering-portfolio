@@ -9,13 +9,13 @@ export interface Division {
     textColor: string;
 }
 
-/** The four divisions every project belongs to — ordered as displayed. */
+/** The four divisions every project belongs to: ordered as displayed. */
 export const divisions: Division[] = [
     {
         id: "apps",
         index: "01",
         title: "Apps",
-        tagline: "Products people install — on the App Store and native on macOS.",
+        tagline: "Products people install, on the App Store and native on macOS.",
         color: "bg-acid",
         textColor: "text-ink",
     },
@@ -61,7 +61,7 @@ export interface Project {
     liveDemo?: string;
     /** Apple App Store listing URL. */
     appStore?: string;
-    /** Private commercial repo — hides the "View Code" link. */
+    /** Private commercial repo: hides the "View Code" link. */
     private?: boolean;
     /** Which of the four divisions this project belongs to. */
     division: DivisionId;
@@ -110,7 +110,7 @@ export const projects: Project[] = [
             "Shipped to the App Store (review-cleared on face-data + AVCaptureSession bug fix)",
             "Two-stage AI pipeline cuts cost on invalid inputs before the expensive generation step",
             "Widget + Share Extension turn the app into an OS-wide capability",
-            "On-device-only photo storage — privacy posture documented to Apple Review",
+            "On-device-only photo storage: privacy posture documented to Apple Review",
         ],
     },
     {
@@ -140,7 +140,7 @@ export const projects: Project[] = [
             "Shipped to the App Store under a custom no-resale license",
             "37-screen onboarding funnel tuned around the paywall conversion",
             "HealthKit + Lottie + Tenjin all wired into the native build",
-            "iPhone-only — no iPad scaling compromise",
+            "iPhone-only, no iPad scaling compromise",
         ],
     },
     {
@@ -163,7 +163,7 @@ export const projects: Project[] = [
         problem: "Meta Ads / TikTok Ads web dashboards are dense and slow; the iOS operator wants a glance-able view between meetings. Existing native viewers are paid SaaS, not open-source.",
         solution: "A clean SwiftUI build using the iOS 17+ surface: `@Observable` view models, SwiftData persistence, Swift Charts for the bar/line/donut visualisations, Live Activities + Dynamic Island for campaigns under active watch, and a Z-score anomaly detector that catches creative regressions before the morning digest.",
         outcomes: [
-            "Open-source under MIT — installable, forkable, learnable",
+            "Open-source under MIT: installable, forkable, learnable",
             "iOS 17+ feature stack (Live Activities, Dynamic Island, SwiftData, @Observable)",
             "Statistical anomaly detection inside the app, not as a server feature",
         ],
@@ -177,8 +177,8 @@ export const projects: Project[] = [
         division: "systems",
         clientWork: true,
         title: "Viral OS",
-        description: "AI command center for a portfolio of consumer iOS apps. Ingests App Store Connect, RevenueCat (101 webhook events), TikTok, ad spend — computes pLTV, cohort retention, app health, anomaly alerts.",
-        longDescription: "Viral OS is the operations dashboard for a B2C app studio. It ingests App Store Connect (sales + metadata), RevenueCat (101 webhook event types), TikTok (via a Playwright scraper running on GitHub Actions, not the paid API), and manual ad spend; computes metrics that aren't in any individual tool — predicted LTV (geometric with realized-churn fallback), LTV/CAC, cohort retention, app-health score (0–100), lifecycle stage; and fires Slack/Discord/email alerts the same day a paywall regression or refund spike appears.",
+        description: "AI command center for a portfolio of consumer iOS apps. Ingests App Store Connect, RevenueCat (101 webhook events), TikTok, ad spend: computes pLTV, cohort retention, app health, anomaly alerts.",
+        longDescription: "Viral OS is the operations dashboard for a B2C app studio. It ingests App Store Connect (sales + metadata), RevenueCat (101 webhook event types), TikTok (via a Playwright scraper running on GitHub Actions, not the paid API), and manual ad spend; computes metrics that aren't in any individual tool: predicted LTV (geometric with realized-churn fallback), LTV/CAC, cohort retention, app-health score (0–100), lifecycle stage; and fires Slack/Discord/email alerts the same day a paywall regression or refund spike appears.",
         tech: ["Next.js 16", "Supabase", "Gemini 3 Pro", "RevenueCat", "App Store Connect", "Playwright", "Sentry"],
         metrics: [
             { label: "API Routes", value: "14" },
@@ -191,12 +191,12 @@ export const projects: Project[] = [
         private: true,
         category: "AI / ML",
         problem: "Studios shipping a portfolio of apps lose hours every week stitching together RevenueCat, App Store Connect, TikTok analytics, and ad spend across separate dashboards. By the time a paywall regression shows up in a monthly review, the damage is done.",
-        solution: "One Supabase-backed dashboard pulls every data source into a unified schema. Hand-rolled detectors (EWMA + 2σ on revenue + refunds + MRR drops + rating drops + rejected builds) catch anomalies same-day. Gemini 3 Pro is wired into every surface via tool-use, not stuffed context — the AI queries the live DB instead of getting fed it.",
+        solution: "One Supabase-backed dashboard pulls every data source into a unified schema. Hand-rolled detectors (EWMA + 2σ on revenue + refunds + MRR drops + rating drops + rejected builds) catch anomalies same-day. Gemini 3 Pro is wired into every surface via tool-use, not stuffed context. The AI queries the live DB instead of getting fed it.",
         outcomes: [
             "Single dashboard replaces RevenueCat + ASC + TikTok + spreadsheet tabs",
             "Same-day anomaly alerts on Slack / Discord / email",
             "Predicted LTV + cohort retention + app-health score, all computed in-app",
-            "Zero paid analytics SDK — every metric derived from raw events",
+            "Zero paid analytics SDK. Every metric derived from raw events",
         ],
     },
     {
@@ -204,8 +204,8 @@ export const projects: Project[] = [
         slug: "together-tasks",
         division: "systems",
         title: "Together Tasks",
-        description: "AI-native task OS for couples. Type or speak a task — Gemini parses date / priority / urgency / duration. Real-time sync between two phones, routines, gamified streaks. Web + PWA + native Android via Capacitor.",
-        longDescription: "Together Tasks turns natural language into structured shared tasks. Type \"buy rosemary tomorrow evening\" or hold the mic — Gemini 3 extracts the title, sets due to tomorrow 19:00, classifies urgency + importance + estimated duration, and decides whether to break the job into subtasks. Realtime Supabase channels keep both phones in sync. Routines (v2 flagship) live in a separate surface for repeatable habits with per-routine streaks and partner-completion bars. Web + installable PWA + native Android via Capacitor.",
+        description: "AI-native task OS for couples. Type or speak a task. Gemini parses date / priority / urgency / duration. Real-time sync between two phones, routines, gamified streaks. Web + PWA + native Android via Capacitor.",
+        longDescription: "Together Tasks turns natural language into structured shared tasks. Type \"buy rosemary tomorrow evening\" or hold the mic. Gemini 3 extracts the title, sets due to tomorrow 19:00, classifies urgency + importance + estimated duration, and decides whether to break the job into subtasks. Realtime Supabase channels keep both phones in sync. Routines (v2 flagship) live in a separate surface for repeatable habits with per-routine streaks and partner-completion bars. Web + installable PWA + native Android via Capacitor.",
         tech: ["Next.js 15", "Supabase Realtime", "Gemini 3", "Capacitor 8", "Tailwind 4", "Web Push", "Zustand"],
         metrics: [
             { label: "Platforms", value: "Web · PWA · Android" },
@@ -216,7 +216,7 @@ export const projects: Project[] = [
         textColor: "text-cream",
         link: "https://github.com/hatimhtm/together-tasks",
         category: "AI / ML",
-        problem: "Two-person households split tasks across iMessage, shared notes, and shouted reminders. Generic task apps treat couples as just two free users — no fairness ratio, no shared streak, no \"things they loved\" cross-feed.",
+        problem: "Two-person households split tasks across iMessage, shared notes, and shouted reminders. Generic task apps treat couples as just two free users, no fairness ratio, no shared streak, no \"things they loved\" cross-feed.",
         solution: "A two-seat task OS gated to one pair via env-driven email allowlist. AI does the structuring (parse + classify + break down + nudge), Supabase Realtime does the sync, gamification (XP / streaks / levels / weekly fairness bar) does the motivation. Voice-to-task hooks the Web Speech API into the same Gemini parser.",
         outcomes: [
             "Natural-language task creation via type or voice",
@@ -253,7 +253,7 @@ export const projects: Project[] = [
         ],
     },
 
-    /* ─────────── TIER C · LIVE DEMOS — TRY IN BROWSER ─────────── */
+    /* ─────────── TIER C · LIVE DEMOS. TRY IN BROWSER ─────────── */
 
     {
         id: "007",
@@ -261,7 +261,7 @@ export const projects: Project[] = [
         division: "tools",
         image: "/projects/scriptdeck.jpg",
         title: "ScriptDeck",
-        description: "Keyboard-first conversation script runner — 8-step decks, categorised response cards, call timer, session analytics. Offline-first PWA.",
+        description: "Keyboard-first conversation script runner: 8-step decks, categorised response cards, call timer, session analytics. Offline-first PWA.",
         longDescription: "ScriptDeck is a keyboard-driven runner for scripted conversations (sales, support, onboarding). Walk a multi-step script while categorised response cards sit on the right rail, ready for the moment a prospect throws an objection. A call timer auto-starts, per-step time is logged, and the analytics modal shows where the conversation actually got stuck.",
         tech: ["Vite 6", "Vanilla JS", "PWA", "Service Worker", "localStorage"],
         metrics: [
@@ -275,12 +275,12 @@ export const projects: Project[] = [
         liveDemo: "https://hatimhtm.github.io/ScriptDeck/",
         category: "Web App",
         problem: "Sales scripts live in Google Docs and cmd-F is the rebuttal lookup. Existing CRM-attached tools either chain you to a subscription or expect you to paste your script into Notion.",
-        solution: "A single-tab keyboard-driven runner. Step nav, categorised response cards, call timer, session history, analytics — all client-side, all offline-first via Service Worker, all import/exportable as a single JSON file your team can share.",
+        solution: "A single-tab keyboard-driven runner. Step nav, categorised response cards, call timer, session history, analytics, all client-side, all offline-first via Service Worker, all import/exportable as a single JSON file your team can share.",
         outcomes: [
             "Keyboard-first: arrows move steps, ⌘C copies response, no mouse needed",
-            "Offline-first PWA — installs on iPad and works between calls",
+            "Offline-first PWA: installs on iPad and works between calls",
             "JSON + Markdown export for team distribution",
-            "Custom <dialog> modal system — no native confirm()/alert() in the UX",
+            "Custom <dialog> modal system, no native confirm()/alert() in the UX",
         ],
     },
     {
@@ -289,7 +289,7 @@ export const projects: Project[] = [
         division: "tools",
         image: "/projects/night-market-tycoon.jpg",
         title: "Night Market Tycoon",
-        description: "Idle / tycoon HTML5 web game — 20 businesses, 13 upgrades, 13 achievements, prestige loop. Vanilla JS on Vite with break_eternity.js for the math.",
+        description: "Idle / tycoon HTML5 web game: 20 businesses, 13 upgrades, 13 achievements, prestige loop. Vanilla JS on Vite with break_eternity.js for the math.",
         longDescription: "Night Market Tycoon is a browser idle game with 20 businesses, 13 upgrades, 13 achievements, and a prestige loop at $1T total earned. ~2,000 LOC of vanilla JS on Vite, no framework, single-file production bundle, runs offline once loaded. Targets the CrazyGames / GameDistribution / Y8 portals with a 3-platform ad-SDK abstraction; source-available under PolyForm Noncommercial.",
         tech: ["Vite 7", "Vanilla JS", "break_eternity.js", "Howler.js", "Tailwind 4"],
         metrics: [
@@ -303,11 +303,11 @@ export const projects: Project[] = [
         liveDemo: "https://hatimhtm.github.io/night-market-tycoon/",
         category: "Web App",
         problem: "Most browser idle games are stuck on Flash-era UX or feel like ad farms. Portal operators (CrazyGames / GameDistribution) want one bundle they can host themselves, with their ad SDK baked in.",
-        solution: "Pure vanilla JS on Vite — single-file build output, sub-100KB compressed. One ad-SDK abstraction targets three portals via a single constant swap. break_eternity.js handles big-number math past 1e1000. Tamper-resistant Base64+hash saves so DevTools edits fail integrity check on load.",
+        solution: "Pure vanilla JS on Vite: single-file build output, sub-100KB compressed. One ad-SDK abstraction targets three portals via a single constant swap. break_eternity.js handles big-number math past 1e1000. Tamper-resistant Base64+hash saves so DevTools edits fail integrity check on load.",
         outcomes: [
             "Single dist/ ships unchanged to CrazyGames / GameDistribution / Y8 / GitHub Pages",
             "20 businesses + 13 achievements + prestige loop in ~2,000 LOC",
-            "Offline progress capped at 75% — active play always feels better than idling",
+            "Offline progress capped at 75%: active play always feels better than idling",
             "PolyForm Noncommercial licensed; live playable demo via GitHub Pages",
         ],
     },
@@ -316,7 +316,7 @@ export const projects: Project[] = [
         slug: "lessonforge",
         division: "tools",
         title: "LessonForge",
-        description: "Offline teaching dashboard for language tutors — multi-page lessons, ⌘K palette, lesson templates, undo/redo, save indicator. PWA, zero backend.",
+        description: "Offline teaching dashboard for language tutors: multi-page lessons, ⌘K palette, lesson templates, undo/redo, save indicator. PWA, zero backend.",
         longDescription: "LessonForge is a teaching dashboard for language tutors. Multi-page rich-text lessons, a built-in timer (stopwatch + countdown with Web Audio chime), student profiles, drag-and-drop reordering, a categorised toolkit of grammar / vocab / pronunciation cards, 50-step undo/redo history, ⌘K command palette across pages + cards + students, 6 starter-lesson templates, JSON + Markdown export, dark mode. Vite + vanilla JS + localStorage, full offline persistence via PWA.",
         tech: ["Vite", "Vanilla JS", "PWA", "Service Worker", "Web Audio API"],
         metrics: [
@@ -331,7 +331,7 @@ export const projects: Project[] = [
         problem: "Most lesson-prep tools either lock you into a SaaS subscription or expect you to live inside Google Docs / Notion. Tutors need to open a tab between Zoom calls, swipe pages, hit space for the timer, scribble while the student is talking.",
         solution: "Vanilla JS app with a real undo/redo ring buffer, rich-text contenteditable bodies, and a full state-snapshot-per-action pattern. v2 added a custom <dialog> modal system, PWA, ⌘K command palette, voice-aware audio chime, and 6 starter-lesson templates.",
         outcomes: [
-            "Full offline persistence — once the tab loads, no network needed",
+            "Full offline persistence: once the tab loads, no network needed",
             "Custom <dialog> modal system replaces every native confirm()/alert()",
             "⌘K palette across pages + students + toolkit cards",
             "JSON + Markdown export for share-ready lesson handouts",
@@ -361,7 +361,7 @@ export const projects: Project[] = [
         outcomes: [
             "Validated the two-stage AI pipeline (cheap validation → expensive generation)",
             "Public-link-safe via IP rate limiting (5 gen/hour, 20 validations/hour)",
-            "Zero storage, zero database — photos round-trip via base64 through the Gemini API",
+            "Zero storage, zero database: photos round-trip via base64 through the Gemini API",
             "Free fork-and-learn under MIT",
         ],
     },
@@ -375,7 +375,7 @@ export const projects: Project[] = [
         image: "/projects/cgs-language-services.jpg",
         clientWork: true,
         title: "CGS Language Services",
-        description: "Multilingual marketing site for a translation agency — EN/FR/AR/ZH document translation for Chinese university applications. React 19 + i18next with full Arabic RTL. Freelance build, shipped to Vercel.",
+        description: "Multilingual marketing site for a translation agency. EN/FR/AR/ZH document translation for Chinese university applications. React 19 + i18next with full Arabic RTL. Freelance build, shipped to Vercel.",
         longDescription: "A multilingual marketing site for CGS Language Services, an agency translating documents between English / French / Arabic / Chinese for Moroccan students applying to Chinese universities. React 19 on Vite 8, Tailwind 4, i18next with full Arabic RTL handling, Framer Motion for the editorial moments. Built as a freelance commission and shipped to production on Vercel.",
         tech: ["React 19", "Vite 8", "Tailwind 4", "i18next (RTL)", "Framer Motion"],
         metrics: [
@@ -389,11 +389,11 @@ export const projects: Project[] = [
         liveDemo: "https://cgs-language-services.vercel.app",
         category: "Web",
         problem: "Translation agencies in this niche pitch to families of Moroccan students who switch fluidly between French, Arabic, and Mandarin. A French-only marketing site loses every parent who reads the brochure in Arabic and every administrator who only opens the Mandarin tab.",
-        solution: "i18next handling 4 locales with first-class RTL for Arabic — not just a translation layer but a layout-aware locale system. Framer Motion carries the editorial photography. Vite 8 keeps the production build sub-200KB.",
+        solution: "i18next handling 4 locales with first-class RTL for Arabic, not just a translation layer but a layout-aware locale system. Framer Motion carries the editorial photography. Vite 8 keeps the production build sub-200KB.",
         outcomes: [
             "Four-locale production marketing site shipped to Vercel",
             "Full Arabic RTL with layout-aware components",
-            "Freelance client work — kept public as a portfolio piece",
+            "Freelance client work: kept public as a portfolio piece",
         ],
     },
     {
@@ -415,12 +415,12 @@ export const projects: Project[] = [
         textColor: "text-cream",
         link: "https://github.com/hatimhtm/china-global-study",
         category: "Web App",
-        problem: "Student-placement agencies live in spreadsheets — every applicant means one tab, every stage transition means a manual cell update, and a missed deadline can mean a student loses their visa window.",
+        problem: "Student-placement agencies live in spreadsheets. Every applicant means one tab, every stage transition means a manual cell update, and a missed deadline can mean a student loses their visa window.",
         solution: "An 8-stage drag-and-drop kanban that turns the agency's actual workflow into a visible pipeline. Supabase backs the data, Next.js 16 renders the UI server-side, five themes let the agency match the look to client-presentation contexts.",
         outcomes: [
             "Replaced a multi-tab spreadsheet workflow with a single pipeline view",
             "Drag-and-drop stage transitions with optimistic UI",
-            "Freelance client work — in production for the agency",
+            "Freelance client work, in production for the agency",
         ],
     },
     {
@@ -441,12 +441,12 @@ export const projects: Project[] = [
         link: "https://github.com/hatimhtm/lumi-movie-night",
         private: true,
         category: "AI / ML",
-        problem: "Most recommendation engines aim wide — they want a billion users in a content carousel, which is why one Ghibli movie gets you twelve Pixar suggestions. Couples want the smaller problem: two people, one couch, one shared evening.",
+        problem: "Most recommendation engines aim wide. They want a billion users in a content carousel, which is why one Ghibli movie gets you twelve Pixar suggestions. Couples want the smaller problem: two people, one couch, one shared evening.",
         solution: "A two-seat app that reads both rating histories, asks Gemini to name 10 category rows accounting for what both have seen, and surfaces \"things they loved you haven't seen\" cross-feed. Spotify-Wrapped-style end-of-year recap turns the year of ratings into stories cards. Personal data env-gated so source is publishable read-only.",
         outcomes: [
-            "Two-seat gate pattern — only emails in AUTHORIZED_EMAILS can sign in",
+            "Two-seat gate pattern, only emails in AUTHORIZED_EMAILS can sign in",
             "Vercel cron refreshes the joint feed at 05:00 UTC daily",
-            "Tonight's Pick Together — three candidates, each partner gets one veto",
+            "Tonight's Pick Together: three candidates, each partner gets one veto",
             "Wrapped-style end-of-year stories card view",
         ],
     },
@@ -455,8 +455,8 @@ export const projects: Project[] = [
         slug: "rudratek-dashboard",
         division: "tools",
         title: "Rudratek Dashboard",
-        description: "Premium project-operations dashboard. 12 mock projects, status donut, activity feed, drillable side panel, analytics page. Zero chart libraries — every viz hand-rolled SVG.",
-        longDescription: "Rudratek Dashboard started as an interview deliverable. The v2 overhaul went from generic admin look to a real product: Next.js 14 + TypeScript + Tailwind, hand-rolled SVG visualisations (sparkline, status donut, weekday heatmap, fairness bar, progress bar — all under 60 LOC each, zero chart-lib deps), an analytics page with revenue trend + top-clients ranking + priority distribution, and a drillable side panel with milestones timeline, task checklist, team grid, project sparkline.",
+        description: "Premium project-operations dashboard. 12 mock projects, status donut, activity feed, drillable side panel, analytics page. Zero chart libraries. Every viz hand-rolled SVG.",
+        longDescription: "Rudratek Dashboard started as an interview deliverable. The v2 overhaul went from generic admin look to a real product: Next.js 14 + TypeScript + Tailwind, hand-rolled SVG visualisations (sparkline, status donut, weekday heatmap, fairness bar, progress bar, all under 60 LOC each, zero chart-lib deps), an analytics page with revenue trend + top-clients ranking + priority distribution, and a drillable side panel with milestones timeline, task checklist, team grid, project sparkline.",
         tech: ["Next.js 14", "TypeScript", "Tailwind v4", "Lucide", "Framer Motion"],
         metrics: [
             { label: "Mock Projects", value: "12" },
@@ -467,10 +467,10 @@ export const projects: Project[] = [
         textColor: "text-cream",
         link: "https://github.com/hatimhtm/rudratek-dashboard",
         category: "Web App",
-        problem: "The v1 interview deliverable shipped working but felt generic — 3 flat stat cards on a project table, no charts, no progress bars, no team avatars. Plus a font bug: globals.css had a stray `font-family: Arial` overriding the next/font Inter import.",
+        problem: "The v1 interview deliverable shipped working but felt generic: 3 flat stat cards on a project table, no charts, no progress bars, no team avatars. Plus a font bug: globals.css had a stray `font-family: Arial` overriding the next/font Inter import.",
         solution: "v2 fixed the font bug, switched to an indigo→violet accent system applied across nav + focus rings + KPI icons + sparklines, expanded the Project type from 7 fields to 14 (added team, milestones, tasks, tags, revenueTrend), built 5 hand-rolled SVG viz primitives in ~250 LOC total, added a new /analytics page.",
         outcomes: [
-            "Zero chart libraries — every visualisation hand-rolled SVG",
+            "Zero chart libraries. Every visualisation hand-rolled SVG",
             "Project type expanded 7 → 14 fields with realistic mock data",
             "New /analytics page with burn-rate / at-risk-project KPIs",
             "CI workflow gates typecheck + lint + build on every push",
@@ -482,7 +482,7 @@ export const projects: Project[] = [
         division: "systems",
         title: "EchoScribe",
         description: "Audio → Whisper → structured meeting intelligence → Slack / Markdown / JSON. One OpenAI key. CLI + FastAPI server + directory watcher. Python 3.10+.",
-        longDescription: "EchoScribe automates the meeting-to-Slack-digest workflow. Pull audio from a recording source, transcribe via Whisper, run a multi-step summarisation chain (decisions, action items, sentiment, follow-ups), and post a structured digest to Slack, Markdown, or JSON. Ships as a Python CLI, a FastAPI server, and a directory watcher — one OpenAI key powers all three. Docker image on GHCR.",
+        longDescription: "EchoScribe automates the meeting-to-Slack-digest workflow. Pull audio from a recording source, transcribe via Whisper, run a multi-step summarisation chain (decisions, action items, sentiment, follow-ups), and post a structured digest to Slack, Markdown, or JSON. Ships as a Python CLI, a FastAPI server, and a directory watcher. One OpenAI key powers all three. Docker image on GHCR.",
         tech: ["Python 3.10+", "OpenAI Whisper", "GPT-4o", "FastAPI", "Docker", "Slack SDK"],
         metrics: [
             { label: "Surfaces", value: "CLI · API · Watcher" },
@@ -493,8 +493,8 @@ export const projects: Project[] = [
         textColor: "text-cream",
         link: "https://github.com/hatimhtm/EchoScribe",
         category: "AI / ML",
-        problem: "Every meeting has 30 minutes of decisions and 5 hours of context. Good written summaries take humans 20 minutes to compose — and they always wait until morning, after the team has already moved on.",
-        solution: "A pipeline that runs the moment the recording ends. Whisper for transcription, a multi-step GPT-4o chain that extracts decisions / action items / follow-ups into a structured JSON schema, then renders Slack-friendly markdown. Ships as a CLI, a FastAPI server, and a directory watcher — pick the surface that fits the team.",
+        problem: "Every meeting has 30 minutes of decisions and 5 hours of context. Good written summaries take humans 20 minutes to compose, and they always wait until morning, after the team has already moved on.",
+        solution: "A pipeline that runs the moment the recording ends. Whisper for transcription, a multi-step GPT-4o chain that extracts decisions / action items / follow-ups into a structured JSON schema, then renders Slack-friendly markdown. Ships as a CLI, a FastAPI server, and a directory watcher: pick the surface that fits the team.",
         outcomes: [
             "End-to-end: audio file → Slack message in ~3 minutes",
             "Structured-output prompts (no markdown drift across runs)",
@@ -509,7 +509,7 @@ export const projects: Project[] = [
         image: "/projects/infinitecs.jpg",
         clientWork: true,
         title: "InfiniteCS Website",
-        description: "Enterprise BPO marketing site. Glassmorphism, GSAP animations, testimonials, FAQ — built for a prospect that backed out. Kept as a polished portfolio piece.",
+        description: "Enterprise BPO marketing site. Glassmorphism, GSAP animations, testimonials, FAQ: built for a prospect that backed out. Kept as a polished portfolio piece.",
         longDescription: "A premium one-page marketing site for Infinite Contact Solutions, a BPO operator. Custom animated hero, testimonials carousel, FAQ accordion, GSAP-driven scroll cinematography, mobile-first responsive layout, and meticulous attention to typographic rhythm. Built fast so the prospect could see the work before committing; they backed out, but the build was good enough to keep as a portfolio piece.",
         tech: ["GSAP", "Tailwind", "Glassmorphism", "Inter font"],
         metrics: [
@@ -523,8 +523,8 @@ export const projects: Project[] = [
         problem: "BPO operators usually market with WordPress templates that scream \"call centre.\" The brief: a premium B2B marketing site that an enterprise procurement team would take seriously.",
         solution: "Editorial layout, custom typographic hierarchy, GSAP-driven scroll moments, glassmorphism cards, FAQ that pre-empts the actual procurement objections. Built fast so the prospect could see the work before committing.",
         outcomes: [
-            "Premium feel without a paid template — every animation custom",
-            "Mobile-first responsive — looks good on the deck-on-an-iPad demo",
+            "Premium feel without a paid template. Every animation custom",
+            "Mobile-first responsive: looks good on the deck-on-an-iPad demo",
             "Kept as a portfolio piece showcasing landing-page craft",
         ],
     },
@@ -533,7 +533,7 @@ export const projects: Project[] = [
         slug: "click2minimize",
         division: "apps",
         title: "Click2Minimize",
-        description: "macOS menu-bar utility — click an app's dock icon to minimise its windows. Swift + AppKit + Accessibility API. Source-available.",
+        description: "macOS menu-bar utility: click an app's dock icon to minimise its windows. Swift + AppKit + Accessibility API. Source-available.",
         longDescription: "A focused macOS utility that adds the missing behaviour: clicking an app's dock icon minimises all its windows instead of bringing them forward. Swift + AppKit using the macOS Accessibility API. Single-purpose, well under 1k LOC, signed and notarised. Released via the standard menu-bar agent pattern.",
         tech: ["Swift", "AppKit", "Cocoa", "macOS Accessibility API"],
         metrics: [
@@ -545,7 +545,7 @@ export const projects: Project[] = [
         link: "https://github.com/hatimhtm/Click2Minimize",
         liveDemo: "https://github.com/hatimhtm/Click2Minimize/releases/latest",
         category: "macOS",
-        problem: "macOS dock-icon clicks bring an app's windows forward; there's no built-in way to make the click minimise them instead. Some workflows want the inverse — \"if it's already visible, hide it.\"",
+        problem: "macOS dock-icon clicks bring an app's windows forward; there's no built-in way to make the click minimise them instead. Some workflows want the inverse: \"if it's already visible, hide it.\"",
         solution: "A menu-bar agent that intercepts dock-icon clicks via the macOS Accessibility API and toggles minimise/restore based on current window state. Signed and notarised for distribution outside the Mac App Store.",
         outcomes: [
             "Single-purpose tool that does exactly one thing well",
@@ -570,10 +570,10 @@ export const projects: Project[] = [
         link: "https://github.com/hatimhtm/Fortress",
         liveDemo: "https://pypi.org/project/fortress/",
         category: "CLI",
-        problem: "Password generators on the web are slow, ad-laden, and require trusting a stranger's server. Local tools like `pwgen` are blunt — no breach check, no entropy reporting, no Diceware support, no clipboard auto-clear.",
+        problem: "Password generators on the web are slow, ad-laden, and require trusting a stranger's server. Local tools like `pwgen` are blunt, no breach check, no entropy reporting, no Diceware support, no clipboard auto-clear.",
         solution: "A focused Python tool that does all of the above in one CLI + one HTTP API. EFF Diceware for memorable passphrases, HIBP for breach intelligence, mathematically grounded entropy + crack-time analysis, clipboard auto-clear so the secret doesn't linger in shell history.",
         outcomes: [
-            "Published on PyPI — `pip install fortress`",
+            "Published on PyPI: `pip install fortress`",
             "Three deployment surfaces from one codebase (CLI, FastAPI, Docker)",
             "HIBP breach lookup integrated into the generation flow",
             "Open-source, MIT licensed",
@@ -584,7 +584,7 @@ export const projects: Project[] = [
         slug: "freelane",
         division: "tools",
         title: "Freelane",
-        description: "Personal freelance ledger — clients, projects, payments, expenses, invoices, multi-currency, French-first PDF generation. Next.js 16 + Supabase. Source-available showcase, not a product.",
+        description: "Personal freelance ledger: clients, projects, payments, expenses, invoices, multi-currency, French-first PDF generation. Next.js 16 + Supabase. Source-available showcase, not a product.",
         longDescription: "Freelane is a single-user freelance accounting ledger built for personal use. Tracks clients, projects, payments, expenses, generates French-first invoice PDFs, handles multi-currency conversion, and surfaces the metrics that actually matter (revenue YTD, average project size, payment-cycle length). Next.js 16 + Supabase + Tailwind 4. Source-available as a showcase, not a product.",
         tech: ["Next.js 16", "Supabase", "Tailwind 4", "Framer Motion"],
         metrics: [
@@ -601,7 +601,7 @@ export const projects: Project[] = [
         outcomes: [
             "French invoice PDF generation",
             "Multi-currency revenue tracking with FX conversion",
-            "Single-user — no team features, no per-seat billing",
+            "Single-user, no team features, no per-seat billing",
             "Source-available on GitHub as an architecture showcase",
         ],
     },
@@ -610,8 +610,8 @@ export const projects: Project[] = [
         id: "031",
         slug: "sunz",
         title: "Sunz",
-        description: "UV-aware tanning coach for iPhone — reads the live UV index, crosses it with your skin type, and plans safe progressive sun exposure. French-first. Live on the App Store.",
-        longDescription: "Sunz turns sun exposure from guesswork into a plan. The app reads the real-time UV index for your location, crosses it with your skin phototype, and gives you a concrete exposure window — when to go out, how long to stay, and when you're done for the day — so tanning is progressive instead of a day-one burn. Built French-first as a commission for the same consumer-app studio behind GoPilates and TryIt, and shipped to the App Store as a native SwiftUI build.",
+        description: "UV-aware tanning coach for iPhone: reads the live UV index, crosses it with your skin type, and plans safe progressive sun exposure. French-first. Live on the App Store.",
+        longDescription: "Sunz turns sun exposure from guesswork into a plan. The app reads the real-time UV index for your location, crosses it with your skin phototype, and gives you a concrete exposure window: when to go out, how long to stay, and when you're done for the day, so tanning is progressive instead of a day-one burn. Built French-first as a commission for the same consumer-app studio behind GoPilates and TryIt, and shipped to the App Store as a native SwiftUI build.",
         tech: ["SwiftUI", "iOS", "Live UV index"],
         metrics: [
             { label: "Status", value: "App Store" },
@@ -628,7 +628,7 @@ export const projects: Project[] = [
         image: "/projects/sunz-1.jpg",
         imageFit: "contain",
         category: "iOS",
-        problem: "Tanning is guesswork: people either burn on day one or give up. Safe exposure depends on the live UV index and your skin type — numbers nobody calculates by hand on the beach.",
+        problem: "Tanning is guesswork: people either burn on day one or give up. Safe exposure depends on the live UV index and your skin type: numbers nobody calculates by hand on the beach.",
         solution: "Read the real-time UV index, cross it with the user's declared skin phototype, and turn it into a plan: a personalised exposure window with clear stop signals, updated as conditions change.",
         outcomes: [
             "Live on the App Store (v1.1.0)",
@@ -644,8 +644,8 @@ export const projects: Project[] = [
         id: "032",
         slug: "estelle",
         title: "Estelle: Manifest Affirmations",
-        description: "My own consumer app, taken from decision to live on the App Store in eleven days — a personalised affirmations product with the AI kept deliberately invisible.",
-        longDescription: "Estelle is the app I designed, built, priced and published myself, end to end: a thirteen-step onboarding that assembles a personal \"constellation\", a curated library of 2,332 lines with on-device-feeling personalisation from a Gemini backend behind a Supabase edge function, notifications-as-product, home-screen widgets and share cards. There is no chatbot anywhere in it — the AI is a silent ingredient, not the interface. Subscriptions run through StoreKit and RevenueCat behind a hard paywall, and the whole thing went from decision to live in eleven days.",
+        description: "My own consumer app, taken from decision to live on the App Store in eleven days: a personalised affirmations product with the AI kept deliberately invisible.",
+        longDescription: "Estelle is the app I designed, built, priced and published myself, end to end: a thirteen-step onboarding that assembles a personal \"constellation\", a curated library of 2,332 lines with on-device-feeling personalisation from a Gemini backend behind a Supabase edge function, notifications-as-product, home-screen widgets and share cards. There is no chatbot anywhere in it. The AI is a silent ingredient, not the interface. Subscriptions run through StoreKit and RevenueCat behind a hard paywall, and the whole thing went from decision to live in eleven days.",
         tech: ["SwiftUI", "StoreKit", "RevenueCat", "Supabase Edge Functions", "Gemini"],
         metrics: [
             { label: "Status", value: "App Store" },
@@ -659,7 +659,7 @@ export const projects: Project[] = [
         private: true,
         division: "apps",
         category: "iOS",
-        problem: "The affirmations category is full of thin AI wrappers that bill during the trial they promised and answer support with a bounced email. The product gap is not features — it is trust.",
+        problem: "The affirmations category is full of thin AI wrappers that bill during the trial they promised and answer support with a bounced email. The product gap is not features. It is trust.",
         solution: "Ship the honest version: personalisation that runs invisibly behind the content, a paywall that says exactly what it charges and when, real notification craft instead of a chat box, and a working support address.",
         outcomes: [
             "Live on the App Store in 148 territories",
@@ -673,7 +673,7 @@ export const projects: Project[] = [
         id: "033",
         slug: "studioos",
         title: "StudioOS",
-        description: "The private platform behind Estelle — an analytics command centre over four data sources plus a generative content pipeline that writes, illustrates and quality-checks marketing creative end to end.",
+        description: "The private platform behind Estelle: an analytics command centre over four data sources plus a generative content pipeline that writes, illustrates and quality-checks marketing creative end to end.",
         longDescription: "StudioOS is two halves over one database. The first is an analytics command centre that pulls App Store Connect, RevenueCat, ad-platform and social numbers into a single daily read, attributing published creative back to the campaign that produced it by content matching rather than manual tagging. The second is a generative pipeline: it learns which formats perform from a corpus of real data, writes original multi-slide creative on a schedule, generates every image through diffusion models behind an automated judge that holds each result to its written brief, retries or escalates what fails, and meters every cent against a hard daily ceiling. A human approval gate sits in front of anything that ships.",
         tech: ["Next.js 16", "Supabase", "TypeScript", "Vercel", "Gemini", "Image models", "Apify"],
         metrics: [
@@ -703,8 +703,8 @@ export const projects: Project[] = [
         id: "020",
         slug: "relay",
         title: "Relay",
-        description: "A premium native macOS client for Facebook Messenger — SwiftUI + Liquid Glass over a Go backend speaking Meta's real protocol. Not a web wrapper.",
-        longDescription: "Meta retired the Messenger desktop app and shut down messenger.com, leaving the Mac with a browser tab or nothing — Relay is a real, first-class Mac app built to take its place. A SwiftUI front end (Liquid Glass on macOS 26, frosted material below) talks over stdio/JSON to a Go helper daemon that decodes Meta's actual Lightspeed and encrypted protocols. Reactions, replies, edit/unsend, scheduled send, global full-text search over SQLite-stored local history, on-device translation, Touch ID lock, and Siri/Shortcuts intents. Universal binaries, macOS 13+, signed in-app Sparkle updates; sessions live only in the macOS Keychain.",
+        description: "A premium native macOS client for Facebook Messenger. SwiftUI + Liquid Glass over a Go backend speaking Meta's real protocol. Not a web wrapper.",
+        longDescription: "Meta retired the Messenger desktop app and shut down messenger.com, leaving the Mac with a browser tab or nothing. Relay is a real, first-class Mac app built to take its place. A SwiftUI front end (Liquid Glass on macOS 26, frosted material below) talks over stdio/JSON to a Go helper daemon that decodes Meta's actual Lightspeed and encrypted protocols. Reactions, replies, edit/unsend, scheduled send, global full-text search over SQLite-stored local history, on-device translation, Touch ID lock, and Siri/Shortcuts intents. Universal binaries, macOS 13+, signed in-app Sparkle updates; sessions live only in the macOS Keychain.",
         tech: ["SwiftUI", "Go", "SQLite", "mautrix-meta", "Sparkle", "XcodeGen"],
         metrics: [
             { label: "Release", value: "v1.0.7 · .dmg" },
@@ -717,12 +717,12 @@ export const projects: Project[] = [
         liveDemo: "https://github.com/hatimhtm/Relay/releases/latest",
         division: "apps",
         category: "macOS",
-        problem: "Meta killed the Messenger desktop app and shut down messenger.com, leaving Mac users a browser tab or nothing — and no native client exists for the Intel Macs everyone forgot.",
+        problem: "Meta killed the Messenger desktop app and shut down messenger.com, leaving Mac users a browser tab or nothing, and no native client exists for the Intel Macs everyone forgot.",
         solution: "A SwiftUI app driven by a Go helper over a stdio/JSON pipe that speaks Meta's real Lightspeed + encrypted protocols, storing full history locally in SQLite with sessions kept only in the macOS Keychain.",
         outcomes: [
             "Shipped v1.0.7 with .dmg + .zip release assets and a signed Sparkle appcast",
             "Full messaging surface: reactions, replies, edit, unsend, forward, voice notes, scheduled send",
-            "Global full-text search over all local history — smooth even on slow Intel Macs",
+            "Global full-text search over all local history: smooth even on slow Intel Macs",
             "Universal Intel + Apple Silicon binaries for both the app and the Go backend, macOS 13 → 26",
         ],
     },
@@ -730,13 +730,13 @@ export const projects: Project[] = [
         id: "021",
         slug: "fader",
         title: "Fader",
-        description: "macOS never shipped a per-app volume mixer. Fader is the one it should have — a slider, mute, and live meter for every app making sound. No driver.",
-        longDescription: "Windows has had a per-app volume mixer for fifteen years; macOS still has no public API to set another app's volume, and the paid tools that fill the gap install audio drivers. Fader is a menu-bar popover that lists only the apps currently playing audio, each with its own 0–150% slider (soft-limited boost), one-tap mute, and a live level meter. It uses Apple's Core Audio process taps — pure user-space, no kernel extension — to capture each app's audio and re-render it through a private aggregate device at the level you choose. Per-app levels persist across launches. Universal binary, macOS 15+, MIT.",
+        description: "macOS never shipped a per-app volume mixer. Fader is the one it should have: a slider, mute, and live meter for every app making sound. No driver.",
+        longDescription: "Windows has had a per-app volume mixer for fifteen years; macOS still has no public API to set another app's volume, and the paid tools that fill the gap install audio drivers. Fader is a menu-bar popover that lists only the apps currently playing audio, each with its own 0–150% slider (soft-limited boost), one-tap mute, and a live level meter. It uses Apple's Core Audio process taps: pure user-space, no kernel extension: to capture each app's audio and re-render it through a private aggregate device at the level you choose. Per-app levels persist across launches. Universal binary, macOS 15+, MIT.",
         tech: ["Swift", "SwiftUI", "MenuBarExtra", "Core Audio process taps", "Sparkle"],
         metrics: [
             { label: "Release", value: "v1.2 · .dmg" },
             { label: "Platform", value: "macOS 15+ · Universal" },
-            { label: "Drivers", value: "None — user-space" },
+            { label: "Drivers", value: "None: user-space" },
         ],
         color: "bg-acid",
         textColor: "text-ink",
@@ -744,8 +744,8 @@ export const projects: Project[] = [
         liveDemo: "https://github.com/hatimhtm/Fader/releases/latest",
         division: "apps",
         category: "macOS",
-        problem: "macOS has no per-app volume mixer and no public API to set another app's volume — you ride one master slider while a game blasts and a video call whispers. The paid alternatives install audio drivers.",
-        solution: "Core Audio process taps capture each playing app's audio into one private aggregate device where a single real-time callback applies per-app gain and soft-limits — no driver, no account, audio never leaves the machine.",
+        problem: "macOS has no per-app volume mixer and no public API to set another app's volume. You ride one master slider while a game blasts and a video call whispers. The paid alternatives install audio drivers.",
+        solution: "Core Audio process taps capture each playing app's audio into one private aggregate device where a single real-time callback applies per-app gain and soft-limits, no driver, no account, audio never leaves the machine.",
         outcomes: [
             "Shipped v1.2 with signed Sparkle appcast for in-app updates",
             "Per-app 0–150% volume with soft-limited boost, mute, and live meters",
@@ -757,8 +757,8 @@ export const projects: Project[] = [
         id: "022",
         slug: "eli",
         title: "Eli",
-        description: "A free, beautiful, distraction-free book-writing app for macOS — feels like Ulysses, organizes like Scrivener, and translates manuscripts into literary English.",
-        longDescription: "The good writing apps (Ulysses, iA Writer) are subscriptions; the free ones are unpolished Electron shells — Eli claims beautiful + free + native. SwiftUI + AppKit for macOS 13+, a TextKit editor with typewriter scrolling, focus and compose modes, and 10 themes, organized as chapters with optional scenes and Draft/Revising/Done statuses. Translation is first-class: chapter-by-chapter Tagalog-to-English via Gemini (bring-your-own-key, stored in Keychain) with a glossary that keeps names consistent. Exports print-ready 6×9 PDF, EPUB (own ZIP writer, no Pandoc), DOCX, RTF, Markdown, and plain text, with automatic compressed backups.",
+        description: "A free, beautiful, distraction-free book-writing app for macOS: feels like Ulysses, organizes like Scrivener, and translates manuscripts into literary English.",
+        longDescription: "The good writing apps (Ulysses, iA Writer) are subscriptions; the free ones are unpolished Electron shells. Eli claims beautiful + free + native. SwiftUI + AppKit for macOS 13+, a TextKit editor with typewriter scrolling, focus and compose modes, and 10 themes, organized as chapters with optional scenes and Draft/Revising/Done statuses. Translation is first-class: chapter-by-chapter Tagalog-to-English via Gemini (bring-your-own-key, stored in Keychain) with a glossary that keeps names consistent. Exports print-ready 6×9 PDF, EPUB (own ZIP writer, no Pandoc), DOCX, RTF, Markdown, and plain text, with automatic compressed backups.",
         tech: ["SwiftUI", "AppKit", "TextKit", "Gemini API", "CoreText", "Sparkle"],
         metrics: [
             { label: "Themes", value: "10" },
@@ -772,8 +772,8 @@ export const projects: Project[] = [
         division: "apps",
         image: "/projects/eli-editor.png",
         category: "macOS",
-        problem: "Beautiful writing apps are subscriptions and Apple-locked; free ones are unpolished non-native shells — and none treat translating a manuscript into publishable literary English as part of writing.",
-        solution: "A native SwiftUI/TextKit app where you draft a chapter, translate it with Gemini side by side, and edit the result — with a per-name glossary so re-translating never overwrites your edits, and automatic storage so there's never a file to find.",
+        problem: "Beautiful writing apps are subscriptions and Apple-locked; free ones are unpolished non-native shells, and none treat translating a manuscript into publishable literary English as part of writing.",
+        solution: "A native SwiftUI/TextKit app where you draft a chapter, translate it with Gemini side by side, and edit the result, with a per-name glossary so re-translating never overwrites your edits, and automatic storage so there's never a file to find.",
         outcomes: [
             "Pandoc-free export pipeline: own ZIP writer for EPUB, CoreText for print-ready 6×9 PDF",
             "Chapter-by-chapter literary translation with glossary and review step, key stored in Keychain",
@@ -785,8 +785,8 @@ export const projects: Project[] = [
         id: "023",
         slug: "deck",
         title: "Deck",
-        description: "A native macOS app for tracking your projects' bugs and features — a Liquid Glass board of project cards, a three-pane editor, and lift-to-complete drag-and-drop.",
-        longDescription: "Tracking updates for many apps in Apple Notes falls apart at ten projects: no rollup counts, no view of bugs actually closed. Deck replaces it with a full-screen dashboard of project cards grouped by category, each showing live pending/done and bug/feature counts, plus a focused three-pane editor with rich text, inline images, and PDF/RTFD export. Marking things done is a physical act: lift a note, the screen blurs, and you drop it on magnetic Done or Delete targets with real spring physics. SwiftUI with Liquid Glass for macOS 26 Tahoe; data lives in SwiftData on your Mac — no account, no analytics.",
+        description: "A native macOS app for tracking your projects' bugs and features: a Liquid Glass board of project cards, a three-pane editor, and lift-to-complete drag-and-drop.",
+        longDescription: "Tracking updates for many apps in Apple Notes falls apart at ten projects: no rollup counts, no view of bugs actually closed. Deck replaces it with a full-screen dashboard of project cards grouped by category, each showing live pending/done and bug/feature counts, plus a focused three-pane editor with rich text, inline images, and PDF/RTFD export. Marking things done is a physical act: lift a note, the screen blurs, and you drop it on magnetic Done or Delete targets with real spring physics. SwiftUI with Liquid Glass for macOS 26 Tahoe; data lives in SwiftData on your Mac, no account, no analytics.",
         tech: ["SwiftUI", "SwiftData", "Liquid Glass", "Sparkle", "XcodeGen"],
         metrics: [
             { label: "Release", value: "v1.1.6 · .dmg" },
@@ -815,8 +815,8 @@ export const projects: Project[] = [
         id: "024",
         slug: "practicesync",
         title: "PracticeSync",
-        description: "macOS desktop app (Electron + Playwright) that reads patient visits from Practice Fusion and books the matching coded appointments in SimplePractice — automatically.",
-        longDescription: "A clinic running on two systems pays for it twice: visits live in Practice Fusion, billing and scheduling in SimplePractice, and someone re-keys every patient by hand daily. PracticeSync drives a dedicated Chrome profile — the operator's logins stay put, no passwords stored — reads each visit, decides the appointment from a doctor roster, and creates it under the correct doctor, with a dry-run mode that plans without booking. The operator teaches each screen once by pointing at elements; a visible cursor then narrates every run. The only AI runs on-device via a three-tier fallback (local Gemma via Ollama → Apple Intelligence → deterministic matcher), and every model output is re-validated so the AI can never invent a billing code.",
+        description: "macOS desktop app (Electron + Playwright) that reads patient visits from Practice Fusion and books the matching coded appointments in SimplePractice: automatically.",
+        longDescription: "A clinic running on two systems pays for it twice: visits live in Practice Fusion, billing and scheduling in SimplePractice, and someone re-keys every patient by hand daily. PracticeSync drives a dedicated Chrome profile. The operator's logins stay put, no passwords stored: reads each visit, decides the appointment from a doctor roster, and creates it under the correct doctor, with a dry-run mode that plans without booking. The operator teaches each screen once by pointing at elements; a visible cursor then narrates every run. The only AI runs on-device via a three-tier fallback (local Gemma via Ollama → Apple Intelligence → deterministic matcher), and every model output is re-validated so the AI can never invent a billing code.",
         tech: ["Electron 31", "Playwright", "Node.js", "Ollama (Gemma)", "Apple Intelligence", "electron-builder"],
         metrics: [
             { label: "Release", value: "v1.3.6 · CI-built" },
@@ -829,8 +829,8 @@ export const projects: Project[] = [
         clientWork: true,
         division: "systems",
         category: "AI / ML",
-        problem: "A mental-health clinic's visits live in Practice Fusion while billing and scheduling live in SimplePractice, so staff re-key every patient by hand daily — slow, error-prone admin work.",
-        solution: "Playwright drives the operator's own Chrome to read visits, map each to the right doctor and billing codes via on-device AI with deterministic re-validation, and book the coded appointment — narrated by a visible cursor the clinic can watch.",
+        problem: "A mental-health clinic's visits live in Practice Fusion while billing and scheduling live in SimplePractice, so staff re-key every patient by hand daily: slow, error-prone admin work.",
+        solution: "Playwright drives the operator's own Chrome to read visits, map each to the right doctor and billing codes via on-device AI with deterministic re-validation, and book the coded appointment: narrated by a visible cursor the clinic can watch.",
         outcomes: [
             "Shipped to a mental-health practice; v1.3.6 built and published automatically by GitHub Actions",
             "Three-tier on-device AI fallback that structurally cannot invent a billing code",
@@ -842,8 +842,8 @@ export const projects: Project[] = [
         id: "025",
         slug: "strata-triage",
         title: "Strata Enquiry Triage",
-        description: "Claude-powered enquiry triage CLI — classifies client enquiries into a closed category enum, self-rates confidence and urgency, drafts an AU-English reply. Draft-not-send by design.",
-        longDescription: "A single-file Python CLI that turns an inbound client enquiry into a triaged, actionable record: Claude picks from a closed six-category enum, self-rates confidence, scores urgency (legal/safety/financial deadlines surface first), drafts a polite Australian-English reply under a no-invented-facts rule, and recommends a routing action — every output a draft a human reviews before sending. Output is a typed dataclass with PII-aware flags; three layers of error handling map API failures to distinct exit codes. A browser-based live demo shares its system prompt with the CLI, and a CI drift-guard fails the build if the two fall out of lock-step.",
+        description: "Claude-powered enquiry triage CLI: classifies client enquiries into a closed category enum, self-rates confidence and urgency, drafts an AU-English reply. Draft-not-send by design.",
+        longDescription: "A single-file Python CLI that turns an inbound client enquiry into a triaged, actionable record: Claude picks from a closed six-category enum, self-rates confidence, scores urgency (legal/safety/financial deadlines surface first), drafts a polite Australian-English reply under a no-invented-facts rule, and recommends a routing action. Every output a draft a human reviews before sending. Output is a typed dataclass with PII-aware flags; three layers of error handling map API failures to distinct exit codes. A browser-based live demo shares its system prompt with the CLI, and a CI drift-guard fails the build if the two fall out of lock-step.",
         tech: ["Python 3.10+", "Anthropic SDK", "Claude Sonnet 4.5", "pytest", "GitHub Actions"],
         metrics: [
             { label: "Tests", value: "19 pytest + 14 node" },
@@ -858,8 +858,8 @@ export const projects: Project[] = [
         division: "systems",
         image: "/projects/strata-triage.jpg",
         category: "AI / ML",
-        problem: "Strata firms get a high volume of inbound emails across shared inboxes, and the office manager spends the first 90 minutes of every morning reading and sorting them — in a workflow where send-without-review is not on the table.",
-        solution: "Strict JSON-output prompting with a closed category enum, self-rated confidence, urgency scoring so tribunal-bound complaints surface first, and a polite AU-English draft reply — a structured queue staff can scan, edit, and send.",
+        problem: "Strata firms get a high volume of inbound emails across shared inboxes, and the office manager spends the first 90 minutes of every morning reading and sorting them, in a workflow where send-without-review is not on the table.",
+        solution: "Strict JSON-output prompting with a closed category enum, self-rated confidence, urgency scoring so tribunal-bound complaints surface first, and a polite AU-English draft reply: a structured queue staff can scan, edit, and send.",
         outcomes: [
             "Typed dataclass output that plugs into Laravel jobs, n8n, IMAP listeners, or Zapier",
             "Distinct non-zero exit codes per API failure class for orchestrator retry logic",
@@ -874,8 +874,8 @@ export const projects: Project[] = [
         id: "026",
         slug: "china-global-travel",
         title: "Cloud Pavilion",
-        description: "Editorial marketing site for a bespoke-travel house running private journeys through Jiangxi, China — four fully-translated locales with real Arabic RTL.",
-        longDescription: "A quiet, image-led marketing site for a high-touch travel operator selling itineraries, not seat inventory — Destinations, Journeys, Atelier, Journal, and a WhatsApp-led Inquire flow. Every page exists in English, French, Arabic and Chinese off a single [locale] route tree with typed JSON dictionaries (~620 keys each) and proper Arabic RTL. Astro 5 static build with Lenis + GSAP smooth-scroll motion, an hreflang-correct i18n sitemap, and phone-first imagery that survives 9:16 screens. One config dual-hosts to GitHub Pages and Vercel.",
+        description: "Editorial marketing site for a bespoke-travel house running private journeys through Jiangxi, China: four fully-translated locales with real Arabic RTL.",
+        longDescription: "A quiet, image-led marketing site for a high-touch travel operator selling itineraries, not seat inventory. Destinations, Journeys, Atelier, Journal, and a WhatsApp-led Inquire flow. Every page exists in English, French, Arabic and Chinese off a single [locale] route tree with typed JSON dictionaries (~620 keys each) and proper Arabic RTL. Astro 5 static build with Lenis + GSAP smooth-scroll motion, an hreflang-correct i18n sitemap, and phone-first imagery that survives 9:16 screens. One config dual-hosts to GitHub Pages and Vercel.",
         tech: ["Astro 5", "TypeScript", "Tailwind 4", "GSAP", "Lenis"],
         metrics: [
             { label: "Locales", value: "EN · FR · AR · ZH" },
@@ -890,7 +890,7 @@ export const projects: Project[] = [
         division: "client",
         image: "/projects/china-global-travel.jpg",
         category: "Web",
-        problem: "A bespoke-travel house needed an editorial site that mirrors how consultative travel is actually sold — itineraries and enquiries, not carts — serving French, Arabic and Chinese readers as first-class audiences.",
+        problem: "A bespoke-travel house needed an editorial site that mirrors how consultative travel is actually sold: itineraries and enquiries, not carts: serving French, Arabic and Chinese readers as first-class audiences.",
         solution: "One Astro 5 [locale] route tree localizes every page into four languages from typed JSON dictionaries, with a persistent WhatsApp funnel, restrained Lenis + GSAP scroll motion, and a config that ships the same build to GitHub Pages and Vercel.",
         outcomes: [
             "Four fully-translated locales with full right-to-left Arabic via per-locale dir token",
@@ -903,8 +903,8 @@ export const projects: Project[] = [
         id: "027",
         slug: "nabil-portfolio",
         title: "NM · Equity Research",
-        description: "A personal site styled as an equity-research report on its subject — rating box, investment thesis, catalysts, coverage universe. Hand-rolled SVG charts, zero dependencies.",
-        longDescription: "A seven-page personal site for a New York finance professional built on one governing concept: an equity-research report that initiates coverage on its subject — rating box (STRONG HIRE), key-data table, numbered investment thesis, catalysts, and a coverage universe of four case studies. The design system is the finance identity itself: IBM Plex Serif/Sans/Mono, warm paper + ink navy + market green/red, ruled report tables, ticker tape, live ET clock. Charts are hand-rolled SVG with no libraries — including a live SMA crossover chart with hover crosshair — with palettes validated for colorblind separation. Print stylesheets yield a clean paper research report.",
+        description: "A personal site styled as an equity-research report on its subject: rating box, investment thesis, catalysts, coverage universe. Hand-rolled SVG charts, zero dependencies.",
+        longDescription: "A seven-page personal site for a New York finance professional built on one governing concept: an equity-research report that initiates coverage on its subject: rating box (STRONG HIRE), key-data table, numbered investment thesis, catalysts, and a coverage universe of four case studies. The design system is the finance identity itself: IBM Plex Serif/Sans/Mono, warm paper + ink navy + market green/red, ruled report tables, ticker tape, live ET clock. Charts are hand-rolled SVG with no libraries, including a live SMA crossover chart with hover crosshair, with palettes validated for colorblind separation. Print stylesheets yield a clean paper research report.",
         tech: ["HTML", "CSS", "Vanilla JS", "Hand-rolled SVG", "IBM Plex"],
         metrics: [
             { label: "Pages", value: "7 · 4 case studies" },
@@ -919,12 +919,12 @@ export const projects: Project[] = [
         division: "client",
         image: "/projects/nabil.png",
         category: "Web",
-        problem: "A finance professional needed a portfolio whose business identity is the design language itself — not a generic personal-site template.",
+        problem: "A finance professional needed a portfolio whose business identity is the design language itself, not a generic personal-site template.",
         solution: "The whole site is framed as an equity-research report initiating coverage on its subject: rating box, thesis, catalysts and a four-case coverage universe, rendered in an IBM Plex report system with dependency-free SVG charts.",
         outcomes: [
             "7-page report-format site with interactive milestone and live SMA crossover charts",
             "Every page prints to a clean paper research report via dedicated print stylesheets",
-            "Zero-dependency deploy — no build step, works opened straight from disk",
+            "Zero-dependency deploy, no build step, works opened straight from disk",
             "Colorblind-validated chart palettes and honest 'synthetic data' labeling",
         ],
     },
@@ -932,12 +932,12 @@ export const projects: Project[] = [
         id: "028",
         slug: "mcallister-gallery",
         title: "McAllister Gallery",
-        description: "A one-page gallery site for Dr. Caryn McAllister — original watercolors, acrylics and mixed media in a quiet editorial layout. Vanilla, zero dependencies.",
-        longDescription: "A single-page gallery for a Connecticut artist pairing original watercolors, acrylics and mixed media with a healthcare-access mission. Serif hero with an inline painting chip, a drag-to-explore On View rail of six highlights, a 22-work filterable masonry collection with numbered catalogue captions, and a museum lightbox with keyboard/swipe navigation. Cormorant Garamond over Inter on paper-white, all motion honoring prefers-reduced-motion — three hand-written files, no framework, no bundler, no npm.",
+        description: "A one-page gallery site for Dr. Caryn McAllister: original watercolors, acrylics and mixed media in a quiet editorial layout. Vanilla, zero dependencies.",
+        longDescription: "A single-page gallery for a Connecticut artist pairing original watercolors, acrylics and mixed media with a healthcare-access mission. Serif hero with an inline painting chip, a drag-to-explore On View rail of six highlights, a 22-work filterable masonry collection with numbered catalogue captions, and a museum lightbox with keyboard/swipe navigation. Cormorant Garamond over Inter on paper-white, all motion honoring prefers-reduced-motion: three hand-written files, no framework, no bundler, no npm.",
         tech: ["HTML", "CSS", "Vanilla JS", "Masonry", "Vercel"],
         metrics: [
             { label: "Collection", value: "22 works · 4 filters" },
-            { label: "Dependencies", value: "Zero — 3 files" },
+            { label: "Dependencies", value: "Zero: 3 files" },
             { label: "Status", value: "Live" },
         ],
         color: "bg-acid",
@@ -948,11 +948,11 @@ export const projects: Project[] = [
         division: "client",
         image: "/projects/mcallister.jpg",
         category: "Web",
-        problem: "An artist-run gallery needed a quiet, editorial one-page site to show original works and route purchase interest — without frameworks, build tooling, or hosting complexity.",
+        problem: "An artist-run gallery needed a quiet, editorial one-page site to show original works and route purchase interest, without frameworks, build tooling, or hosting complexity.",
         solution: "Three hand-written files deliver a serif editorial hero, drag-to-explore highlights rail, filterable masonry grid and full-screen lightbox, with the entire collection editable as one array and per-piece inquiry links driving Instagram DMs.",
         outcomes: [
             "22-work filterable masonry collection with museum lightbox (arrows, keyboard, swipe)",
-            "Genuinely mobile-first — full-width CTAs, swipe rails, thumb-pill lightbox arrows",
+            "Genuinely mobile-first: full-width CTAs, swipe rails, thumb-pill lightbox arrows",
             "Zero-dependency deploy: push to GitHub, import in Vercel, no build command",
             "All motion honors prefers-reduced-motion",
         ],
@@ -961,8 +961,8 @@ export const projects: Project[] = [
         id: "029",
         slug: "nota-parfum",
         title: "Nota Parfum",
-        description: "Landing page for a Fès-based perfume house — 24 inspired-by fragrances, COD nationwide, WhatsApp-led commerce. Astro 5 + Tailwind 4, tests in CI.",
-        longDescription: "A pitch landing page for Nota Parfum, a Moroccan perfume house bottling 24 inspired-by fragrances at 75 MAD per flacon with COD nationwide and Instagram/WhatsApp-led ordering. Built with the client's actual product line, prices, and verbatim French and Darija reviews. Seven sections — hero, manifesto, the emerald 'Le Rituel' pack offer, a tabbed 24-card collection, Fès atelier heritage, reviews, and WhatsApp contact — with the 24 SKUs typed in src/data and Vitest tests asserting catalogue integrity in CI.",
+        description: "Landing page for a Fès-based perfume house: 24 inspired-by fragrances, COD nationwide, WhatsApp-led commerce. Astro 5 + Tailwind 4, tests in CI.",
+        longDescription: "A pitch landing page for Nota Parfum, a Moroccan perfume house bottling 24 inspired-by fragrances at 75 MAD per flacon with COD nationwide and Instagram/WhatsApp-led ordering. Built with the client's actual product line, prices, and verbatim French and Darija reviews. Seven sections: hero, manifesto, the emerald 'Le Rituel' pack offer, a tabbed 24-card collection, Fès atelier heritage, reviews, and WhatsApp contact, with the 24 SKUs typed in src/data and Vitest tests asserting catalogue integrity in CI.",
         tech: ["Astro 5", "Tailwind 4", "TypeScript", "Bun", "Vitest"],
         metrics: [
             { label: "Catalogue", value: "24 typed SKUs" },
@@ -990,7 +990,7 @@ export const projects: Project[] = [
         id: "030",
         slug: "maison-brume",
         title: "Maison Brume",
-        description: "The editorial web-design studio's own site — deferred WebGL mist hero, French-default i18n, 21 static pages, near-zero JS on mobile, $0 hosting.",
+        description: "The editorial web-design studio's own site: deferred WebGL mist hero, French-default i18n, 21 static pages, near-zero JS on mobile, $0 hosting.",
         longDescription: "The studio site for Maison Brume, an editorial web-design practice for fashion brands (Morocco · Paris), built to be its own best sales argument. A restrained editorial system (Fraunces variable optical axes, warm-mono WCAG-AA palette) carries a hand-written raw-GLSL WebGL mist hero that loads via requestIdleCallback with zero first-paint cost, CSS-only entrance animations so content can structurally never hide itself, and French-default browser-language detection. The portfolio shows five real client/concept sites as captured full-page screenshots, honestly labelled prototype/concept/shipped. 21 static pages across EN and FR, auto-deploying to GitHub Pages at zero cost.",
         tech: ["Astro 5", "Tailwind 4", "Raw WebGL/GLSL", "Lenis", "TypeScript"],
         metrics: [
@@ -1008,7 +1008,7 @@ export const projects: Project[] = [
         problem: "A studio that sells web design has to be its own best argument: quiet-luxury editorial for fashion-brand owners browsing on phones, proven by real work shown rather than bare type.",
         solution: "Astro 5 static site with CSS-only reveals (a prior class of invisible-content bug made structurally impossible), a deferred no-library WebGL 'brume' mist hero, before-paint FR-default locale detection, and five real client screenshots as the portfolio.",
         outcomes: [
-            "21 static pages in two locales with transcreated — not literal — French copy",
+            "21 static pages in two locales with transcreated, not literal. French copy",
             "Hand-written GLSL mist hero: idle-loaded, DPR-capped, paused off-screen, skipped on reduced-motion",
             "Sub-2s mobile budget: near-zero JS, inlined CSS, self-hosted fonts",
             "Zero-cost auto-deploy to GitHub Pages, custom-domain ready",
@@ -1021,8 +1021,8 @@ export const projects: Project[] = [
         id: "034",
         slug: "lorani",
         title: "Lorani",
-        description: "Editorial marketing site for a premium Moroccan hijab house — three languages including full Arabic right-to-left, built with no framework and no build step.",
-        longDescription: "Lorani is a commissioned editorial site for a Moroccan hijab house, written in plain HTML, CSS and vanilla JavaScript with zero dependencies and no build pipeline. It carries a Lenis smooth-scroll surface, a custom drag-snap slider, and a pinned horizontal atelier scrub built on GSAP — and it ships fully trilingual in English, French and Arabic, with proper right-to-left typography rather than a mirrored afterthought. A dependency-free Node test suite runs the whole thing in CI.",
+        description: "Editorial marketing site for a premium Moroccan hijab house: three languages including full Arabic right-to-left, built with no framework and no build step.",
+        longDescription: "Lorani is a commissioned editorial site for a Moroccan hijab house, written in plain HTML, CSS and vanilla JavaScript with zero dependencies and no build pipeline. It carries a Lenis smooth-scroll surface, a custom drag-snap slider, and a pinned horizontal atelier scrub built on GSAP, and it ships fully trilingual in English, French and Arabic, with proper right-to-left typography rather than a mirrored afterthought. A dependency-free Node test suite runs the whole thing in CI.",
         tech: ["HTML", "CSS", "Vanilla JS", "GSAP", "Lenis", "GitHub Actions"],
         metrics: [
             { label: "Dependencies", value: "Zero" },
@@ -1036,7 +1036,7 @@ export const projects: Project[] = [
         clientWork: true,
         division: "client",
         category: "Marketing Site",
-        problem: "A premium modest-fashion brand needed a site that felt like an atelier rather than a template, in three languages one of which reads right to left — and it had to stay fast on Moroccan mobile connections.",
+        problem: "A premium modest-fashion brand needed a site that felt like an atelier rather than a template, in three languages one of which reads right to left, and it had to stay fast on Moroccan mobile connections.",
         solution: "Write it by hand with no framework: motion where it earns attention, real Arabic typography and layout mirroring, and a zero-dependency test suite so a site with no build step still cannot regress silently.",
         outcomes: [
             "Trilingual EN · FR · AR with true RTL layout and Arabic type",
@@ -1050,7 +1050,7 @@ export const projects: Project[] = [
         id: "035",
         slug: "pause",
         title: "Pause",
-        description: "An Android focus app that puts a breathing screen in front of the apps you choose — native Kotlin accessibility engine under an over-the-air React Native UI, fully on-device.",
+        description: "An Android focus app that puts a breathing screen in front of the apps you choose: native Kotlin accessibility engine under an over-the-air React Native UI, fully on-device.",
         longDescription: "Pause interrupts the reflex. Open an app you have marked, and a breathing screen arrives first; the stats it keeps are honest per-app counts rather than flattering totals, with quiet hours and notification muting alongside. The interruption engine is native Kotlin sitting on Android's accessibility service, while the interface is React Native shipped over the air so the product can move without a store review. Nothing leaves the phone.",
         tech: ["Kotlin", "Android Accessibility", "React Native", "OTA updates"],
         metrics: [
@@ -1068,7 +1068,7 @@ export const projects: Project[] = [
         outcomes: [
             "Native Kotlin accessibility engine with a React Native UI shipped OTA",
             "Per-app honest statistics, quiet hours, notification muting",
-            "Entirely on-device — no account, no telemetry",
+            "Entirely on-device, no account, no telemetry",
         ],
     },
 
@@ -1076,7 +1076,7 @@ export const projects: Project[] = [
         id: "036",
         slug: "hope-hr",
         title: "Hope HR",
-        description: "Credential and compliance tracking for a home-health therapy agency — it warns before a licence expires instead of after the audit.",
+        description: "Credential and compliance tracking for a home-health therapy agency. It warns before a licence expires instead of after the audit.",
         longDescription: "A home-health agency's exposure is not its paperwork, it is the date on that paperwork: a therapist whose licence or certification has quietly lapsed is a billing and liability problem the moment they see a patient. Hope HR keeps every credential for every clinician with its expiry, and raises the warning while there is still time to renew, turning an annual audit scramble into a routine that runs itself.",
         tech: ["C#", ".NET"],
         metrics: [
@@ -1090,7 +1090,7 @@ export const projects: Project[] = [
         clientWork: true,
         division: "systems",
         category: "Internal Tool",
-        problem: "Clinician licences and certifications expire on scattered dates, tracked in spreadsheets nobody opens until an audit — and a lapsed credential makes every visit it touches unbillable.",
+        problem: "Clinician licences and certifications expire on scattered dates, tracked in spreadsheets nobody opens until an audit, and a lapsed credential makes every visit it touches unbillable.",
         solution: "Hold every credential with its expiry date in one place and push the warning forward in time, so renewals happen on a schedule instead of in response to a finding.",
         outcomes: [
             "Every clinician credential tracked with its expiry",
@@ -1100,7 +1100,7 @@ export const projects: Project[] = [
     },
 ];
 
-/* ─────────── Derived data — single source of truth ───────────
+/* ─────────── Derived data: single source of truth ───────────
    Never hardcode these counts in components; import them. */
 
 export const projectCount = projects.length;

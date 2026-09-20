@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollProgress from "@/components/ui/ScrollProgress";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 import CommandPalette from "@/components/ui/CommandPalette";
 import CmdKButton from "@/components/ui/CmdKButton";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -20,6 +18,12 @@ const spaceGrotesk = Space_Grotesk({
     weight: ["400", "500", "600", "700"],
 });
 
+const manrope = Manrope({
+    subsets: ["latin"],
+    variable: "--font-sans",
+    weight: ["400", "500", "600", "700"],
+});
+
 const jetbrainsMono = JetBrains_Mono({
     subsets: ["latin"],
     variable: "--font-mono",
@@ -31,11 +35,11 @@ const SITE_URL = "https://hatimelhassak.is-a.dev";
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
     title: {
-        default: "Hatim El Hassak — Full-Stack Engineer",
+        default: "Hatim El Hassak. Full-Stack Engineer",
         template: "%s · Hatim El Hassak",
     },
     description:
-        "Hatim El Hassak — full-stack engineer. iOS + macOS (SwiftUI), web (Next.js), AI pipelines (Python). End-to-end product builds for solo founders and small teams. Remote worldwide.",
+        "Hatim El Hassak: full-stack engineer. iOS + macOS (SwiftUI), web (Next.js), AI pipelines (Python). End-to-end product builds for solo founders and small teams. Remote worldwide.",
     keywords: ["full-stack engineer", "iOS developer", "SwiftUI", "Next.js", "AI engineer", "freelance engineer", "Hatim El Hassak"],
     authors: [{ name: "Hatim El Hassak", url: SITE_URL }],
     creator: "Hatim El Hassak",
@@ -49,13 +53,13 @@ export const metadata: Metadata = {
         type: "website",
         url: SITE_URL,
         siteName: "Hatim El Hassak",
-        title: "Hatim El Hassak — Full-Stack Engineer",
+        title: "Hatim El Hassak. Full-Stack Engineer",
         description:
             "End-to-end iOS, web, and AI builds for solo founders and small teams. iOS, SwiftUI, Next.js, Python.",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Hatim El Hassak — Full-Stack Engineer",
+        title: "Hatim El Hassak. Full-Stack Engineer",
         description:
             "End-to-end iOS, web, and AI builds for solo founders and small teams.",
     },
@@ -78,7 +82,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+        <html lang="en" className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
             <head>
                 <script
                     dangerouslySetInnerHTML={{
@@ -86,10 +90,8 @@ export default function RootLayout({
                     }}
                 />
             </head>
-            <body className="font-mono bg-cream text-ink antialiased selection:bg-acid selection:text-ink md:cursor-none">
+            <body className="font-sans bg-cream text-ink antialiased selection:bg-acid selection:text-ink">
                 <ThemeProvider>
-                    <LoadingScreen />
-                    <CustomCursor />
                     <ScrollProgress />
                     <CommandPalette />
 
@@ -100,7 +102,7 @@ export default function RootLayout({
                         - Desktop: full nav incl. Services, CV, theme toggle */}
                     <nav className="fixed bottom-0 left-0 w-full bg-ink border-t-[3px] border-ink z-[100] shadow-[0px_-4px_20px_rgba(0,0,0,0.3)]">
                         <div className="max-w-7xl mx-auto px-3 md:px-6 py-2 md:py-3 flex items-center gap-1 md:gap-2">
-                            {/* Primary links — visible on mobile */}
+                            {/* Primary links: visible on mobile */}
                             <div className="flex items-center gap-1 md:gap-1 flex-1">
                                 <NavLink href="/" label="Home" />
                                 <NavLink href="/work" label="Work" />
@@ -119,7 +121,7 @@ export default function RootLayout({
                                         href="/contact"
                                         className="bg-acid text-ink px-3 md:px-5 py-2 md:py-2.5 font-heading font-bold text-xs md:text-sm uppercase tracking-wider border-[3px] border-ink hover:bg-cream transition-colors min-h-[40px] inline-flex items-center"
                                     >
-                                        Let&apos;s Talk
+                                        Contact
                                     </Link>
                                 </MagneticButton>
                             </div>

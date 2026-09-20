@@ -12,8 +12,8 @@ export function CTASection() {
                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight mb-4">
                         Think this is the<br /><span className="gradient-text-acid">right fit?</span>
                     </h2>
-                    <p className="font-mono text-sm text-cream/85 max-w-lg mx-auto mb-8 leading-relaxed">
-                        Send me a brief of what you&apos;re building — current state, target,
+                    <p className="font-sans text-sm text-cream/85 max-w-lg mx-auto mb-8 leading-relaxed">
+                        Send me a brief of what you&apos;re building: current state, target,
                         any deadline. I&apos;ll reply with a plan and a realistic price.
                     </p>
                     <a

@@ -15,10 +15,9 @@ export function ProcessSection() {
                 ].map((step, i) => (
                     <div key={step.num} className="reveal-up" style={{ animationDelay: `${Math.min(i * 0.06, 0.4)}s` }}>
                         <div className={`neo-card ${step.color} ${step.textColor} p-6 h-full relative overflow-hidden`}>
-                            <div className="absolute top-3 right-3 font-heading font-bold text-4xl opacity-15 select-none">{step.num}</div>
                             <div className="relative z-10">
                                 <h3 className="font-heading font-bold text-xl uppercase tracking-tight mb-3">{step.title}</h3>
-                                <p className="font-mono text-sm opacity-90 leading-relaxed">{step.desc}</p>
+                                <p className="font-sans text-sm opacity-90 leading-relaxed">{step.desc}</p>
                             </div>
                         </div>
                     </div>

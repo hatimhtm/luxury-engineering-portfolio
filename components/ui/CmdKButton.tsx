@@ -1,6 +1,6 @@
 "use client";
 
-/** Nav-bar ⌘K trigger — replaces the old floating hint that collided with content. */
+/** Nav-bar ⌘K trigger: replaces the old floating hint that collided with content. */
 export default function CmdKButton() {
     return (
         <button

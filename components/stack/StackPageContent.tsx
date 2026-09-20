@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { CircuitPattern, GridDots } from "@/components/ui/Decorative";
 import { BookOpen, Flame } from "lucide-react";
 
-/* Proficiency tag — categorical, not quantitative */
+/* Proficiency tag: categorical, not quantitative */
 type Depth = "daily" | "frequent" | "proficient";
 type Tool = { name: string; depth: Depth; detail: string };
 type Category = { name: string; color: string; textColor: string; tools: Tool[] };
@@ -21,13 +21,13 @@ export const categories: Category[] = [
         color: "bg-acid",
         textColor: "text-ink",
         tools: [
-            { name: "Next.js / React", depth: "daily", detail: "App Router, RSC, Server Actions — the default for every web-app build." },
+            { name: "Next.js / React", depth: "daily", detail: "App Router, RSC, Server Actions. The default for every web-app build." },
             { name: "TypeScript", depth: "daily", detail: "Strict mode across every project. The type system is part of the design." },
             { name: "Tailwind CSS", depth: "daily", detail: "Utility-first with a custom design system layered on top." },
             { name: "Framer Motion", depth: "frequent", detail: "For motion systems where I want physics, not just easing curves." },
             { name: "SwiftUI", depth: "daily", detail: "Native iOS + macOS. Liquid Glass, SwiftData, Live Activities, menu-bar apps, Core Audio." },
             { name: "GSAP", depth: "frequent", detail: "When a marketing site needs scroll-driven choreography, not just reveals." },
-            { name: "Astro", depth: "frequent", detail: "Static editorial sites — three shipped client/studio builds on Astro 5." },
+            { name: "Astro", depth: "frequent", detail: "Static editorial sites: three shipped client/studio builds on Astro 5." },
         ],
     },
     {
@@ -38,7 +38,7 @@ export const categories: Category[] = [
             { name: "Python", depth: "daily", detail: "FastAPI for APIs. Playwright for crawlers. Pandas where the data lives." },
             { name: "Node.js", depth: "frequent", detail: "API routes, background workers, serverless functions." },
             { name: "PostgreSQL", depth: "frequent", detail: "Relational data with deliberate schema design, not auto-generated blobs." },
-            { name: "Supabase", depth: "daily", detail: "Postgres + Auth + Storage + Edge Functions — default BaaS for small teams." },
+            { name: "Supabase", depth: "daily", detail: "Postgres + Auth + Storage + Edge Functions: default BaaS for small teams." },
             { name: "Redis", depth: "proficient", detail: "Caching, queues, rate limits, session storage." },
             { name: "Docker", depth: "frequent", detail: "For pipelines that need to run the same on my laptop and in CI." },
         ],
@@ -49,9 +49,9 @@ export const categories: Category[] = [
         textColor: "text-cream",
         tools: [
             { name: "OpenAI / GPT", depth: "daily", detail: "Prompt design, function calling, structured outputs, embeddings." },
-            { name: "Gemini 2.5 / 3", depth: "daily", detail: "Image gen, vision, and structured parsing — TryIt, Eli, Lumi, LeadSniper." },
+            { name: "Gemini 2.5 / 3", depth: "daily", detail: "Image gen, vision, and structured parsing. TryIt, Eli, Lumi, LeadSniper." },
             { name: "Claude / Anthropic API", depth: "frequent", detail: "Closed-enum triage and agent workflows with drift-guarded prompts." },
-            { name: "LangChain", depth: "frequent", detail: "For agent loops and retry-aware chains — not for simple prompts." },
+            { name: "LangChain", depth: "frequent", detail: "For agent loops and retry-aware chains, not for simple prompts." },
             { name: "RAG pipelines", depth: "frequent", detail: "Vector search + retrieval over domain docs, not generic wrappers." },
             { name: "Speech-to-Text", depth: "frequent", detail: "Google Cloud STT for non-English; Whisper for offline contexts." },
         ],
@@ -62,7 +62,7 @@ export const categories: Category[] = [
         textColor: "text-cream",
         tools: [
             { name: "Vercel", depth: "daily", detail: "Default host for Next.js work. Preview deploys on every PR." },
-            { name: "GitHub Actions", depth: "frequent", detail: "Tests, builds, and deploys — everything that shouldn't be manual." },
+            { name: "GitHub Actions", depth: "frequent", detail: "Tests, builds, and deploys: everything that shouldn't be manual." },
             { name: "AWS / GCP", depth: "proficient", detail: "Used where the client already lives; not my default for greenfield." },
             { name: "Playwright", depth: "daily", detail: "Headless browsers for scraping, e2e tests, and visual diff." },
         ],
@@ -72,8 +72,8 @@ export const categories: Category[] = [
 export const learning = [
     { name: "Rust", reason: "Systems-level reach when Python is the bottleneck." },
     { name: "Kubernetes", reason: "For stacks that outgrow a single-VM footprint." },
-    { name: "Three.js / WebGL", reason: "Real-time 3D on the web — product visualisations and interactive demos." },
-    { name: "Solidity", reason: "Smart contracts — selectively, where on-chain is genuinely the right fit." },
+    { name: "Three.js / WebGL", reason: "Real-time 3D on the web: product visualisations and interactive demos." },
+    { name: "Solidity", reason: "Smart contracts: selectively, where on-chain is genuinely the right fit." },
 ];
 
 export function StatusBar() {
@@ -99,11 +99,10 @@ export function HeaderSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
             >
-                <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-3">Tech Stack</div>
                 <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
-                    The<br />Arsenal
+                    The<br />Stack
                 </h1>
-                <p className="font-mono text-sm md:text-base text-ink/85 max-w-xl leading-relaxed">
+                <p className="font-sans text-sm md:text-base text-ink/85 max-w-xl leading-relaxed">
                     No percentages, no self-graded proficiency charts. These are the tools I
                     reach for on real projects, organised by how often I actually use them.
                 </p>
@@ -157,7 +156,7 @@ export function CategoriesSection() {
                                             <span className="font-heading font-bold text-sm md:text-base uppercase tracking-tight">{tool.name}</span>
                                             <DepthPill depth={tool.depth} textColor={cat.textColor} />
                                         </div>
-                                        <p className="font-mono text-xs md:text-sm opacity-85 leading-relaxed">{tool.detail}</p>
+                                        <p className="font-sans text-xs md:text-sm opacity-85 leading-relaxed">{tool.detail}</p>
                                     </div>
                                 ))}
                             </div>
@@ -186,7 +185,7 @@ export function CurrentlyLearningSection() {
                                 <BookOpen size={16} className="opacity-60 group-hover:text-acid" />
                                 <h3 className="font-heading font-bold text-base uppercase tracking-tight">{item.name}</h3>
                             </div>
-                            <p className="font-mono text-xs opacity-80 leading-relaxed">{item.reason}</p>
+                            <p className="font-sans text-xs opacity-80 leading-relaxed">{item.reason}</p>
                         </div>
                     </div>
                 ))}
@@ -204,7 +203,7 @@ export function CTASection() {
                     <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight mb-4">
                         Need this stack<br /><span className="gradient-text-acid">on your team?</span>
                     </h2>
-                    <p className="font-mono text-sm text-cream/80 max-w-lg mx-auto mb-8 leading-relaxed">
+                    <p className="font-sans text-sm text-cream/80 max-w-lg mx-auto mb-8 leading-relaxed">
                         Every tool here has been used on at least one shipped project.
                         Let me put them to work on yours.
                     </p>

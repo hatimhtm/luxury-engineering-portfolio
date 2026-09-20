@@ -16,7 +16,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
     }
 
     return (
-        <div className="min-h-screen bg-cream pb-24">
+        <div className="min-h-[100dvh] bg-cream pb-24">
             {/* Status bar */}
             <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
                 <div className="flex items-center gap-2">
@@ -54,7 +54,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                     <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
                         {project.title}
                     </h1>
-                    <p className="font-mono text-sm md:text-base text-ink/85 max-w-2xl leading-relaxed">
+                    <p className="font-sans text-sm md:text-base text-ink/85 max-w-2xl leading-relaxed">
                         {project.longDescription}
                     </p>
 
@@ -105,7 +105,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                     >
                         <Image
                             src={project.image}
-                            alt={`${project.title} — screenshot`}
+                            alt={`${project.title}: screenshot`}
                             fill
                             className={project.imageFit === "contain" ? "object-contain" : "object-cover object-top"}
                             sizes="(max-width: 768px) 100vw, 896px"
@@ -147,7 +147,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                             <div className="relative z-10">
                                 <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] opacity-50 mb-3">The Problem</div>
                                 <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-4">What Wasn&apos;t Working</h3>
-                                <p className="font-mono text-sm font-bold opacity-70 leading-relaxed">
+                                <p className="font-sans text-sm font-bold opacity-70 leading-relaxed">
                                     {project.problem}
                                 </p>
                             </div>
@@ -162,7 +162,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                                 <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-4">
                                     How I <span className="gradient-text-acid">Fixed It</span>
                                 </h3>
-                                <p className="font-mono text-sm font-bold text-cream/60 leading-relaxed">
+                                <p className="font-sans text-sm font-bold text-cream/60 leading-relaxed">
                                     {project.solution}
                                 </p>
                             </div>
@@ -223,7 +223,7 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                             <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-2">
                                 Want something like this?
                             </h3>
-                            <p className="font-mono text-xs font-bold text-cream/50">
+                            <p className="font-sans text-xs font-bold text-cream/50">
                                 Let&apos;s build it. I ship fast and I ship clean.
                             </p>
                         </div>

@@ -7,7 +7,7 @@ const comparisonData = [
     { feature: "Stack decisions", agency: "Their standard kit", me: "Right tool for this project" },
     { feature: "Post-launch support", agency: "Billed separately", me: "Included in the engagement" },
     { feature: "AI capabilities", agency: "Subcontracted", me: "In-house, from scratch" },
-    { feature: "Overhead", agency: "High (management layer)", me: "None — no middleware" },
+    { feature: "Overhead", agency: "High (management layer)", me: "None, no middleware" },
 ];
 
 export function ComparisonSection() {

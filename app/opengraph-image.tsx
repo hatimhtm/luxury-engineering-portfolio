@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { projectCount } from "@/lib/projects";
 
 export const runtime = "edge";
-export const alt = "Hatim El Hassak — Full-Stack Engineer";
+export const alt = "Hatim El Hassak. Full-Stack Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -95,11 +95,11 @@ export default function OpengraphImage() {
                             display: "flex",
                         }}
                     >
-                        Full-stack engineer — iOS, macOS, web, and AI pipelines, end-to-end.
+                        Full-stack engineer: iOS, macOS, web, and AI pipelines, end-to-end.
                     </div>
                 </div>
 
-                {/* Bottom row — tags + url */}
+                {/* Bottom row: tags + url */}
                 <div
                     style={{
                         display: "flex",
