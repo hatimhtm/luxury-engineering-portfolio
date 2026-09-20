@@ -78,7 +78,7 @@ export interface Project {
 }
 
 // All entries verified against live GitHub metadata + repo READMEs.
-// Refreshed 2026-07-13 after a portfolio-wide GitHub sync.
+// Refreshed 2026-09-21: added Estelle (own App Store product), StudioOS, Lorani, Pause, Hope HR.
 
 export const projects: Project[] = [
     /* ─────────── TIER A · APP STORE / SHIPPED COMMERCIAL ─────────── */
@@ -414,7 +414,6 @@ export const projects: Project[] = [
         color: "bg-vivid",
         textColor: "text-cream",
         link: "https://github.com/hatimhtm/china-global-study",
-        liveDemo: "https://dashboard-omega-blue-41.vercel.app",
         category: "Web App",
         problem: "Student-placement agencies live in spreadsheets — every applicant means one tab, every stage transition means a manual cell update, and a missed deadline can mean a student loses their visa window.",
         solution: "An 8-stage drag-and-drop kanban that turns the agency's actual workflow into a visible pipeline. Supabase backs the data, Next.js 16 renders the UI server-side, five themes let the agency match the look to client-presentation contexts.",
@@ -636,6 +635,65 @@ export const projects: Project[] = [
             "Real-time UV index × skin-phototype exposure planning",
             "French-first consumer health app",
             "Third App Store ship for the same studio, alongside GoPilates and TryIt",
+        ],
+    },
+
+    /* ─────────── 2026-09 SYNC · OWN PRODUCT + THE MACHINE BEHIND IT ─────────── */
+
+    {
+        id: "032",
+        slug: "estelle",
+        title: "Estelle: Manifest Affirmations",
+        description: "My own consumer app, taken from decision to live on the App Store in eleven days — a personalised affirmations product with the AI kept deliberately invisible.",
+        longDescription: "Estelle is the app I designed, built, priced and published myself, end to end: a thirteen-step onboarding that assembles a personal \"constellation\", a curated library of 2,332 lines with on-device-feeling personalisation from a Gemini backend behind a Supabase edge function, notifications-as-product, home-screen widgets and share cards. There is no chatbot anywhere in it — the AI is a silent ingredient, not the interface. Subscriptions run through StoreKit and RevenueCat behind a hard paywall, and the whole thing went from decision to live in eleven days.",
+        tech: ["SwiftUI", "StoreKit", "RevenueCat", "Supabase Edge Functions", "Gemini"],
+        metrics: [
+            { label: "Status", value: "App Store" },
+            { label: "Territories", value: "148" },
+            { label: "Decision → live", value: "11 days" },
+        ],
+        color: "bg-acid",
+        textColor: "text-ink",
+        link: "https://github.com/hatimhtm",
+        appStore: "https://apps.apple.com/app/id6801747348",
+        private: true,
+        division: "apps",
+        category: "iOS",
+        problem: "The affirmations category is full of thin AI wrappers that bill during the trial they promised and answer support with a bounced email. The product gap is not features — it is trust.",
+        solution: "Ship the honest version: personalisation that runs invisibly behind the content, a paywall that says exactly what it charges and when, real notification craft instead of a chat box, and a working support address.",
+        outcomes: [
+            "Live on the App Store in 148 territories",
+            "2,332 curated lines with server-side personalisation",
+            "Subscriptions, trial logic and receipts wired through RevenueCat",
+            "Designed, built, published and priced solo",
+        ],
+    },
+
+    {
+        id: "033",
+        slug: "studioos",
+        title: "StudioOS",
+        description: "The private platform behind Estelle — an analytics command centre over four data sources plus a generative content pipeline that writes, illustrates and quality-checks marketing creative end to end.",
+        longDescription: "StudioOS is two halves over one database. The first is an analytics command centre that pulls App Store Connect, RevenueCat, ad-platform and social numbers into a single daily read, attributing published creative back to the campaign that produced it by content matching rather than manual tagging. The second is a generative pipeline: it learns which formats perform from a corpus of real data, writes original multi-slide creative on a schedule, generates every image through diffusion models behind an automated judge that holds each result to its written brief, retries or escalates what fails, and meters every cent against a hard daily ceiling. A human approval gate sits in front of anything that ships.",
+        tech: ["Next.js 16", "Supabase", "TypeScript", "Vercel", "Gemini", "Image models", "Apify"],
+        metrics: [
+            { label: "Unit tests", value: "1,550" },
+            { label: "Per carousel", value: "~$0.30" },
+            { label: "Surface", value: "Cockpit + operator portal" },
+        ],
+        color: "bg-electric",
+        textColor: "text-cream",
+        link: "https://github.com/hatimhtm",
+        private: true,
+        division: "systems",
+        category: "AI Platform",
+        problem: "Marketing a consumer app organically means publishing original creative every single day. Recycling one source hits a hard ceiling fast, and producing it by hand does not scale to a person working alone.",
+        solution: "Learn the format from data, generate distinct copy and distinct photography for every slot, check each image and each line automatically against the brief and the content rules, meter the spend against a ceiling, and keep a human approval gate before anything publishes.",
+        outcomes: [
+            "Original creative generated on a schedule, no duplicated source material",
+            "Automated picture judging against a written brief, with retries and cost ceilings",
+            "Published-content attribution by content matching, no manual tagging",
+            "1,550 unit tests, typechecked and linted on every change",
         ],
     },
 
@@ -954,6 +1012,90 @@ export const projects: Project[] = [
             "Hand-written GLSL mist hero: idle-loaded, DPR-capped, paused off-screen, skipped on reduced-motion",
             "Sub-2s mobile budget: near-zero JS, inlined CSS, self-hosted fonts",
             "Zero-cost auto-deploy to GitHub Pages, custom-domain ready",
+        ],
+    },
+
+    /* ─────────── 2026-09 SYNC · CLIENT WEB + PLATFORM RANGE ─────────── */
+
+    {
+        id: "034",
+        slug: "lorani",
+        title: "Lorani",
+        description: "Editorial marketing site for a premium Moroccan hijab house — three languages including full Arabic right-to-left, built with no framework and no build step.",
+        longDescription: "Lorani is a commissioned editorial site for a Moroccan hijab house, written in plain HTML, CSS and vanilla JavaScript with zero dependencies and no build pipeline. It carries a Lenis smooth-scroll surface, a custom drag-snap slider, and a pinned horizontal atelier scrub built on GSAP — and it ships fully trilingual in English, French and Arabic, with proper right-to-left typography rather than a mirrored afterthought. A dependency-free Node test suite runs the whole thing in CI.",
+        tech: ["HTML", "CSS", "Vanilla JS", "GSAP", "Lenis", "GitHub Actions"],
+        metrics: [
+            { label: "Dependencies", value: "Zero" },
+            { label: "Languages", value: "EN · FR · AR" },
+            { label: "Build step", value: "None" },
+        ],
+        color: "bg-hotpink",
+        textColor: "text-cream",
+        link: "https://github.com/hatimhtm",
+        private: true,
+        clientWork: true,
+        division: "client",
+        category: "Marketing Site",
+        problem: "A premium modest-fashion brand needed a site that felt like an atelier rather than a template, in three languages one of which reads right to left — and it had to stay fast on Moroccan mobile connections.",
+        solution: "Write it by hand with no framework: motion where it earns attention, real Arabic typography and layout mirroring, and a zero-dependency test suite so a site with no build step still cannot regress silently.",
+        outcomes: [
+            "Trilingual EN · FR · AR with true RTL layout and Arabic type",
+            "Pinned horizontal scrub and drag-snap slider, no framework",
+            "Zero runtime dependencies, no build step, deploys zero-config",
+            "Automated test suite in CI",
+        ],
+    },
+
+    {
+        id: "035",
+        slug: "pause",
+        title: "Pause",
+        description: "An Android focus app that puts a breathing screen in front of the apps you choose — native Kotlin accessibility engine under an over-the-air React Native UI, fully on-device.",
+        longDescription: "Pause interrupts the reflex. Open an app you have marked, and a breathing screen arrives first; the stats it keeps are honest per-app counts rather than flattering totals, with quiet hours and notification muting alongside. The interruption engine is native Kotlin sitting on Android's accessibility service, while the interface is React Native shipped over the air so the product can move without a store review. Nothing leaves the phone.",
+        tech: ["Kotlin", "Android Accessibility", "React Native", "OTA updates"],
+        metrics: [
+            { label: "Platform", value: "Android" },
+            { label: "Data", value: "100% on-device" },
+            { label: "UI updates", value: "Over the air" },
+        ],
+        color: "bg-vivid",
+        textColor: "text-cream",
+        link: "https://github.com/hatimhtm/pause",
+        division: "apps",
+        category: "Android",
+        problem: "Screen-time tools either block apps outright, which people switch off within a week, or shame the user with a weekly total that changes nothing in the moment the reflex fires.",
+        solution: "Interrupt at the moment of opening with one breath, keep the stats honest and per-app, and run the whole thing on-device so there is no account and no upload to distrust.",
+        outcomes: [
+            "Native Kotlin accessibility engine with a React Native UI shipped OTA",
+            "Per-app honest statistics, quiet hours, notification muting",
+            "Entirely on-device — no account, no telemetry",
+        ],
+    },
+
+    {
+        id: "036",
+        slug: "hope-hr",
+        title: "Hope HR",
+        description: "Credential and compliance tracking for a home-health therapy agency — it warns before a licence expires instead of after the audit.",
+        longDescription: "A home-health agency's exposure is not its paperwork, it is the date on that paperwork: a therapist whose licence or certification has quietly lapsed is a billing and liability problem the moment they see a patient. Hope HR keeps every credential for every clinician with its expiry, and raises the warning while there is still time to renew, turning an annual audit scramble into a routine that runs itself.",
+        tech: ["C#", ".NET"],
+        metrics: [
+            { label: "Domain", value: "Home health" },
+            { label: "Focus", value: "Credential expiry" },
+        ],
+        color: "bg-electric",
+        textColor: "text-cream",
+        link: "https://github.com/hatimhtm",
+        private: true,
+        clientWork: true,
+        division: "systems",
+        category: "Internal Tool",
+        problem: "Clinician licences and certifications expire on scattered dates, tracked in spreadsheets nobody opens until an audit — and a lapsed credential makes every visit it touches unbillable.",
+        solution: "Hold every credential with its expiry date in one place and push the warning forward in time, so renewals happen on a schedule instead of in response to a finding.",
+        outcomes: [
+            "Every clinician credential tracked with its expiry",
+            "Advance warnings before a licence lapses",
+            "Replaces spreadsheet tracking for a live agency",
         ],
     },
 ];
