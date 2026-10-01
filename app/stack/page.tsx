@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/v2/Reveal";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 export const metadata: Metadata = {
     title: "Stack",
@@ -54,19 +55,19 @@ const GROUPS: { name: string; tools: [string, string][] }[] = [
 
 export default function StackPage() {
     return (
-        <div className="mx-auto max-w-page px-6 pt-32 md:px-12 md:pt-40">
-            <h1 className="text-[2.8rem] font-bold leading-[1.02] tracking-display md:text-[4rem]">Stack</h1>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink2">What I build with, and where each tool is running in production today.</p>
+        <div className="mx-auto max-w-[1280px] px-5 pb-24 pt-32 md:px-10 md:pt-40">
+            <SplitReveal as="h1" text="Stack" className="display text-[4.2rem] text-ink md:text-[8rem]" />
+            <Reveal delay={0.3}><p className="mt-2 max-w-2xl text-[19px] leading-relaxed text-ink2">What I build with, and where each tool is running in production today.</p></Reveal>
             <div className="mt-14 space-y-16">
                 {GROUPS.map((g) => (
                     <section key={g.name} className="grid gap-6 border-t border-hairline pt-8 md:grid-cols-12">
                         <Reveal className="md:col-span-4">
-                            <h2 className="text-[1.6rem] font-bold tracking-title">{g.name}</h2>
+                            <h2 className="display text-[2.4rem] text-ink md:sticky md:top-32">{g.name}</h2>
                         </Reveal>
                         <dl className="grid gap-x-10 gap-y-7 sm:grid-cols-2 md:col-span-8">
                             {g.tools.map(([t, d], i) => (
                                 <Reveal key={t} delay={(i % 2) * 0.04}>
-                                    <dt className="text-[17px] font-bold">{t}</dt>
+                                    <dt className="display text-[1.45rem] text-ink">{t}</dt>
                                     <dd className="mt-1 text-[15.5px] leading-relaxed text-ink2">{d}</dd>
                                 </Reveal>
                             ))}

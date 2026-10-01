@@ -30,7 +30,7 @@ export default function ContactForm() {
 
     if (status === "sent") {
         return (
-            <div className="rounded-[28px] border border-hairline bg-raised p-8 md:p-10" role="status">
+            <div className="plate p-8 md:p-10" role="status">
                 <h2 className="text-[1.6rem] font-bold tracking-title">Message sent.</h2>
                 <p className="mt-2 text-[16px] leading-relaxed text-ink2">I read every message and reply the same day, from {EMAIL}.</p>
             </div>
@@ -38,7 +38,7 @@ export default function ContactForm() {
     }
 
     return (
-        <form onSubmit={submit} className="rounded-[28px] border border-hairline bg-raised p-7 md:p-9" noValidate>
+        <form onSubmit={submit} className="plate p-7 md:p-9" noValidate>
             <div className="grid gap-5 sm:grid-cols-2">
                 <label className="block text-[15px] font-semibold">
                     Your name
@@ -59,7 +59,7 @@ export default function ContactForm() {
                     That didn&apos;t send. Try again, or write to {EMAIL}.
                 </p>
             )}
-            <button type="submit" disabled={!valid || status === "sending"} className="pill pill-accent mt-6 disabled:cursor-not-allowed disabled:opacity-50">
+            <button type="submit" disabled={!valid || status === "sending"} className="btn btn-accent mt-6 pr-6 disabled:cursor-not-allowed disabled:opacity-50">
                 {status === "sending" ? "Sending" : "Send message"}
             </button>
         </form>

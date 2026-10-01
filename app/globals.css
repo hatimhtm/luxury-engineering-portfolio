@@ -5,23 +5,28 @@
 /* Hatim El Hassak, portfolio. Stone and glass.
    Colours are RGB channels so Tailwind can add alpha: bg-ink/10, text-accent, etc. */
 :root {
-  --page: 235 234 230;      /* the stone of the hero photo */
-  --raised: 246 245 242;
-  --ink: 29 30 33;
-  --ink2: 74 76 82;
-  --ink3: 112 114 120;
+  --page: 246 245 241;
+  --raised: 255 255 254;
+  --stone: 235 234 230;     /* the stone of the 3D renders */
+  --ink: 20 21 26;
+  --ink2: 72 74 82;
+  --ink3: 116 118 126;
   --accent: 46 79 214;      /* cobalt, the only accent on the site */
   --onaccent: 255 255 255;
   --hairline: rgb(29 30 33 / 0.10);
   --glass-fill: linear-gradient(135deg, rgb(255 255 255 / 0.52), rgb(255 255 255 / 0.18));
   --glass-edge: rgb(255 255 255 / 0.62);
   --glass-lift: inset 0 1px 0 rgb(255 255 255 / 0.75), inset 0 -1px 0 rgb(255 255 255 / 0.16), 0 18px 48px rgb(60 58 52 / 0.13);
+  --gt-lo: rgb(255 255 255 / 0.32);
+  --gt-mid: rgb(255 255 255 / 0.55);
+  --gt-hi: rgb(255 255 255 / 0.66);
   color-scheme: light;
 }
 
 [data-theme="dark"] {
   --page: 18 19 21;
   --raised: 28 29 32;
+  --stone: 24 25 28;
   --ink: 238 238 235;
   --ink2: 178 179 184;
   --ink3: 136 138 144;
@@ -31,6 +36,9 @@
   --glass-fill: linear-gradient(135deg, rgb(255 255 255 / 0.13), rgb(255 255 255 / 0.04));
   --glass-edge: rgb(255 255 255 / 0.15);
   --glass-lift: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 18px 48px rgb(0 0 0 / 0.45);
+  --gt-lo: rgb(30 31 36 / 0.38);
+  --gt-mid: rgb(24 25 30 / 0.62);
+  --gt-hi: rgb(22 23 28 / 0.74);
   color-scheme: dark;
 }
 
@@ -58,6 +66,8 @@ body {
   border-radius: 10px;
 }
 
+/* Component styles live in the components layer, so Tailwind utilities (hidden, absolute...) can override them. */
+@layer components {
 /* Liquid Glass, web approximation: blur + layered edge highlights.
    Apple ships the real material on its own platforms only; this is our reading of it. */
 .glass {
@@ -66,6 +76,52 @@ body {
   backdrop-filter: blur(22px) saturate(170%);
   border: 1px solid var(--glass-edge);
   box-shadow: var(--glass-lift);
+}
+
+/* Liquid Glass: the refraction comes from components/glass (SVG backdrop filter, Chromium).
+   This is the material around it: a faint tint, a specular rim lit from the top left, and lift. */
+.lg {
+  position: relative;
+  isolation: isolate;
+  background: var(--lg-tint, rgb(255 255 255 / 0.06));
+  box-shadow:
+    inset 0 1px 0.5px rgb(255 255 255 / 0.9),
+    inset 0 -1px 1px rgb(255 255 255 / 0.28),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.4),
+    0 12px 32px -12px rgb(16 22 44 / 0.28),
+    0 2px 6px rgb(16 22 44 / 0.06);
+}
+.lg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1.25px;
+  background: linear-gradient(140deg, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0.12) 32%, rgb(255 255 255 / 0) 52%, rgb(255 255 255 / 0.4) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.lg > * {
+  position: relative;
+  z-index: 2;
+}
+[data-theme="dark"] .lg {
+  background: var(--lg-tint, rgb(255 255 255 / 0.04));
+  box-shadow:
+    inset 0 1px 0.5px rgb(255 255 255 / 0.35),
+    inset 0 -1px 1px rgb(255 255 255 / 0.1),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.18),
+    0 14px 36px -12px rgb(0 0 0 / 0.6);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .lg {
+    background: rgb(var(--raised));
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
 
 /* A specular highlight that follows the pointer. Components set --mx / --my. */
@@ -149,6 +205,93 @@ body {
     border: 1px solid var(--glass-edge);
     box-shadow: var(--glass-lift);
   }
+}
+
+
+/* Display type */
+.display {
+  font-family: var(--font-clash), var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+/* Primary button with its arrow in its own circle */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 999px;
+  padding: 0.5rem 0.5rem 0.5rem 1.35rem;
+  font-size: 15.5px;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 300ms ease, background-color 300ms ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn .dot {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn:hover .dot { transform: translate(2px, -1px) scale(1.06); }
+.btn-accent { background: rgb(var(--accent)); color: rgb(var(--onaccent)); box-shadow: 0 10px 26px -8px rgb(var(--accent) / 0.55), inset 0 1px 0 rgb(255 255 255 / 0.25); }
+.btn-accent .dot { background: rgb(255 255 255 / 0.18); }
+.btn-ink { background: rgb(var(--ink)); color: rgb(var(--page)); }
+.btn-ink .dot { background: rgb(255 255 255 / 0.14); }
+
+/* Cards that light up under the pointer (components set --sx / --sy) */
+.spot { position: relative; isolation: isolate; }
+.spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--sx, 50%) var(--sy, -30%), rgb(var(--accent) / 0.10), transparent 60%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+  z-index: 3;
+}
+@media (hover: hover) and (pointer: fine) {
+  .spot:hover::after { opacity: 1; }
+}
+
+/* Double bezel: a tray around a plate */
+.tray {
+  padding: 6px;
+  border-radius: 34px;
+  background: rgb(var(--ink) / 0.035);
+  box-shadow: inset 0 0 0 1px rgb(var(--ink) / 0.06);
+}
+.plate {
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgb(var(--raised));
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 0.6), 0 1px 2px rgb(16 22 44 / 0.04), 0 18px 40px -24px rgb(16 22 44 / 0.25);
+}
+
+/* One marquee on the whole site, on the home page */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee { animation: marquee 38s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
+
+/* Outlined display words in the marquee */
+.outline-text { color: transparent; -webkit-text-stroke: 1.5px rgb(var(--ink) / 0.55); }
+
+/* A soft colour field behind glass, so the refraction has something to bend */
+.field {
+  background:
+    radial-gradient(40% 55% at 18% 30%, rgb(196 225 120 / 0.55), transparent 70%),
+    radial-gradient(38% 50% at 52% 78%, rgb(120 150 255 / 0.45), transparent 70%),
+    radial-gradient(36% 48% at 86% 28%, rgb(255 170 120 / 0.45), transparent 70%),
+    rgb(var(--page));
+}
+
 }
 
 /* Long-form reading (case studies) */

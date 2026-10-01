@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { SpeakerHigh, SpeakerSlash } from "@phosphor-icons/react";
 
 /** A film that plays muted while it's on screen and pauses when it isn't. Sound is opt-in. */
-export default function AutoVideo({ src, poster, label, className, silent = false }: { src: string; poster: string; label: string; className?: string; silent?: boolean }) {
+export default function AutoVideo({ src, poster, label, className, silent = false, hover = false }: { src: string; poster: string; label: string; className?: string; silent?: boolean; hover?: boolean }) {
     const ref = useRef<HTMLVideoElement>(null);
     const [muted, setMuted] = useState(true);
 
@@ -13,6 +13,16 @@ export default function AutoVideo({ src, poster, label, className, silent = fals
         if (!v) return;
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (reduce) return; // poster only; the viewer can press play
+        const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+        if (hover && finePointer) {
+            // on desktop, tiles play while the pointer is over them
+            const host = v.closest("a, [data-hover-host]") ?? v;
+            const on = () => v.play().catch(() => {});
+            const off = () => { v.pause(); v.currentTime = 0; };
+            host.addEventListener("pointerenter", on);
+            host.addEventListener("pointerleave", off);
+            return () => { host.removeEventListener("pointerenter", on); host.removeEventListener("pointerleave", off); };
+        }
         const io = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) v.play().catch(() => {});
@@ -22,7 +32,7 @@ export default function AutoVideo({ src, poster, label, className, silent = fals
         );
         io.observe(v);
         return () => io.disconnect();
-    }, []);
+    }, [hover]);
 
     return (
         <div className={`relative ${className ?? ""}`}>
