@@ -12,9 +12,9 @@ export function PhilosophySection() {
                             <span className="text-acid">real commits.</span>
                         </h2>
                         <p className="font-sans text-sm md:text-base text-cream/85 leading-relaxed mb-6">
-                            I work the way a solo founder works: one person in the code, a direct
-                            line for questions, and a running build you can click on any time.
-                            No Jira theatre, no handoffs, no scope creep wrapped as process.
+                            Solo or inside your team, the loop is the same: a direct line for
+                            questions, a written update every day, and a running build you can
+                            click on any time. I work in your tools and hand over cleanly.
                         </p>
                         <div className="inline-flex items-center gap-3 p-4 border-[3px] border-cream/20">
                             <div className="w-3 h-3 bg-acid animate-pulse-dot flex-shrink-0" />
@@ -23,10 +23,10 @@ export function PhilosophySection() {
                     </div>
                     <div className="space-y-4">
                         {[
-                            { num: "01", title: "Brief", desc: "30-minute call to understand the product, users, constraints, and deadline." },
-                            { num: "02", title: "Build", desc: "Heads-down engineering. Public repo from day one; you see every commit." },
+                            { num: "01", title: "Brief", desc: "A 30-minute call to understand the product, users, constraints and deadline." },
+                            { num: "02", title: "Build", desc: "Heads-down engineering in a shared repo from day one. You see every commit." },
                             { num: "03", title: "Ship", desc: "Production deploy, real users, real feedback, not a staging demo." },
-                            { num: "04", title: "Support", desc: "Stay on-call for tweaks and bug fixes after launch. No ghosting." },
+                            { num: "04", title: "Support", desc: "On call for fixes after launch, and a written handover whenever you need one." },
                         ].map((step, idx) => (
                             <div
                                 key={step.title}

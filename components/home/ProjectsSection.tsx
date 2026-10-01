@@ -105,8 +105,8 @@ export function ProjectsSection() {
                     title={`Client Web · ${client.length}`}
                     description={divisionNames("client", 3)}
                     bgColor="bg-hotpink"
-                    textColor="text-cream"
-                    icon={<Globe size={28} className="text-cream" />}
+                    textColor="text-ink"
+                    icon={<Globe size={28} className="text-ink" />}
                     href="/work#client"
                     mediaHeader
                     header={

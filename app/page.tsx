@@ -12,6 +12,7 @@ import { PhilosophySection } from "@/components/home/PhilosophySection";
 import { ProofSection } from "@/components/home/ProofSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { CtaSection } from "@/components/home/CtaSection";
+import { CaseStudiesSection } from "@/components/home/CaseStudiesSection";
 
 /* ─── Konami Code Easter Egg ─── */
 function useKonamiCode(callback: () => void) {
@@ -53,6 +54,7 @@ export default function Home() {
             <StatsSection />
 
             <AboutSection />
+            <CaseStudiesSection />
 
             {/* Live terminal */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
@@ -79,7 +81,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     className="fixed top-20 left-1/2 -translate-x-1/2 z-[400] neo-card bg-acid text-ink px-6 py-3 font-mono text-sm font-bold uppercase"
                 >
-                    lord_decay mode activated
+                    konami mode activated
                     <button onClick={() => setKonamiActive(false)} className="ml-4 underline text-xs">dismiss</button>
                 </motion.div>
             )}

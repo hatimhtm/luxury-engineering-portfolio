@@ -12,8 +12,8 @@
   --ink: #1A1A1A;
   --acid: #CCFF00;
   --blue: #0055FF;
-  --pink: #FF3399;
-  --orange: #FF6600;
+  --pink: #C4B5FD;
+  --orange: #1A1A1A;
   --border-w: 3px;
   --shadow-x: 6px;
   --shadow-y: 6px;
@@ -190,8 +190,8 @@ body::before {
 
 .neo-glow-pink:hover {
   box-shadow: 10px 10px 0px 0px var(--ink),
-    0 0 30px rgba(255, 51, 153, 0.15),
-    0 0 60px rgba(255, 51, 153, 0.08);
+    0 0 30px rgba(196, 181, 253, 0.25),
+    0 0 60px rgba(196, 181, 253, 0.12);
 }
 
 .neo-glow-blue:hover {
@@ -666,7 +666,8 @@ body::before {
   color: #FFFDF5;
 }
 
-[data-theme="dark"] .bg-ink {
+[data-theme="dark"] .bg-ink,
+[data-theme="dark"] .bg-vivid {
   background-color: #2A2A2A;
 }
 
@@ -720,28 +721,33 @@ body::before {
    Acid/electric/pink/orange surfaces keep their light-mode ink text and
    borders - the theme flips the page, never the brand tiles. Higher
    specificity than the remaps above. */
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink,
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink,
 [data-theme="dark"] .bg-acid.text-ink,
 [data-theme="dark"] .bg-electric.text-ink,
-[data-theme="dark"] .bg-hotpink.text-ink,
-[data-theme="dark"] .bg-vivid.text-ink {
+[data-theme="dark"] .bg-hotpink.text-ink {
   color: #1A1A1A;
 }
 
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink,
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink,
 [data-theme="dark"] .bg-acid.border-ink,
 [data-theme="dark"] .bg-electric.border-ink,
-[data-theme="dark"] .bg-hotpink.border-ink,
-[data-theme="dark"] .bg-vivid.border-ink {
+[data-theme="dark"] .bg-hotpink.border-ink {
   border-color: #1A1A1A;
 }
 
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink\/80 { color: rgb(26 26 26 / 0.80); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink\/60 { color: rgb(26 26 26 / 0.60); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .text-ink\/10 { color: rgb(26 26 26 / 0.10); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink\/40 { border-color: rgb(26 26 26 / 0.40); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink\/30 { border-color: rgb(26 26 26 / 0.30); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink, .bg-vivid) .border-ink\/20 { border-color: rgb(26 26 26 / 0.20); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/80 { color: rgb(26 26 26 / 0.80); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/60 { color: rgb(26 26 26 / 0.60); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/10 { color: rgb(26 26 26 / 0.10); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink\/40 { border-color: rgb(26 26 26 / 0.40); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink\/30 { border-color: rgb(26 26 26 / 0.30); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink\/20 { border-color: rgb(26 26 26 / 0.20); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/85 { color: rgb(26 26 26 / 0.85); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/75 { color: rgb(26 26 26 / 0.75); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/70 { color: rgb(26 26 26 / 0.70); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/50 { color: rgb(26 26 26 / 0.50); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/40 { color: rgb(26 26 26 / 0.40); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/30 { color: rgb(26 26 26 / 0.30); }
+[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/20 { color: rgb(26 26 26 / 0.20); }
 
 /* ═══════════════════════════════════════════
    ADDITIONAL UTILITIES

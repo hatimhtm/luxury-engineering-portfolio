@@ -12,15 +12,15 @@ const config: Config = {
                 ink: "#1A1A1A",
                 acid: "#CCFF00",
                 electric: "#0055FF",
-                hotpink: "#FF3399",
-                vivid: "#FF6600",
+                hotpink: "#C4B5FD",
+                vivid: "#1A1A1A",
                 neo: {
                     cream: "#FFFDF5",
                     ink: "#1A1A1A",
                     acid: "#CCFF00",
                     blue: "#0055FF",
-                    pink: "#FF3399",
-                    orange: "#FF6600",
+                    pink: "#C4B5FD",
+                    orange: "#1A1A1A",
                     green: "#00CC66",
                 },
                 /* Luxury gradient stops */
@@ -44,7 +44,7 @@ const config: Config = {
                 "neo-inv-lg": "10px 10px 0px 0px #FFFDF5",
                 "neo-glow": "6px 6px 0px 0px #1A1A1A, 0 0 20px rgba(204, 255, 0, 0.1)",
                 "neo-glow-blue": "6px 6px 0px 0px #1A1A1A, 0 0 20px rgba(0, 85, 255, 0.15)",
-                "neo-glow-pink": "6px 6px 0px 0px #1A1A1A, 0 0 20px rgba(255, 51, 153, 0.15)",
+                "neo-glow-pink": "6px 6px 0px 0px #1A1A1A, 0 0 20px rgba(196, 181, 253, 0.25)",
             },
             backdropBlur: {
                 xs: "2px",

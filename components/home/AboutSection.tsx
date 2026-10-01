@@ -33,8 +33,8 @@ export function AboutSection() {
                             End-to-end<br />product engineer
                         </h2>
                         <p className="font-sans text-sm md:text-base text-ink/85 leading-relaxed mb-4">
-                            Three continents, one craft. Years of building products: native iOS in Swift, web apps in Next.js, AI pipelines in Python. Most of them shipped for solo founders and small teams who needed a
-                            full-stack engineer, not a committee.
+                            Three continents, one craft. Years of building products: native iOS in Swift, web apps in Next.js, AI pipelines in Python. Most of them shipped for founders, studios and agencies who needed one
+                            engineer to own the whole build.
                         </p>
                         <p className="font-sans text-sm md:text-base text-ink/85 leading-relaxed">
                             I own the whole loop: design choices, architecture, shipping,

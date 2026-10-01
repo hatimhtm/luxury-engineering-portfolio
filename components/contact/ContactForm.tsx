@@ -173,7 +173,7 @@ export function ContactForm() {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="p-3 bg-hotpink/10 border-[3px] border-hotpink/40 font-mono text-sm text-hotpink"
+                                className="p-3 bg-red-600/10 border-[3px] border-red-600/40 font-mono text-sm text-red-600"
                             >
                                 {error}
                             </motion.div>

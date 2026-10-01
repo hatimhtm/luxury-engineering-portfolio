@@ -46,7 +46,7 @@ export const categories: Category[] = [
     {
         name: "AI / ML",
         color: "bg-hotpink",
-        textColor: "text-cream",
+        textColor: "text-ink",
         tools: [
             { name: "OpenAI / GPT", depth: "daily", detail: "Prompt design, function calling, structured outputs, embeddings." },
             { name: "Gemini 2.5 / 3", depth: "daily", detail: "Image gen, vision, and structured parsing. TryIt, Eli, Lumi, LeadSniper." },
@@ -82,7 +82,7 @@ export function StatusBar() {
         <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
             <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">{"/// arsenal"}</span>
+                <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">{"/// stack"}</span>
             </div>
             <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">
                 {total} TOOLS · {categories.length} CATEGORIES
@@ -172,7 +172,7 @@ export function CurrentlyLearningSection() {
     return (
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 reveal-up">
             <div className="flex items-center gap-2 mb-2">
-                <Flame size={16} className="text-hotpink" />
+                <Flame size={16} className="text-electric" />
                 <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60">Level Up</div>
             </div>
             <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight text-ink mb-6">Currently Learning</h2>

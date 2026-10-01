@@ -9,7 +9,7 @@ export function ServicesSection() {
             <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-2">What I Do</div>
             <div className="flex items-end justify-between mb-6">
                 <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">Services</h2>
-                <a href="/services" className="font-mono text-sm font-bold uppercase tracking-wider text-ink hover:text-vivid transition-colors flex items-center gap-1 group">
+                <a href="/services" className="font-mono text-sm font-bold uppercase tracking-wider text-ink hover:text-electric transition-colors flex items-center gap-1 group">
                     Details <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
             </div>

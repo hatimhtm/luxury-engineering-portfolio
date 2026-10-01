@@ -6,7 +6,7 @@ import { Mail, CalendarDays } from "lucide-react";
 export function CtaSection() {
     return (
         <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 reveal-up">
-            <div className="neo-card bg-hotpink text-cream p-8 md:p-12 text-center relative overflow-hidden gradient-top-accent">
+            <div className="neo-card bg-ink text-cream p-8 md:p-12 text-center relative overflow-hidden gradient-top-accent">
                 <GridDots className="absolute inset-0 w-full h-full text-cream/5" />
                 <div className="absolute top-0 left-1/4 w-1/2 h-32 bg-acid/10 blur-3xl pointer-events-none" />
                 <div className="relative z-10">
