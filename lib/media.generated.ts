@@ -69,6 +69,9 @@ export const MEDIA: Record<string, Media> = {
         "icon": "/icons/estelle.webp"
     },
     "fader": {
+        "shots": [
+            "/work/fader-2.jpg"
+        ],
         "cover": "/work/fader.jpg",
         "icon": "/icons/fader.webp"
     },
@@ -166,6 +169,10 @@ export const MEDIA: Record<string, Media> = {
         "cover": "/work/nota-parfum.jpg"
     },
     "pause": {
+        "shots": [
+            "/work/pause-2.jpg",
+            "/work/pause-3.jpg"
+        ],
         "cover": "/work/pause.jpg",
         "icon": "/icons/pause.webp"
     },
