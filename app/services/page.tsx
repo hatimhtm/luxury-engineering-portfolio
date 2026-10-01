@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const WAYS = [
     {
-        title: "Join your team",
+        title: "Inside your team",
         body: "An iOS engineer on your client's project, working in your repo and tools, with a written update every day and live hours on European mornings. Monthly.",
     },
     {

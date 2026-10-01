@@ -48,7 +48,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                     <ArrowLeft size={16} weight="bold" /> All work
                 </Link>
                 <div className="mt-10 flex items-center gap-4">
-                    {m.icon && <Image src={m.icon} alt="" width={64} height={64} className="rounded-[22%] shadow-[0_10px_24px_-10px_rgb(16_22_44/0.5)]" />}
+                    {m.icon && <Image quality={90} src={m.icon} alt="" width={64} height={64} className="rounded-[22%] shadow-[0_10px_24px_-10px_rgb(16_22_44/0.5)]" />}
                     <p className="text-[15px] font-semibold text-ink3">{kindOf(p)}</p>
                 </div>
                 <SplitReveal as="h1" text={name} className="display mt-4 text-[3.4rem] text-ink md:text-[6.4rem]" />
@@ -128,7 +128,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                 <Link href={`/work/${next.slug}`} className="tray group block">
                     <div className="plate relative flex h-full min-h-[240px] flex-col justify-end overflow-hidden p-8">
                         {(nextMedia.cover || nextMedia.poster) && (
-                            <Image src={(nextMedia.cover || nextMedia.poster) as string} alt="" fill sizes="50vw" className="object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
+                            <Image quality={90} src={(nextMedia.cover || nextMedia.poster) as string} alt="" fill sizes="50vw" className="object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
                         )}
                         <div className="relative">
                             <p className="text-[14px] font-semibold text-ink2">Next project</p>

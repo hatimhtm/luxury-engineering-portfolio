@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, type MotionValue } from "framer-motion";
 import LiquidGlass from "@/components/glass/LiquidGlass";
 import { MEDIA } from "@/lib/media.generated";
@@ -22,27 +22,41 @@ const APPS: { slug: string; name: string; where: string; full?: boolean }[] = [
     { slug: "pause", name: "Pause", where: "Android", full: true },
 ];
 
-function Icon({ app, mouseX, reduce }: { app: (typeof APPS)[number]; mouseX: MotionValue<number>; reduce: boolean }) {
-    const ref = useRef<HTMLAnchorElement>(null);
+const BASE = 58;
+const PEAK = 92;
+const GAP = 12;
+const PAD = 16;
+// the glass is sized once for the fully magnified dock, so it never changes size (no refraction redraw, no recentering)
+const DOCK_W = APPS.length * BASE + (APPS.length - 1) * GAP + 2 * PAD + 2 * (PEAK - BASE) + 40;
+const DOCK_H = PEAK + 2 * 12;
+
+function Icon({ app, index, mouseX, centers, reduce }: { app: (typeof APPS)[number]; index: number; mouseX: MotionValue<number>; centers: React.MutableRefObject<number[]>; reduce: boolean }) {
     const [hover, setHover] = useState(false);
-    const distance = useTransform(mouseX, (x) => {
-        const r = ref.current?.getBoundingClientRect();
-        return r ? x - (r.left + r.width / 2) : 9999;
-    });
-    const size = useSpring(useTransform(distance, [-170, 0, 170], [58, 96, 58]), { mass: 0.12, stiffness: 180, damping: 14 });
+    // distance to where the icon rests, measured once: no feedback from neighbours growing
+    const distance = useTransform(mouseX, (x) => (Number.isFinite(x) && centers.current[index] !== undefined ? x - centers.current[index] : 9999));
+    const target = useTransform(distance, [-180, 0, 180], [BASE, PEAK, BASE]);
+    const size = useSpring(target, { stiffness: 320, damping: 32, mass: 0.25 });
     const src = MEDIA[app.slug]?.icon;
     return (
-        <motion.div style={{ width: reduce ? 58 : size, height: reduce ? 58 : size }} className="relative flex-none">
-            <Link ref={ref} href={`/work/${app.slug}`} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onFocus={() => setHover(true)} onBlur={() => setHover(false)} className="block h-full w-full" aria-label={`${app.name}, ${app.where}`}>
+        <motion.div style={{ width: reduce ? BASE : size, height: reduce ? BASE : size }} className="relative flex-none">
+            <Link
+                href={`/work/${app.slug}`}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                onFocus={() => setHover(true)}
+                onBlur={() => setHover(false)}
+                className="block h-full w-full"
+                aria-label={`${app.name}, ${app.where}`}
+            >
                 {src && (
-                    <Image src={src} alt="" fill sizes="96px" className={`object-cover ${app.full ? "rounded-[22%] shadow-[0_6px_14px_-6px_rgb(16_22_44/0.45)]" : "drop-shadow-[0_6px_10px_rgb(16_22_44/0.3)]"}`} />
+                    <Image src={src} alt="" fill sizes="96px" quality={95} className={`object-cover ${app.full ? "rounded-[22%] shadow-[0_6px_14px_-6px_rgb(16_22_44/0.45)]" : "drop-shadow-[0_6px_10px_rgb(16_22_44/0.3)]"}`} />
                 )}
             </Link>
-            <motion.div initial={false} animate={{ opacity: hover ? 1 : 0, y: hover ? 0 : 6 }} transition={{ duration: 0.18 }} className="pointer-events-none absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <LiquidGlass radius={999} bezel={6} strength={8} frost={10} tint="var(--gt-hi)" className="px-3 py-1.5 text-center">
-                    <span className="block text-[13px] font-bold leading-tight text-ink">{app.name}</span>
-                    <span className="block text-[11px] leading-tight text-ink2">{app.where}</span>
-                </LiquidGlass>
+            <motion.div initial={false} animate={{ opacity: hover ? 1 : 0, y: hover ? 0 : 6 }} transition={{ duration: 0.16 }} className="pointer-events-none absolute -top-14 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap">
+                <div className="rounded-full bg-ink px-3 py-1.5 text-center shadow-lg">
+                    <span className="block text-[13px] font-bold leading-tight text-page">{app.name}</span>
+                    <span className="block text-[11px] leading-tight text-page/70">{app.where}</span>
+                </div>
             </motion.div>
         </motion.div>
     );
@@ -52,37 +66,58 @@ function Icon({ app, mouseX, reduce }: { app: (typeof APPS)[number]; mouseX: Mot
 export default function AppDock() {
     const reduce = Boolean(useReducedMotion());
     const mouseX = useMotionValue(Infinity);
+    const row = useRef<HTMLDivElement>(null);
+    const centers = useRef<number[]>([]);
+
+    // measure every icon's resting centre while the dock is at rest
+    const measure = useCallback(() => {
+        const el = row.current;
+        if (!el) return;
+        const start = el.getBoundingClientRect();
+        const total = APPS.length * BASE + (APPS.length - 1) * GAP;
+        const left = start.left + (start.width - total) / 2;
+        centers.current = APPS.map((_, i) => left + i * (BASE + GAP) + BASE / 2);
+    }, []);
+
     return (
         <section className="relative overflow-hidden py-24 md:py-32" aria-labelledby="dock-title">
             <div className="mx-auto max-w-[1280px] px-5 md:px-10">
-                <h2 id="dock-title" className="display max-w-3xl text-[2.6rem] text-ink md:text-[4rem]">Twelve apps, on iPhone, Mac and Android.</h2>
-                <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-ink2">Run your cursor along the dock. Click one to see how it was built.</p>
+                <h2 id="dock-title" className="display max-w-3xl text-[2.6rem] text-ink md:text-[4rem]">Apps for iPhone, Mac and Android.</h2>
+                <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-ink2">Four are on the App Store, one is also on Google Play. Run your cursor along the dock and click one to see how it was built.</p>
             </div>
-            <div className="relative mt-14 overflow-x-auto px-5 pb-10 pt-16 [scrollbar-width:none] md:overflow-visible">
-                {/* a wall of real app screens behind the dock, for the glass to bend */}
+            <div className="relative mt-12 overflow-x-auto px-5 pb-10 [scrollbar-width:none] md:overflow-visible">
+                {/* real screens from the apps, behind the dock, for the glass to bend */}
                 <motion.div
                     aria-hidden
-                    initial={reduce ? false : { opacity: 0, x: 60 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-                    className="absolute inset-x-0 -top-6 bottom-0 bg-[url('/work/screens-wall.jpg')] bg-[length:auto_100%] bg-center bg-repeat-x"
-                    style={{ maskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)", WebkitMaskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)" }}
+                    initial={reduce ? false : { opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.25 }}
+                    transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
+                    className="relative mx-auto h-[300px] w-[1120px] max-w-none bg-[url('/work/screens-wall.webp')] bg-contain bg-center bg-no-repeat md:h-[340px] md:w-[1240px]"
                 />
-                <LiquidGlass
-                    radius={30}
-                    bezel={16}
-                    strength={22}
-                    frost={4}
-                    tint="var(--gt-lo)"
-                    onMouseMove={(e) => mouseX.set(e.clientX)}
-                    onMouseLeave={() => mouseX.set(Infinity)}
-                    className="relative mx-auto mt-[120px] flex w-max items-end gap-3 px-4 pb-3 pt-3"
-                >
-                    {APPS.map((a) => (
-                        <Icon key={a.slug} app={a} mouseX={mouseX} reduce={reduce} />
-                    ))}
-                </LiquidGlass>
+                <div className="relative -mt-[78px] flex justify-center">
+                    <LiquidGlass
+                        radius={30}
+                        bezel={16}
+                        strength={22}
+                        frost={3}
+                        tint="var(--gt-lo)"
+                        onMouseEnter={(e) => {
+                            measure();
+                            mouseX.set(e.clientX);
+                        }}
+                        onMouseMove={(e) => mouseX.set(e.clientX)}
+                        onMouseLeave={() => mouseX.set(Infinity)}
+                        style={{ width: DOCK_W, height: DOCK_H }}
+                        className="flex-none"
+                    >
+                        <div ref={row} className="flex h-full w-full items-end justify-center pb-3" style={{ gap: GAP }}>
+                            {APPS.map((a, i) => (
+                                <Icon key={a.slug} app={a} index={i} mouseX={mouseX} centers={centers} reduce={reduce} />
+                            ))}
+                        </div>
+                    </LiquidGlass>
+                </div>
             </div>
         </section>
     );

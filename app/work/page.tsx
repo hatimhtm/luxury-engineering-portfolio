@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: "Every project Hatim El Hassak has shipped since 2020: apps, systems, websites and tools, the big ones with case studies.",
 };
 
-export default function WorkPage() {
+export default function WorkPage({ searchParams }: { searchParams?: { filter?: string } }) {
     const flag = new Set(flagships.map((p) => p.slug));
     const ordered = [...flagships, ...projects.filter((p) => !flag.has(p.slug) && tierOf(p.slug) !== "small"), ...projects.filter((p) => !flag.has(p.slug) && tierOf(p.slug) === "small")];
     const items: GridItem[] = ordered.map((p) => ({ slug: p.slug, name: p.title.replace(": Manifest Affirmations", ""), kind: kindOf(p), group: p.division, tier: tierOf(p.slug) }));
@@ -24,7 +24,7 @@ export default function WorkPage() {
                 </Reveal>
             </header>
             <div className="mt-12">
-                <WorkGrid items={items} />
+                <WorkGrid items={items} initialFilter={searchParams?.filter ?? "all"} />
             </div>
         </div>
     );

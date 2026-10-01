@@ -43,7 +43,8 @@ export default function AboutPage() {
                 </div>
                 <Reveal delay={0.2} className="tray">
                     <div className="plate overflow-hidden">
-                        <Image src="/avatar.png" alt="Hatim's avatar: a drawing of him in profile, with headphones" width={640} height={640} priority className="w-full" />
+                        <Image quality={90} src="/avatar.png" alt="Hatim's avatar: a drawing of him in profile, with headphones" width={640} height={640} priority className="theme-day w-full" />
+                        <Image quality={90} src="/avatar-dark.png" alt="" width={640} height={640} priority className="theme-night w-full" />
                     </div>
                 </Reveal>
             </section>

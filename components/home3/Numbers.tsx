@@ -19,7 +19,7 @@ function Count({ to, decimals = 0, suffix = "" }: { to: number; decimals?: numbe
 
 const STATS = [
     { to: projectCount, label: "projects shipped since 2020" },
-    { to: 12, label: "apps on iPhone, Mac and Android" },
+    { to: 4, label: "apps on the App Store, one also on Google Play" },
     { to: 4.4, decimals: 1, suffix: "★", label: "GoPilates in France, from 208 ratings" },
     { to: 148, label: "countries where Estelle is live" },
 ];

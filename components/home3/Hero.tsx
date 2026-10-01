@@ -9,6 +9,9 @@ import LiquidGlass from "@/components/glass/LiquidGlass";
 import SplitReveal from "@/components/motion/SplitReveal";
 import { BOOK_CALL } from "@/lib/site";
 
+// the looping 3D drift; off until the 2560 px render replaces the 1600 px one
+const HERO_LOOP = false;
+
 export default function Hero() {
     const reduce = useReducedMotion();
     const box = useRef<HTMLElement>(null);
@@ -44,8 +47,8 @@ export default function Hero() {
     return (
         <section ref={box} onPointerMove={onMove} className="relative min-h-[100dvh] overflow-hidden">
             <motion.div aria-hidden style={reduce ? undefined : { x: bgX, y: bgY, scale: bgScale }} className="absolute inset-x-0 top-0 h-[58vh] md:inset-0 md:h-auto">
-                {reduce ? (
-                    <Image src="/work/hero-day.jpg" alt="" fill priority sizes="100vw" className="theme-day object-cover object-[80%_55%] md:object-[center_46%]" />
+                {reduce || !HERO_LOOP ? (
+                    <Image quality={92} src="/work/hero-day.jpg" alt="" fill priority sizes="100vw" className="theme-day object-cover object-[80%_55%] md:object-[center_46%]" />
                 ) : (
                     // a slow 3D camera drift around the devices, rendered in Blender, looping
                     <video
@@ -60,7 +63,7 @@ export default function Hero() {
                         aria-hidden
                     />
                 )}
-                <Image src="/work/hero-night.jpg" alt="" fill priority sizes="100vw" className="theme-night object-cover object-[80%_55%] md:object-[center_46%]" />
+                <Image quality={90} src="/work/hero-night.jpg" alt="" fill priority sizes="100vw" className="theme-night object-cover object-[80%_55%] md:object-[center_46%]" />
             </motion.div>
             <div aria-hidden className="absolute inset-x-0 top-[32vh] h-[30vh] bg-gradient-to-b from-transparent via-page/70 to-page md:bottom-0 md:top-auto md:h-40 md:via-transparent" />
             <div aria-hidden className="hero-scrim pointer-events-none absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-page/85 via-page/50 to-transparent" />
@@ -68,10 +71,7 @@ export default function Hero() {
             <div className="relative mx-auto flex min-h-[100dvh] max-w-[1280px] flex-col justify-end px-5 pb-14 pt-[52vh] md:justify-center md:px-10 md:pb-24 md:pt-32">
                 <motion.div style={reduce ? undefined : { y: copyY, opacity: copyOpacity }} className="max-w-[640px]">
                     <LiquidGlass radius={999} bezel={8} strength={10} frost={8} tint="var(--gt-mid)" className="inline-flex items-center gap-2.5 py-2 pl-3 pr-4 text-[14px] font-semibold text-ink">
-                        <span className="relative flex h-2.5 w-2.5">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/60" />
-                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                        </span>
+                        <span aria-hidden className="h-2 w-2 rounded-full bg-emerald-600" />
                         Taking new projects for October
                     </LiquidGlass>
                     <SplitReveal as="h1" text="I build native apps for iPhone, Mac and Android." delay={0.15} className="display mt-6 text-[3rem] text-ink sm:text-[3.9rem] lg:text-[4.5rem]" />

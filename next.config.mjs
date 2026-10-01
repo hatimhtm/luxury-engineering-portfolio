@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // test builds go to their own folder so they never disturb the dev server
+    distDir: process.env.NEXT_DIST_DIR || ".next",
     images: {
         domains: [],
+        formats: ["image/webp"],
+        deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920, 2560, 3200],
+        minimumCacheTTL: 31536000,
     },
     async headers() {
         return [

@@ -5,7 +5,7 @@ import Reveal from "@/components/v2/Reveal";
 import { BOOK_CALL } from "@/lib/site";
 
 const WAYS = [
-    { icon: UsersThree, title: "Join your team", body: "An iOS engineer on your client's project, in your repo, live on European mornings." },
+    { icon: UsersThree, title: "Inside your team", body: "An iOS engineer on your client's project, in your repo and tools, live on European mornings." },
     { icon: DeviceMobile, title: "Build a whole app", body: "From the first screen to the App Store and Google Play, subscriptions included." },
     { icon: Stack, title: "One scoped job", body: "An audit, a migration, an App Review rejection or one feature, with a date." },
 ];
@@ -42,7 +42,10 @@ export function AboutTeaser() {
             <Reveal>
                 <div className="tray">
                     <div className="plate grid items-center gap-10 p-8 md:grid-cols-[280px_1fr] md:p-12">
-                        <Image src="/avatar.png" alt="Hatim's avatar: a drawing of him in profile, with headphones" width={280} height={280} className="w-[200px] rounded-[28px] md:w-[280px]" />
+                        <div className="w-[200px] md:w-[280px]">
+                            <Image quality={90} src="/avatar.png" alt="Hatim's avatar: a drawing of him in profile, with headphones" width={280} height={280} className="theme-day w-full rounded-[28px]" />
+                            <Image quality={90} src="/avatar-dark.png" alt="" width={280} height={280} className="theme-night w-full rounded-[28px]" />
+                        </div>
                         <div>
                             <h2 id="about-teaser-title" className="display text-[2.6rem] text-ink md:text-[3.6rem]">I&apos;m Hatim.</h2>
                             <p className="mt-4 max-w-2xl text-[18px] leading-relaxed text-ink2">
@@ -62,7 +65,7 @@ export function AboutTeaser() {
 export function CtaBand() {
     return (
         <section className="relative overflow-hidden bg-[#0d0f14]" aria-labelledby="cta-title">
-            <Image src="/work/hero-night.jpg" alt="" fill sizes="100vw" className="object-cover object-[70%_50%] opacity-80" />
+            <Image quality={90} src="/work/hero-night.jpg" alt="" fill sizes="100vw" className="object-cover object-[70%_50%] opacity-80" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-[#0d0f14] via-[#0d0f14]/70 to-transparent" />
             <div className="relative mx-auto flex max-w-[1280px] flex-col items-start gap-8 px-5 py-28 md:flex-row md:items-end md:justify-between md:px-10 md:py-40">
                 <Reveal>

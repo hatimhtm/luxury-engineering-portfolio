@@ -22,10 +22,10 @@ function Card({ c }: { c: (typeof CASES)[number] }) {
     return (
         <Link href={`/work/${c.slug}`} className="group relative block h-[64vh] min-h-[420px] w-[78vw] max-w-[860px] flex-none overflow-hidden rounded-[34px] bg-ink/5 md:w-[62vw]">
             {img ? (
-                <Image src={img} alt={`${c.name}, edited screenshot`} fill sizes="62vw" className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04]" />
+                <Image quality={90} src={img} alt={`${c.name}, edited screenshot`} fill sizes="62vw" className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04]" />
             ) : (
                 <div className="field flex h-full w-full items-center justify-center">
-                    {m.icon ? <Image src={m.icon} alt="" width={160} height={160} className="rounded-[22%] shadow-2xl" /> : <span className="display text-[4rem] text-ink/75">{c.name}</span>}
+                    {m.icon ? <Image quality={90} src={m.icon} alt="" width={160} height={160} className="rounded-[22%] shadow-2xl" /> : <span className="display text-[4rem] text-ink/75">{c.name}</span>}
                 </div>
             )}
             <div className="absolute bottom-5 left-5 right-5 md:right-auto md:w-[420px]">
