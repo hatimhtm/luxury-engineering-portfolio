@@ -2,638 +2,160 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ═══════════════════════════════════════════
-   NEO-BRUTALIST × LUXURY DESIGN SYSTEM
-   Hatim El Hassak - Portfolio
-   ═══════════════════════════════════════════ */
-
+/* Hatim El Hassak, portfolio. Stone and glass.
+   Colours are RGB channels so Tailwind can add alpha: bg-ink/10, text-accent, etc. */
 :root {
-  --cream: #FFFDF5;
-  --ink: #1A1A1A;
-  --acid: #CCFF00;
-  --blue: #0055FF;
-  --pink: #C4B5FD;
-  --orange: #1A1A1A;
-  --border-w: 3px;
-  --shadow-x: 6px;
-  --shadow-y: 6px;
+  --page: 235 234 230;      /* the stone of the hero photo */
+  --raised: 246 245 242;
+  --ink: 29 30 33;
+  --ink2: 74 76 82;
+  --ink3: 112 114 120;
+  --accent: 46 79 214;      /* cobalt, the only accent on the site */
+  --onaccent: 255 255 255;
+  --hairline: rgb(29 30 33 / 0.10);
+  --glass-fill: linear-gradient(135deg, rgb(255 255 255 / 0.52), rgb(255 255 255 / 0.18));
+  --glass-edge: rgb(255 255 255 / 0.62);
+  --glass-lift: inset 0 1px 0 rgb(255 255 255 / 0.75), inset 0 -1px 0 rgb(255 255 255 / 0.16), 0 18px 48px rgb(60 58 52 / 0.13);
+  color-scheme: light;
 }
 
-/* ── Base ── */
-* {
-  box-sizing: border-box;
+[data-theme="dark"] {
+  --page: 18 19 21;
+  --raised: 28 29 32;
+  --ink: 238 238 235;
+  --ink2: 178 179 184;
+  --ink3: 136 138 144;
+  --accent: 128 150 255;
+  --onaccent: 10 14 34;
+  --hairline: rgb(255 255 255 / 0.10);
+  --glass-fill: linear-gradient(135deg, rgb(255 255 255 / 0.13), rgb(255 255 255 / 0.04));
+  --glass-edge: rgb(255 255 255 / 0.15);
+  --glass-lift: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 18px 48px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
 }
 
-::selection {
-  background: var(--acid);
-  color: var(--ink);
+html {
+  background: rgb(var(--page));
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  color: var(--ink);
-  background: var(--cream);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
+  background: rgb(var(--page));
+  color: rgb(var(--ink));
+  font-family: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* ── Film Grain Overlay ── */
-body::before {
+::selection {
+  background: rgb(var(--accent) / 0.22);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Liquid Glass, web approximation: blur + layered edge highlights.
+   Apple ships the real material on its own platforms only; this is our reading of it. */
+.glass {
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-lift);
+}
+
+/* A specular highlight that follows the pointer. Components set --mx / --my. */
+.glass-light {
+  position: relative;
+  isolation: isolate;
+}
+.glass-light::after {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 9999;
+  border-radius: inherit;
   pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
+  background: radial-gradient(260px circle at var(--mx, 20%) var(--my, -20%), rgb(255 255 255 / 0.42), transparent 62%);
+  opacity: var(--lit, 0.55);
+  transition: opacity 0.4s ease;
+  mix-blend-mode: soft-light;
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--cream);
-  border-left: var(--border-w) solid var(--ink);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--ink);
-  border: 2px solid var(--cream);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--blue);
-}
-
-/* ═══════════════════════════════════════════
-   NEO-BRUTALIST CARDS
-   ═══════════════════════════════════════════ */
-.neo-card {
-  border: var(--border-w) solid var(--ink);
-  box-shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--ink);
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform, box-shadow;
-}
-
-.neo-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0px 0px var(--ink);
-}
-
-.neo-card-inverse {
-  border: var(--border-w) solid var(--cream);
-  box-shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--cream);
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.neo-card-inverse:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0px 0px var(--cream);
-}
-
-/* ═══════════════════════════════════════════
-   GLASSMORPHISM CARDS
-   ═══════════════════════════════════════════ */
-.neo-card-glass {
-  border: var(--border-w) solid var(--ink);
-  box-shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--ink);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(255, 253, 245, 0.7);
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-    backdrop-filter 0.3s ease;
-}
-
-.neo-card-glass:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0px 0px var(--ink);
-  backdrop-filter: blur(20px);
-}
-
-/* ═══════════════════════════════════════════
-   GRADIENT UTILITIES
-   ═══════════════════════════════════════════ */
-.gradient-text {
-  background: linear-gradient(135deg, var(--acid) 0%, var(--blue) 50%, var(--pink) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-acid {
-  background: linear-gradient(135deg, var(--acid) 0%, #88FF44 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-warm {
-  background: linear-gradient(135deg, var(--orange) 0%, var(--pink) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  background: linear-gradient(135deg, var(--acid), var(--blue), var(--pink), var(--orange));
-  background-size: 300% 300%;
-  z-index: -1;
-  animation: gradient-shift 4s ease infinite;
-}
-
-/* Gradient accent line for card tops */
-.gradient-top-accent {
-  position: relative;
-}
-
-.gradient-top-accent::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--acid), var(--blue), var(--pink));
-  background-size: 200% 100%;
-  animation: gradient-shift 3s ease infinite;
-}
-
-/* ═══════════════════════════════════════════
-   GLOW EFFECTS
-   ═══════════════════════════════════════════ */
-.neo-glow {
-  transition: box-shadow 0.3s ease, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.neo-glow:hover {
-  box-shadow: 10px 10px 0px 0px var(--ink),
-    0 0 30px rgba(204, 255, 0, 0.15),
-    0 0 60px rgba(0, 85, 255, 0.08);
-}
-
-.neo-glow-pink:hover {
-  box-shadow: 10px 10px 0px 0px var(--ink),
-    0 0 30px rgba(196, 181, 253, 0.25),
-    0 0 60px rgba(196, 181, 253, 0.12);
-}
-
-.neo-glow-blue:hover {
-  box-shadow: 10px 10px 0px 0px var(--ink),
-    0 0 30px rgba(0, 85, 255, 0.2),
-    0 0 60px rgba(0, 85, 255, 0.1);
-}
-
-/* ═══════════════════════════════════════════
-   MARQUEE
-   ═══════════════════════════════════════════ */
-.marquee-container {
-  display: flex;
-  overflow: hidden;
-  user-select: none;
-  gap: 0;
-  width: 100%;
-}
-
-.marquee-content {
-  flex-shrink: 0;
-  display: flex;
-  gap: 0;
-  min-width: 100%;
-  white-space: nowrap;
-}
-
-/* ═══════════════════════════════════════════
-   ANIMATIONS
-   ═══════════════════════════════════════════ */
-
-/* Marquee */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: rgb(var(--raised));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 
-@keyframes marquee-reverse {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 20s linear infinite;
-}
-
-.animate-marquee-reverse {
-  animation: marquee-reverse 20s linear infinite;
-}
-
-/* Float */
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  33% {
-    transform: translateY(-8px) rotate(1deg);
-  }
-
-  66% {
-    transform: translateY(4px) rotate(-1deg);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Pulse dot */
-@keyframes pulse-dot {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.6;
-    transform: scale(1.3);
-  }
-}
-
-.animate-pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-/* Spin slow */
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
-}
-
-/* Shake on hover */
-@keyframes shake {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  10% {
-    transform: translateX(-3px) rotate(-1deg);
-  }
-
-  20% {
-    transform: translateX(3px) rotate(1deg);
-  }
-
-  30% {
-    transform: translateX(-3px);
-  }
-
-  40% {
-    transform: translateX(3px);
-  }
-
-  50% {
-    transform: translateX(0);
-  }
-}
-
-.hover-shake:hover {
-  animation: shake 0.5s ease-in-out;
-}
-
-/* Blink cursor */
-@keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-}
-
-.animate-blink {
-  animation: blink 1s step-end infinite;
-}
-
-/* Stagger fade-in (used with Framer Motion inline) */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* CSS-only entrance - plays on load with `both` fill, so content can
-   never be JS-gated invisible (crawlers, no-JS, slow hydration).
-   The reduced-motion block truncates it to the final visible state. */
-.reveal-up {
-  animation: fade-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-/* Ticker flash */
-@keyframes ticker-flash {
-
-  0%,
-  90%,
-  100% {
-    opacity: 1;
-  }
-
-  95% {
-    opacity: 0;
-  }
-}
-
-.animate-ticker {
-  animation: ticker-flash 3s ease infinite;
-}
-
-/* Gradient shift */
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient {
-  animation: gradient-shift 4s ease infinite;
-  background-size: 200% 200%;
-}
-
-/* Shimmer */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg,
-      transparent 25%,
-      rgba(204, 255, 0, 0.08) 50%,
-      transparent 75%);
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-/* Glow pulse */
-@keyframes glow-pulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 15px rgba(204, 255, 0, 0.1);
-  }
-
-  50% {
-    box-shadow: 0 0 30px rgba(204, 255, 0, 0.25),
-      0 0 60px rgba(204, 255, 0, 0.08);
-  }
-}
-
-.animate-glow-pulse {
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-
-/* Gradient blob float */
-@keyframes blob-float {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  25% {
-    transform: translate(30px, -20px) scale(1.05);
-  }
-
-  50% {
-    transform: translate(-20px, 20px) scale(0.95);
-  }
-
-  75% {
-    transform: translate(20px, 10px) scale(1.02);
-  }
-}
-
-.animate-blob {
-  animation: blob-float 8s ease-in-out infinite;
-}
-
-.animate-blob-delay {
-  animation: blob-float 8s ease-in-out 2s infinite;
-}
-
-.animate-blob-delay-2 {
-  animation: blob-float 8s ease-in-out 4s infinite;
-}
-
-/* Reveal line */
-@keyframes reveal-line {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: 100%;
-  }
-}
-
-.animate-reveal-line {
-  animation: reveal-line 1s ease-out forwards;
-}
-
-/* ═══════════════════════════════════════════
-   3D TILT EFFECT
-   ═══════════════════════════════════════════ */
-.tilt-card {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: transform 0.2s ease;
-}
-
-/* ═══════════════════════════════════════════
-   UTILITY CLASSES
-   ═══════════════════════════════════════════ */
-
-.neo-border {
-  border: var(--border-w) solid var(--ink);
-}
-
-.neo-pill {
-  border: 2px solid var(--ink);
-  padding: 10px 14px;
-  min-height: 44px; /* touch-target floor */
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.15s ease;
+.pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.78rem 1.3rem;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pill:active {
+  transform: scale(0.97);
+}
+.pill-accent {
+  background: rgb(var(--accent));
+  color: rgb(var(--onaccent));
+  box-shadow: 0 8px 22px rgb(var(--accent) / 0.26);
+}
+.pill-accent:hover {
+  background: rgb(var(--accent) / 0.9);
 }
 
-.neo-pill:hover {
-  background: var(--ink);
-  color: var(--cream);
-  transform: translateY(-2px);
+.link {
+  color: rgb(var(--accent));
+  font-weight: 600;
+  text-underline-offset: 0.2em;
+}
+.link:hover {
+  text-decoration: underline;
 }
 
-/* Small shadow variant */
-.shadow-neo-sm {
-  box-shadow: 4px 4px 0px 0px var(--ink);
+/* Images that change with the theme: the same scene by day and by night. */
+.theme-night { display: none; }
+[data-theme="dark"] .theme-day { display: none; }
+[data-theme="dark"] .theme-night { display: block; }
+
+/* Darkens the left of the night hero so the headline keeps its contrast. */
+.hero-scrim { display: none; }
+@media (min-width: 1280px) { [data-theme="dark"] .hero-scrim { display: block; } }
+
+/* Glass that sits over photos or film: tinted with the page colour so text stays readable in both themes. */
+.glass-over {
+  background: linear-gradient(135deg, rgb(var(--page) / 0.78), rgb(var(--page) / 0.58));
 }
 
-/* Sticker-style rotate effect */
-.sticker {
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.sticker:hover {
-  transform: rotate(-3deg) scale(1.05);
-}
-
-/* Horizontal scroll container */
-.horizontal-scroll {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.horizontal-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.horizontal-scroll > * {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════ */
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .neo-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px 0px var(--ink);
+/* A panel that floats over film on wide screens and sits flat below it on phones. */
+@media (min-width: 768px) {
+  .glass-md {
+    background: linear-gradient(135deg, rgb(var(--page) / 0.78), rgb(var(--page) / 0.58));
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    border: 1px solid var(--glass-edge);
+    box-shadow: var(--glass-lift);
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  :root {
-    --shadow-x: 4px;
-    --shadow-y: 4px;
-    --border-w: 2px;
-  }
-
-  .neo-card:hover {
-    transform: none;
-    box-shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--ink);
-  }
-
-  .marquee-content {
-    font-size: 0.875rem;
-  }
+/* Long-form reading (case studies) */
+.prose-body p {
+  margin: 0 0 1.1em;
 }
 
-/* Small mobile */
-@media (max-width: 480px) {
-  :root {
-    --shadow-x: 3px;
-    --shadow-y: 3px;
-  }
-}
-
-/* Gate continuous decorative animations on mobile - battery + low-end jank.
-   Marquees and pulse dots stay (cheap transforms, part of the brand). */
-@media (max-width: 768px) {
-  .animate-blob,
-  .animate-blob-delay,
-  .animate-blob-delay-2,
-  .animate-glow-pulse,
-  .animate-shimmer,
-  .animate-gradient,
-  .animate-spin-slow,
-  .gradient-border::before,
-  .gradient-top-accent::after {
-    animation: none;
-  }
-
-  /* Film grain is a full-viewport fixed composite layer - decorative only,
-     skip it on phones. */
-  body::before {
-    display: none;
-  }
-}
-
-/* ═══════════════════════════════════════════
-   REDUCED MOTION
-   ═══════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -642,125 +164,5 @@ body::before {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* ═══════════════════════════════════════════
-   DARK MODE
-   ═══════════════════════════════════════════ */
-[data-theme="dark"] {
-  --cream: #1A1A1A;
-  --ink: #FFFDF5;
-}
-
-[data-theme="dark"] body {
-  background: #1A1A1A;
-  color: #FFFDF5;
-}
-
-[data-theme="dark"] .bg-cream {
-  background-color: #1A1A1A;
-}
-
-[data-theme="dark"] .text-ink {
-  color: #FFFDF5;
-}
-
-[data-theme="dark"] .bg-ink,
-[data-theme="dark"] .bg-vivid {
-  background-color: #2A2A2A;
-}
-
-[data-theme="dark"] .text-cream {
-  color: #FFFDF5;
-}
-
-[data-theme="dark"] .border-ink {
-  border-color: #FFFDF5;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-track {
-  background: #1A1A1A;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: #FFFDF5;
-  border-color: #1A1A1A;
-}
-
-/* ── Dark mode: alpha-variant remaps ──
-   Tailwind bakes the alpha into the color value (`text-ink/85` →
-   rgb(26 26 26 / .85)), so the exact-class overrides above never catch
-   them. Every alpha variant used on THEMED (page/cream/ink) surfaces
-   gets an explicit dark remap here. */
-[data-theme="dark"] .text-ink\/85 { color: rgb(255 253 245 / 0.85); }
-[data-theme="dark"] .text-ink\/80 { color: rgb(255 253 245 / 0.80); }
-[data-theme="dark"] .text-ink\/75 { color: rgb(255 253 245 / 0.75); }
-[data-theme="dark"] .text-ink\/70 { color: rgb(255 253 245 / 0.70); }
-[data-theme="dark"] .text-ink\/60 { color: rgb(255 253 245 / 0.60); }
-[data-theme="dark"] .text-ink\/50 { color: rgb(255 253 245 / 0.50); }
-[data-theme="dark"] .text-ink\/40 { color: rgb(255 253 245 / 0.40); }
-[data-theme="dark"] .text-ink\/30 { color: rgb(255 253 245 / 0.30); }
-[data-theme="dark"] .text-ink\/20 { color: rgb(255 253 245 / 0.20); }
-[data-theme="dark"] .text-ink\/15 { color: rgb(255 253 245 / 0.15); }
-[data-theme="dark"] .text-ink\/10 { color: rgb(255 253 245 / 0.10); }
-[data-theme="dark"] .text-ink\/5 { color: rgb(255 253 245 / 0.05); }
-[data-theme="dark"] .border-ink\/10 { border-color: rgb(255 253 245 / 0.10); }
-[data-theme="dark"] .border-ink\/15 { border-color: rgb(255 253 245 / 0.15); }
-[data-theme="dark"] .border-ink\/20 { border-color: rgb(255 253 245 / 0.20); }
-[data-theme="dark"] .border-ink\/25 { border-color: rgb(255 253 245 / 0.25); }
-[data-theme="dark"] .border-ink\/30 { border-color: rgb(255 253 245 / 0.30); }
-[data-theme="dark"] .border-ink\/40 { border-color: rgb(255 253 245 / 0.40); }
-[data-theme="dark"] .hover\:border-ink\/40:hover { border-color: rgb(255 253 245 / 0.40); }
-[data-theme="dark"] .bg-ink\/\[0\.02\] { background-color: rgb(255 253 245 / 0.02); }
-[data-theme="dark"] .bg-ink\/\[0\.04\] { background-color: rgb(255 253 245 / 0.04); }
-[data-theme="dark"] .bg-ink\/\[0\.05\] { background-color: rgb(255 253 245 / 0.05); }
-[data-theme="dark"] .placeholder\:text-ink\/30::placeholder { color: rgb(255 253 245 / 0.30); }
-
-/* ── Dark mode: colored-surface exceptions ──
-   Acid/electric/pink/orange surfaces keep their light-mode ink text and
-   borders - the theme flips the page, never the brand tiles. Higher
-   specificity than the remaps above. */
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink,
-[data-theme="dark"] .bg-acid.text-ink,
-[data-theme="dark"] .bg-electric.text-ink,
-[data-theme="dark"] .bg-hotpink.text-ink {
-  color: #1A1A1A;
-}
-
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink,
-[data-theme="dark"] .bg-acid.border-ink,
-[data-theme="dark"] .bg-electric.border-ink,
-[data-theme="dark"] .bg-hotpink.border-ink {
-  border-color: #1A1A1A;
-}
-
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/80 { color: rgb(26 26 26 / 0.80); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/60 { color: rgb(26 26 26 / 0.60); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/10 { color: rgb(26 26 26 / 0.10); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink\/40 { border-color: rgb(26 26 26 / 0.40); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink\/30 { border-color: rgb(26 26 26 / 0.30); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .border-ink\/20 { border-color: rgb(26 26 26 / 0.20); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/85 { color: rgb(26 26 26 / 0.85); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/75 { color: rgb(26 26 26 / 0.75); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/70 { color: rgb(26 26 26 / 0.70); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/50 { color: rgb(26 26 26 / 0.50); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/40 { color: rgb(26 26 26 / 0.40); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/30 { color: rgb(26 26 26 / 0.30); }
-[data-theme="dark"] :is(.bg-acid, .bg-electric, .bg-hotpink) .text-ink\/20 { color: rgb(26 26 26 / 0.20); }
-
-/* ═══════════════════════════════════════════
-   ADDITIONAL UTILITIES
-   ═══════════════════════════════════════════ */
-
-/* Custom cursor utility */
-/* Print styles */
-@media print {
-  .neo-card {
-    border: 1px solid #000;
-    box-shadow: none;
-  }
-  nav {
-    display: none;
   }
 }

@@ -1,215 +1,131 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github, ExternalLink, Apple, Play } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { projects, divisions, getProjectsByDivision, type Project } from "@/lib/projects";
-import { CircuitPattern, GridDots } from "@/components/ui/Decorative";
-import { ReelSection } from "@/components/work/ReelSection";
+import { flagships, kindOf, projects, tierOf, type Project } from "@/lib/projects";
+import ProjectMedia, { hasMedia } from "@/components/v2/ProjectMedia";
+import Reveal from "@/components/v2/Reveal";
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+export const metadata: Metadata = {
+    title: "Work",
+    description: "Every project Hatim El Hassak has shipped since 2020, the larger ones written up as case studies.",
+};
+
+function Facts({ p }: { p: Project }) {
     return (
-        <div className="reveal-up" style={{ animationDelay: `${Math.min(index * 0.06, 0.4)}s` }}>
-            <Link href={`/work/${project.slug}`} className="block h-full group">
-                <div className={`neo-card ${project.color} ${project.textColor} h-full flex flex-col justify-between min-h-[20rem] md:min-h-[22rem] relative overflow-hidden neo-glow`}>
-                    {project.image && (
-                        <div className="relative w-full aspect-[2/1] border-b-[3px] border-current/30 overflow-hidden bg-ink/10">
-                            <Image
-                                src={project.image}
-                                alt={`${project.title}: screenshot`}
-                                fill
-                                className={`${project.imageFit === "contain" ? "object-contain" : "object-cover object-top"} group-hover:scale-[1.02] transition-transform duration-500`}
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                loading="lazy"
-                            />
-                        </div>
-                    )}
-
-                    <div className="p-6 md:p-7 flex flex-col justify-between flex-1 relative">
-                        <CircuitPattern className="absolute top-0 right-0 w-32 h-32 opacity-[0.08]" />
-
-                        {!project.image && (
-                            <div className="absolute top-4 right-4 font-heading font-bold text-[4rem] md:text-[6rem] leading-none opacity-[0.08] select-none tracking-tighter">
-                                {project.id}
-                            </div>
-                        )}
-
-                        <div className="relative z-10">
-                            <div className="flex items-center gap-2 mb-3 flex-wrap">
-                                <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] opacity-80">
-                                    {project.category}
-                                </div>
-                                {project.appStore && (
-                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
-                                        <Apple size={10} /> App Store
-                                    </span>
-                                )}
-                                {project.playStore && (
-                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
-                                        <Play size={10} /> Google Play
-                                    </span>
-                                )}
-                                {project.liveDemo && (
-                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
-                                        <ExternalLink size={10} /> Live
-                                    </span>
-                                )}
-                                {project.clientWork && (
-                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
-                                        Client
-                                    </span>
-                                )}
-                                {project.private && (
-                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider opacity-70">
-                                        Private
-                                    </span>
-                                )}
-                            </div>
-                            <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-3 group-hover:translate-x-1 transition-transform">
-                                {project.title}
-                            </h3>
-                            <p className="font-sans text-sm opacity-90 leading-relaxed max-w-md">
-                                {project.description}
-                            </p>
-                        </div>
-
-                        <div className="relative z-10 mt-6">
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {project.tech.slice(0, 4).map((t) => (
-                                    <span key={t} className="px-2 py-1 border-2 border-current/40 font-mono text-xs font-bold uppercase tracking-wider">
-                                        {t}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <div className="flex gap-4 flex-wrap">
-                                {project.metrics.slice(0, 2).map((m) => (
-                                    <div key={m.label}>
-                                        <div className="font-heading font-bold text-base md:text-lg">{m.value}</div>
-                                        <div className="font-mono text-xs font-bold uppercase tracking-wider opacity-80">{m.label}</div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className="absolute bottom-0 right-0 w-10 h-10 border-[3px] border-current/30 flex items-center justify-center group-hover:bg-current/10 transition-colors">
-                                <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                            </div>
-                        </div>
-                    </div>
+        <dl className="mt-5 flex flex-wrap gap-x-7 gap-y-3">
+            {p.metrics.slice(0, 3).map((m) => (
+                <div key={m.label}>
+                    <dt className="text-[13px] text-ink3">{m.label}</dt>
+                    <dd className="text-[17px] font-bold tracking-[-0.01em]">{m.value}</dd>
                 </div>
-            </Link>
-        </div>
+            ))}
+        </dl>
+    );
+}
+
+function Flagship({ p, wide }: { p: Project; wide: boolean }) {
+    const media = hasMedia(p);
+    return (
+        <Link
+            href={`/work/${p.slug}`}
+            className={`group flex h-full flex-col overflow-hidden rounded-[28px] border border-hairline ${media ? "bg-raised" : "bg-accent/[0.06] ring-1 ring-inset ring-accent/10"}`}
+        >
+            {media && <ProjectMedia project={p} sizes={wide ? "(min-width: 768px) 58vw, 100vw" : "(min-width: 768px) 42vw, 100vw"} />}
+            <div className="flex flex-1 flex-col p-7 md:p-8">
+                <p className="text-sm font-medium text-ink3">{kindOf(p)}</p>
+                <h3 className="mt-2 text-[1.7rem] font-bold tracking-title transition-colors group-hover:text-accent">{p.title}</h3>
+                <p className="mt-2 max-w-2xl text-[16px] leading-relaxed text-ink2">{p.description}</p>
+                <div className="mt-auto">
+                    <Facts p={p} />
+                </div>
+            </div>
+        </Link>
     );
 }
 
 export default function WorkPage() {
+    const by = (slug: string) => flagships.find((p) => p.slug === slug)!;
+    const placed = new Set(["gopilates", "practicesync", "estelle", "viralos", "cloneos"]);
+    const rest = flagships.filter((p) => !placed.has(p.slug));
+    const shown = new Set(flagships.map((p) => p.slug));
+    const sites = projects.filter((p) => !shown.has(p.slug) && p.division === "client" && hasMedia(p));
+    const notable = projects.filter((p) => !shown.has(p.slug) && !sites.includes(p) && tierOf(p.slug) !== "small");
+    const small = projects.filter((p) => !shown.has(p.slug) && !sites.includes(p) && tierOf(p.slug) === "small");
+
     return (
-        <div className="min-h-[100dvh] bg-cream pb-24">
-            {/* Status bar */}
-            <div className="w-full bg-ink border-b-[3px] border-ink py-2 px-4 md:px-8 flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-acid animate-pulse-dot" />
-                    <span className="font-mono text-xs font-bold text-cream/70 uppercase tracking-widest">{"/// work"}</span>
+        <div className="mx-auto max-w-page px-4 pt-32 md:px-10 md:pt-40">
+            <header className="px-2">
+                <h1 className="text-[2.8rem] font-bold leading-[1.02] tracking-display md:text-[4rem]">Work</h1>
+                <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink2">
+                    {projects.length} projects since 2020. The ones that matter most come first, each with a case study.
+                </p>
+            </header>
+
+            {/* With pictures: two up, then Estelle's film beside two text tiles, then the rest two by two. */}
+            <div className="mt-12 grid gap-4 md:grid-cols-12 md:gap-5">
+                <Reveal className="md:col-span-7"><Flagship p={by("gopilates")} wide /></Reveal>
+                <Reveal className="md:col-span-5" delay={0.05}><Flagship p={by("practicesync")} wide={false} /></Reveal>
+                <Reveal className="md:col-span-7"><Flagship p={by("estelle")} wide /></Reveal>
+                <div className="grid gap-4 md:col-span-5 md:gap-5">
+                    <Reveal delay={0.05}><Flagship p={by("viralos")} wide={false} /></Reveal>
+                    <Reveal delay={0.08}><Flagship p={by("cloneos")} wide={false} /></Reveal>
                 </div>
-                <span className="font-mono text-xs font-bold text-cream/60 tracking-widest uppercase">{projects.length} shipped</span>
+                {rest.map((p, i) => (
+                    <Reveal key={p.slug} className="md:col-span-6" delay={(i % 2) * 0.05}>
+                        <Flagship p={p} wide={false} />
+                    </Reveal>
+                ))}
             </div>
 
-            {/* Header */}
-            <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8 md:mt-16 mb-8 md:mb-12">
-                <motion.div
-                    initial={{ opacity: 0, x: -40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <div className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-ink/60 mb-3">Portfolio</div>
-                    <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-heading font-bold text-ink leading-[0.85] tracking-tighter uppercase mb-6">
-                        The<br />Work
-                    </h1>
-                    <p className="font-sans text-sm md:text-base text-ink/85 max-w-xl leading-relaxed mb-8">
-                        {projects.length} shipped projects across four divisions. Every one was built
-                        for a real user or client. Code is open where I could make it open;
-                        private client work is described without the repo. Click any card for
-                        the full case study.
-                    </p>
-
-                    {/* Division index */}
-                    <div className="flex flex-wrap gap-3">
-                        {divisions.map((d) => (
-                            <a
-                                key={d.id}
-                                href={`#${d.id}`}
-                                className="neo-pill bg-cream text-ink hover:bg-ink hover:text-cream"
-                            >
-                                {d.title}
-                                <span className="opacity-60">· {getProjectsByDivision(d.id).length}</span>
-                            </a>
-                        ))}
-                    </div>
-                </motion.div>
+            <section className="mt-28 px-2" aria-labelledby="sites-title">
+                <Reveal>
+                    <h2 id="sites-title" className="text-[2.2rem] font-bold tracking-title md:text-[2.7rem]">Websites for clients</h2>
+                </Reveal>
+                <div className="mt-8 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+                    {sites.map((p, i) => (
+                        <Reveal key={p.slug} delay={(i % 3) * 0.04}>
+                            <Link href={`/work/${p.slug}`} className="group block">
+                                <div className="overflow-hidden rounded-[22px] border border-hairline">
+                                    <ProjectMedia project={p} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" className="transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+                                </div>
+                                <h3 className="mt-4 text-[1.25rem] font-bold tracking-title transition-colors group-hover:text-accent">{p.title}</h3>
+                                <p className="mt-1 line-clamp-2 text-[15px] leading-relaxed text-ink2">{p.description}</p>
+                            </Link>
+                        </Reveal>
+                    ))}
+                </div>
             </section>
 
-            <ReelSection />
-
-            {/* Division sections */}
-            <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12 md:mb-20 space-y-14 md:space-y-24">
-                {divisions.map((division) => {
-                    const items = getProjectsByDivision(division.id);
-                    if (items.length === 0) return null;
-                    return (
-                        <section key={division.id} id={division.id} className="scroll-mt-8">
-                            {/* Division header */}
-                            <div className="mb-6 md:mb-8">
-                                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-2">
-                                    <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight text-ink">
-                                        {division.title}
-                                    </h2>
-                                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-ink/60 ml-auto">
-                                        {items.length} {items.length === 1 ? "project" : "projects"}
-                                    </span>
-                                </div>
-                                <p className="font-sans text-sm text-ink/70 max-w-xl leading-relaxed border-l-[3px] border-acid pl-4">
-                                    {division.tagline}
-                                </p>
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-5">
-                                {items.map((project, index) => (
-                                    <ProjectCard key={project.id} project={project} index={index} />
-                                ))}
-                            </div>
-                        </section>
-                    );
-                })}
-            </div>
-
-            {/* GitHub CTA */}
-            <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12 reveal-up">
-                <div className="neo-card bg-ink text-cream p-6 md:p-10 relative overflow-hidden gradient-top-accent">
-                    <GridDots className="absolute inset-0 w-full h-full text-cream/5" />
-                    <div className="absolute top-0 left-1/4 w-1/2 h-20 bg-acid/10 blur-3xl pointer-events-none" />
-
-                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div>
-                            <h3 className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight mb-2">
-                                See the source
-                            </h3>
-                            <p className="font-sans text-sm text-cream/80 max-w-md leading-relaxed">
-                                Most of these repos are public. Fork them, read them, or hire me to build
-                                something like them for you.
-                            </p>
-                        </div>
-                        <a
-                            href="https://github.com/hatimhtm"
-                            target="_blank" rel="noopener noreferrer"
-                            className="neo-card bg-cream text-ink px-6 py-3 font-heading font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-acid transition-colors group flex-shrink-0"
-                        >
-                            <Github size={18} />
-                            GitHub Profile
-                            <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </a>
-                    </div>
+            <section className="mt-28 px-2" aria-labelledby="other-title">
+                <Reveal>
+                    <h2 id="other-title" className="text-[2.2rem] font-bold tracking-title md:text-[2.7rem]">Other builds</h2>
+                </Reveal>
+                <div className="mt-8 grid gap-x-16 gap-y-9 md:grid-cols-2">
+                    {notable.map((p, i) => (
+                        <Reveal key={p.slug} delay={(i % 2) * 0.04}>
+                            <Link href={`/work/${p.slug}`} className="group block">
+                                <p className="text-sm font-medium text-ink3">{kindOf(p)}</p>
+                                <h3 className="mt-1 text-[1.4rem] font-bold tracking-title transition-colors group-hover:text-accent">{p.title}</h3>
+                                <p className="mt-1 text-[15.5px] leading-relaxed text-ink2">{p.description}</p>
+                            </Link>
+                        </Reveal>
+                    ))}
                 </div>
+            </section>
+
+            <section className="mt-28 px-2" aria-labelledby="small-title">
+                <Reveal>
+                    <h2 id="small-title" className="text-[1.6rem] font-bold tracking-title">Smaller things</h2>
+                </Reveal>
+                <ul className="mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {small.map((p) => (
+                        <li key={p.slug}>
+                            <Link href={`/work/${p.slug}`} className="group block">
+                                <span className="font-bold transition-colors group-hover:text-accent">{p.title}</span>
+                                <span className="block line-clamp-2 text-[14.5px] leading-relaxed text-ink3">{p.description}</span>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
             </section>
         </div>
     );

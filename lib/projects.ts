@@ -63,6 +63,8 @@ export interface Project {
     appStore?: string;
     /** Google Play listing URL. */
     playStore?: string;
+    /** A web cut of the project's film, under /public/media. */
+    film?: { src: string; poster: string };
     /** Private commercial repo: hides the "View Code" link. */
     private?: boolean;
     /** Which of the four divisions this project belongs to. */
@@ -90,7 +92,7 @@ export const projects: Project[] = [
         slug: "tryit",
         division: "apps",
         title: "TryIt",
-        description: "AI virtual try-on for iPhone. See clothes on you before you buy. SwiftUI · iOS 18 · Gemini 3 Flash Image · RevenueCat. Live on the App Store.",
+        description: "AI virtual try-on for iPhone: you take a photo and Gemini dresses you in the clothes. SwiftUI, RevenueCat, live on the App Store.",
         longDescription: "A native iPhone app that composites clothing onto the user's selfie via Gemini 3 Flash Image. Three input modes (paste a product URL, share a screenshot via the system Share Sheet, or point the camera at a tag), a two-stage AI pipeline (a cheap Gemini 2.5 Flash validation pass before the expensive image-gen call), an 8-screen onboarding funnel tuned for conversion, RevenueCat-managed subscriptions, a Lock-Screen widget showing the latest result, and a privacy posture Apple's review team has on file: photos never leave the device beyond the ephemeral AI request.",
         tech: ["SwiftUI", "iOS 18", "Gemini 3", "RevenueCat", "WidgetKit", "Share Extension", "XcodeGen"],
         metrics: [
@@ -119,6 +121,7 @@ export const projects: Project[] = [
         division: "apps",
         private: true,
         clientWork: true,
+        film: { src: "/media/gopilates-film.mp4", poster: "/media/gopilates-film-poster.jpg" },
         title: "GoPilates",
         description: "French-first Pilates app for women, live on the App Store and Google Play, rated 4.4 from 208 ratings in France. Native on both: SwiftUI on iPhone and Apple Watch, Kotlin and Jetpack Compose on Android. Client build.",
         longDescription: "A native iPhone, Apple Watch and Android app built for a French app studio, live on the App Store since April 2026 and on Google Play. On iOS, a 28-step onboarding leads into a RevenueCat paywall; workouts go to HealthKit; user data lives in SwiftData and syncs through CloudKit; sessions run as Live Activities; and an AI meal scan reads a photo of a plate through a small serverless proxy, so the API key never ships inside the app. The Android version is native too: Kotlin and Jetpack Compose with RevenueCat and Health Connect. iOS releases go out through Xcode Cloud.",
@@ -177,7 +180,7 @@ export const projects: Project[] = [
         division: "systems",
         clientWork: true,
         title: "Viral OS",
-        description: "AI command center for a portfolio of consumer iOS apps. Ingests App Store Connect, RevenueCat (101 webhook events), TikTok, ad spend: computes pLTV, cohort retention, app health, anomaly alerts.",
+        description: "The operations platform behind a studio of iOS apps: revenue and subscriptions from RevenueCat and App Store Connect, ad spend, creator payouts and alerts, in one Postgres schema of 63 tables.",
         longDescription: "Viral OS is the operations dashboard for a B2C app studio. It ingests App Store Connect (sales + metadata), RevenueCat (101 webhook event types), TikTok (via a Playwright scraper running on GitHub Actions, not the paid API), and manual ad spend; computes metrics that aren't in any individual tool: predicted LTV (geometric with realized-churn fallback), LTV/CAC, cohort retention, app-health score (0–100), lifecycle stage; and fires Slack/Discord/email alerts the same day a paywall regression or refund spike appears.",
         tech: ["Next.js 16", "Supabase", "Gemini 3 Pro", "RevenueCat", "App Store Connect", "Playwright", "Sentry"],
         metrics: [
@@ -231,7 +234,7 @@ export const projects: Project[] = [
         slug: "leadsniper",
         division: "systems",
         title: "LeadSniper",
-        description: "AI-powered lead generation engine for freelancers. Scrapes Google Places, crawls sites, scores 23 opportunity signals, drafts personalized outreach across Email / WhatsApp / LinkedIn.",
+        description: "A lead engine for freelancers. It finds businesses on Google Places, audits their sites with Playwright, scores 23 signals and drafts the outreach. Open source.",
         longDescription: "LeadSniper is an end-to-end lead generation pipeline for freelancers and small agencies. A local Playwright crawler pulls businesses from Google Places, audits their sites against PageSpeed and a 23-factor scoring rubric, then Gemini 2.5 drafts channel-specific outreach. A Next.js dashboard on Supabase keeps the whole pipeline visible and operable. Splits compute between a local watch-mode scraper (free bandwidth, free RAM) and a hosted dashboard (free Vercel + Supabase tiers).",
         tech: ["Next.js 14", "TypeScript", "Supabase", "Playwright", "Gemini 2.5", "PageSpeed API"],
         metrics: [
@@ -641,8 +644,9 @@ export const projects: Project[] = [
     {
         id: "032",
         slug: "estelle",
+        film: { src: "/media/estelle-film.mp4", poster: "/media/estelle-film-poster.jpg" },
         title: "Estelle: Manifest Affirmations",
-        description: "My own consumer app, taken from decision to live on the App Store in eleven days: a personalised affirmations product with the AI kept deliberately invisible.",
+        description: "My own affirmations app. I designed, built, priced and published it alone, from decision to the App Store in eleven days. Live in 148 countries.",
         longDescription: "Estelle is the app I designed, built, priced and published myself, end to end: a thirteen-step onboarding that assembles a personal \"constellation\", a curated library of 2,332 lines with on-device-feeling personalisation from a Gemini backend behind a Supabase edge function, notifications-as-product, home-screen widgets and share cards. There is no chatbot anywhere in it. The AI is a silent ingredient, not the interface. Subscriptions run through StoreKit and RevenueCat behind a hard paywall, and the whole thing went from decision to live in eleven days.",
         tech: ["SwiftUI", "StoreKit", "RevenueCat", "Supabase Edge Functions", "Gemini"],
         metrics: [
@@ -671,7 +675,7 @@ export const projects: Project[] = [
         id: "033",
         slug: "studioos",
         title: "StudioOS",
-        description: "The private platform behind Estelle: an analytics command centre over four data sources plus a generative content pipeline that writes, illustrates and quality-checks marketing creative end to end.",
+        description: "The platform behind Estelle: analytics over four data sources and an AI pipeline that writes and checks marketing creative, with 1,550 unit tests.",
         longDescription: "StudioOS is two halves over one database. The first is an analytics command centre that pulls App Store Connect, RevenueCat, ad-platform and social numbers into a single daily read, attributing published creative back to the campaign that produced it by content matching rather than manual tagging. The second is a generative pipeline: it learns which formats perform from a corpus of real data, writes original multi-slide creative on a schedule, generates every image through diffusion models behind an automated judge that holds each result to its written brief, retries or escalates what fails, and meters every cent against a hard daily ceiling. A human approval gate sits in front of anything that ships.",
         tech: ["Next.js 16", "Supabase", "TypeScript", "Vercel", "Gemini", "Image models", "Apify"],
         metrics: [
@@ -701,7 +705,7 @@ export const projects: Project[] = [
         id: "020",
         slug: "relay",
         title: "Relay",
-        description: "A premium native macOS client for Facebook Messenger. SwiftUI + Liquid Glass over a Go backend speaking Meta's real protocol. Not a web wrapper.",
+        description: "A native Messenger client for the Mac in SwiftUI with Liquid Glass, over a Go back end that speaks Meta's real protocol.",
         longDescription: "Meta retired the Messenger desktop app and shut down messenger.com, leaving the Mac with a browser tab or nothing. Relay is a real, first-class Mac app built to take its place. A SwiftUI front end (Liquid Glass on macOS 26, frosted material below) talks over stdio/JSON to a Go helper daemon that decodes Meta's actual Lightspeed and encrypted protocols. Reactions, replies, edit/unsend, scheduled send, global full-text search over SQLite-stored local history, on-device translation, Touch ID lock, and Siri/Shortcuts intents. Universal binaries, macOS 13+, signed in-app Sparkle updates; sessions live only in the macOS Keychain.",
         tech: ["SwiftUI", "Go", "SQLite", "mautrix-meta", "Sparkle", "XcodeGen"],
         metrics: [
@@ -811,8 +815,8 @@ export const projects: Project[] = [
     {
         id: "024",
         slug: "practicesync",
-        title: "PracticeSync",
-        description: "macOS app for a US therapy practice: it reads each patient visit in Practice Fusion and books the matching coded appointment in SimplePractice, with on-device AI that cannot invent a billing code.",
+        title: "Hope Assistant",
+        description: "A Mac app for a US therapy practice. It reads each visit in Practice Fusion and books the matching coded appointment in SimplePractice, and its on-device AI can't invent a billing code.",
         longDescription: "A clinic running on two systems pays for it twice: visits live in Practice Fusion, billing and scheduling in SimplePractice, and someone re-keys every patient by hand daily. PracticeSync drives a dedicated Chrome profile. The operator's logins stay put, no passwords stored: reads each visit, decides the appointment from a doctor roster, and creates it under the correct doctor, with a dry-run mode that plans without booking. The operator teaches each screen once by pointing at elements; a visible cursor then narrates every run. The only AI runs on-device via a three-tier fallback (local Gemma via Ollama → Apple Intelligence → deterministic matcher), and every model output is re-validated so the AI can never invent a billing code.",
         tech: ["Electron 31", "Playwright", "Node.js", "Ollama (Gemma)", "Apple Intelligence", "electron-builder"],
         metrics: [
@@ -1154,6 +1158,34 @@ export const projects: Project[] = [
             "Live on GitHub Pages",
         ],
     },
+    {
+        id: "039",
+        slug: "cloneos",
+        division: "systems",
+        private: true,
+        clientWork: true,
+        title: "CloneOS",
+        description: "An AI pipeline that turns one reference post into on-brand visuals for a studio's marketing. Gemini reads the post, three image models redraw it, and every post stays under a one-dollar cap.",
+        longDescription: "Paste the link to a post that performed. CloneOS fetches its slides, has Gemini analyse each one, then rebuilds the post for the studio's own brand: the right image model for each slide (Nano Banana, GPT Image, or FLUX on a rented GPU), captions rewritten in French or English and drawn server-side with real fonts, then an export or a scheduled publish. Every member sees only their own work, and a spend guard caps each post at one dollar, checked in four places.",
+        tech: ["Next.js 16", "TypeScript", "Gemini", "GPT Image", "FLUX", "Supabase", "Vercel"],
+        metrics: [
+            { label: "Commits", value: "407" },
+            { label: "Cap per post", value: "$1" },
+            { label: "Image models", value: "3" },
+        ],
+        color: "bg-electric",
+        textColor: "text-cream",
+        link: "https://github.com/hatimhtm",
+        category: "AI",
+        problem: "A studio promoting several apps needed new visuals every day, and making them by hand didn't scale. AI generation was fast but unpredictable, in quality and in cost.",
+        solution: "One pipeline per post: read it, pick the cheapest model that can redraw each slide, rewrite the captions, judge the result, and stop at a hard cost ceiling. Roles and per-member visibility keep everyone's work separate.",
+        outcomes: [
+            "407 commits in two months, deployed on Vercel",
+            "A one-dollar cap per post, enforced in four places",
+            "Three image models picked per slide, with Gemini judging the output",
+            "Each member sees only their own posts; costs are visible to admins only",
+        ],
+    },
 ];
 
 /* ─────────── Derived data: single source of truth ───────────
@@ -1171,3 +1203,30 @@ export function getProjectsByDivision(id: DivisionId): Project[] {
 export function getProjectBySlug(slug: string): Project | undefined {
     return projects.find((p) => p.slug === slug);
 }
+
+/** How much weight each project gets on the site: flagships lead, small builds are listed. */
+export type Tier = "flagship" | "notable" | "small";
+const TIERS: Record<string, Tier> = {
+    gopilates: "flagship", estelle: "flagship", practicesync: "flagship", viralos: "flagship", cloneos: "flagship",
+    studioos: "flagship", leadsniper: "flagship", relay: "flagship", tryit: "flagship",
+    "together-tasks": "small", scriptdeck: "small", "night-market-tycoon": "small", lessonforge: "small",
+    "cgs-language-services": "small", lumi: "small", "rudratek-dashboard": "small", infinitecs: "small", fortress: "small",
+    freelane: "small", "strata-triage": "small", "china-global-travel": "small", "nabil-portfolio": "small",
+};
+export const tierOf = (slug: string): Tier => TIERS[slug] ?? "notable";
+const FLAGSHIP_ORDER = ["gopilates", "practicesync", "estelle", "viralos", "cloneos", "leadsniper", "studioos", "relay", "tryit"];
+export const flagships = FLAGSHIP_ORDER.map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean) as Project[];
+
+/** How each flagship is introduced: what it is and where it runs. */
+export const KIND: Record<string, string> = {
+    gopilates: "Client app, iOS, watchOS and Android",
+    practicesync: "Healthcare automation, macOS",
+    estelle: "My own app, iOS",
+    viralos: "Operations platform, web",
+    cloneos: "AI pipeline, web",
+    leadsniper: "Lead engine, web, open source",
+    studioos: "My studio's platform, web",
+    relay: "Native app, macOS",
+    tryit: "Client app, iOS",
+};
+export const kindOf = (p: Project) => KIND[p.slug] ?? (p.clientWork ? `${p.category}, client project` : p.category);

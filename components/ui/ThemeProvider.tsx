@@ -4,14 +4,9 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 
 type Theme = "light" | "dark";
 
-interface ThemeContextType {
-    theme: Theme;
-    toggleTheme: () => void;
-}
-
-const ThemeContext = createContext<ThemeContextType>({
+const ThemeContext = createContext<{ theme: Theme; toggleTheme: () => void }>({
     theme: "light",
-    toggleTheme: () => { },
+    toggleTheme: () => {},
 });
 
 export function useTheme() {
@@ -21,24 +16,20 @@ export function useTheme() {
 export default function ThemeProvider({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<Theme>("light");
 
+    // The inline script already set data-theme before paint; mirror it.
     useEffect(() => {
-        const saved = localStorage.getItem("theme") as Theme | null;
-        if (saved) {
-            setTheme(saved);
-            document.documentElement.setAttribute("data-theme", saved);
-        }
+        const current = document.documentElement.getAttribute("data-theme");
+        if (current === "dark" || current === "light") setTheme(current);
     }, []);
 
     const toggleTheme = () => {
-        const next = theme === "light" ? "dark" : "light";
+        const next: Theme = theme === "light" ? "dark" : "light";
         setTheme(next);
-        localStorage.setItem("theme", next);
+        try {
+            localStorage.setItem("theme", next);
+        } catch {}
         document.documentElement.setAttribute("data-theme", next);
     };
 
-    return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    );
+    return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }

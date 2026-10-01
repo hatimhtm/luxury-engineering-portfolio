@@ -1,150 +1,64 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, JetBrains_Mono, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import ThemeProvider from "@/components/ui/ThemeProvider";
-import ThemeToggle from "@/components/ui/ThemeToggle";
-import ScrollProgress from "@/components/ui/ScrollProgress";
-import CommandPalette from "@/components/ui/CommandPalette";
-import CmdKButton from "@/components/ui/CmdKButton";
-import MagneticButton from "@/components/ui/MagneticButton";
-import Link from "next/link";
+import SiteNav from "@/components/site/SiteNav";
+import SiteFooter from "@/components/site/SiteFooter";
 import { themeScript } from "@/lib/theme-script";
+import { SITE_URL } from "@/lib/site";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 
-const spaceGrotesk = Space_Grotesk({
-    subsets: ["latin"],
-    variable: "--font-heading",
-    weight: ["400", "500", "600", "700"],
+/* Satoshi (Indian Type Foundry, Fontshare, ITF Free Font License), self-hosted. */
+const satoshi = localFont({
+    src: [
+        { path: "./fonts/Satoshi-Variable.woff2", weight: "300 900", style: "normal" },
+        { path: "./fonts/Satoshi-VariableItalic.woff2", weight: "300 900", style: "italic" },
+    ],
+    variable: "--font-satoshi",
+    display: "swap",
 });
 
-const manrope = Manrope({
-    subsets: ["latin"],
-    variable: "--font-sans",
-    weight: ["400", "500", "600", "700"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-    subsets: ["latin"],
-    variable: "--font-mono",
-    weight: ["400", "500", "600", "700", "800"],
-});
-
-const SITE_URL = "https://hatimelhassak.is-a.dev";
+const TITLE = "Hatim El Hassak, senior product engineer";
+const DESCRIPTION =
+    "Native apps for iPhone, Mac and Android, and the systems behind them. GoPilates, Hope Assistant, Viral OS, Estelle and more, written up as case studies.";
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
-    title: {
-        default: "Hatim El Hassak. Full-Stack Engineer",
-        template: "%s · Hatim El Hassak",
-    },
-    description:
-        "Hatim El Hassak: full-stack engineer. iOS + macOS (SwiftUI), web (Next.js), AI pipelines (Python). End-to-end product builds for solo founders and small teams. Remote worldwide.",
-    keywords: ["full-stack engineer", "iOS developer", "SwiftUI", "Next.js", "AI engineer", "freelance engineer", "Hatim El Hassak"],
+    title: { default: TITLE, template: "%s, Hatim El Hassak" },
+    description: DESCRIPTION,
+    keywords: ["senior iOS developer", "SwiftUI", "Kotlin", "Next.js", "product engineer", "freelance", "Hatim El Hassak"],
     authors: [{ name: "Hatim El Hassak", url: SITE_URL }],
     creator: "Hatim El Hassak",
-    alternates: {
-        canonical: "/",
-    },
-    icons: {
-        icon: "/favicon.svg",
-    },
-    openGraph: {
-        type: "website",
-        url: SITE_URL,
-        siteName: "Hatim El Hassak",
-        title: "Hatim El Hassak. Full-Stack Engineer",
-        description:
-            "End-to-end iOS, web, and AI builds for solo founders and small teams. iOS, SwiftUI, Next.js, Python.",
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Hatim El Hassak. Full-Stack Engineer",
-        description:
-            "End-to-end iOS, web, and AI builds for solo founders and small teams.",
-    },
-    robots: {
-        index: true,
-        follow: true,
-    },
+    alternates: { canonical: "/" },
+    icons: { icon: "/favicon.svg" },
+    openGraph: { type: "website", url: SITE_URL, siteName: "Hatim El Hassak", title: TITLE, description: DESCRIPTION },
+    twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+    robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
     themeColor: [
-        { media: "(prefers-color-scheme: light)", color: "#F5F1E8" },
-        { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+        { media: "(prefers-color-scheme: light)", color: "#EBEAE6" },
+        { media: "(prefers-color-scheme: dark)", color: "#121315" },
     ],
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en" className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+        <html lang="en" className={satoshi.variable} suppressHydrationWarning>
             <head>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: themeScript,
-                    }}
-                />
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
             </head>
-            <body className="font-sans bg-cream text-ink antialiased selection:bg-acid selection:text-ink">
+            <body className="bg-page text-ink antialiased">
                 <ThemeProvider>
-                    <ScrollProgress />
-                    <CommandPalette />
-
-                    <main className="pb-24 md:pb-20">{children}</main>
-
-                    {/* Bottom Navigation
-                        - Mobile: compact primary set (Home / Work / Stack / Talk) with bigger touch targets
-                        - Desktop: full nav incl. Services, CV, theme toggle */}
-                    <nav className="fixed bottom-0 left-0 w-full bg-ink border-t-[3px] border-ink z-[100] shadow-[0px_-4px_20px_rgba(0,0,0,0.3)]">
-                        <div className="max-w-7xl mx-auto px-3 md:px-6 py-2 md:py-3 flex items-center gap-1 md:gap-2">
-                            {/* Primary links: visible on mobile */}
-                            <div className="flex items-center gap-1 md:gap-1 flex-1">
-                                <NavLink href="/" label="Home" />
-                                <NavLink href="/work" label="Work" />
-                                <NavLink href="/stack" label="Stack" />
-                                <NavLink href="/services" label="Services" desktopOnly />
-                            </div>
-
-                            {/* Trailing controls */}
-                            <div className="flex items-center gap-1 md:gap-2">
-                                <CmdKButton />
-
-                                <ThemeToggle />
-
-                                <MagneticButton>
-                                    <Link
-                                        href="/contact"
-                                        className="bg-acid text-ink px-3 md:px-5 py-2 md:py-2.5 font-heading font-bold text-xs md:text-sm uppercase tracking-wider border-[3px] border-ink hover:bg-cream transition-colors min-h-[40px] inline-flex items-center"
-                                    >
-                                        Contact
-                                    </Link>
-                                </MagneticButton>
-                            </div>
-                        </div>
-                    </nav>
-
+                    <SiteNav />
+                    <main>{children}</main>
+                    <SiteFooter />
                 </ThemeProvider>
                 <SpeedInsights />
                 <Analytics />
             </body>
         </html>
-    );
-}
-
-function NavLink({ href, label, desktopOnly = false }: { href: string; label: string; desktopOnly?: boolean }) {
-    return (
-        <MagneticButton>
-            <Link
-                href={href}
-                className={`font-mono text-xs md:text-sm font-bold uppercase tracking-wider text-cream/80 hover:text-acid transition-colors px-3 md:px-4 py-2 min-h-[40px] inline-flex items-center ${desktopOnly ? "hidden md:inline-flex" : ""}`}
-            >
-                {label}
-            </Link>
-        </MagneticButton>
     );
 }
