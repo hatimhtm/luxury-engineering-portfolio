@@ -44,11 +44,9 @@ export const metadata: Metadata = {
     robots: { index: true, follow: true },
 };
 
+// The site opens in light mode on every device; the toggle repaints this for dark.
 export const viewport: Viewport = {
-    themeColor: [
-        { media: "(prefers-color-scheme: light)", color: "#F6F5F1" },
-        { media: "(prefers-color-scheme: dark)", color: "#121315" },
-    ],
+    themeColor: "#F6F5F1",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
