@@ -70,11 +70,7 @@ export default function Hero() {
 
             <div className="relative mx-auto flex min-h-[100dvh] max-w-[1280px] flex-col justify-end px-5 pb-14 pt-[52vh] md:justify-center md:px-10 md:pb-24 md:pt-32">
                 <motion.div style={reduce ? undefined : { y: copyY, opacity: copyOpacity }} className="max-w-[640px]">
-                    <LiquidGlass radius={999} bezel={8} strength={10} frost={8} tint="var(--gt-mid)" className="inline-flex items-center gap-2.5 py-2 pl-3 pr-4 text-[14px] font-semibold text-ink">
-                        <span aria-hidden className="h-2 w-2 rounded-full bg-emerald-600" />
-                        Taking new projects for October
-                    </LiquidGlass>
-                    <SplitReveal as="h1" text="I build native apps for iPhone, Mac and Android." delay={0.15} className="display mt-6 text-[3rem] text-ink sm:text-[3.9rem] lg:text-[4.5rem]" />
+                    <SplitReveal as="h1" text="I build native apps for iPhone, Mac and Android." delay={0.15} className="display text-[3rem] text-ink sm:text-[3.9rem] lg:text-[4.5rem]" />
                     <motion.p initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.7, ease: [0.23, 1, 0.32, 1] }} className="mt-6 max-w-[34rem] text-[18px] leading-relaxed text-ink2 md:text-[20px]">
                         GoPilates is rated 4.4 by 208 people in France. Hope Assistant books a therapy practice&apos;s appointments on its own. I built both.
                     </motion.p>
