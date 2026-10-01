@@ -22,6 +22,12 @@ export const MEDIA: Record<string, Media> = {
         ],
         "cover": "/work/cgs-language-services.jpg"
     },
+    "china-global-study": {
+        "shots": [
+            "/work/china-global-study-2.jpg"
+        ],
+        "cover": "/work/china-global-study.jpg"
+    },
     "china-global-travel": {
         "shots": [
             "/work/china-global-travel-2.jpg",
@@ -29,8 +35,29 @@ export const MEDIA: Record<string, Media> = {
         ],
         "cover": "/work/china-global-travel.jpg"
     },
+    "cloneos": {
+        "shots": [
+            "/work/cloneos-2.jpg"
+        ],
+        "cover": "/work/cloneos.jpg"
+    },
+    "deck": {
+        "shots": [
+            "/work/deck-2.jpg"
+        ],
+        "cover": "/work/deck.jpg",
+        "icon": "/icons/deck.webp"
+    },
     "echoscribe": {
         "cover": "/work/echoscribe.jpg"
+    },
+    "eli": {
+        "shots": [
+            "/work/eli-2.jpg",
+            "/work/eli-3.jpg"
+        ],
+        "cover": "/work/eli.jpg",
+        "icon": "/icons/eli.webp"
     },
     "estelle": {
         "poster": "/work/estelle-poster.jpg",
@@ -40,11 +67,27 @@ export const MEDIA: Record<string, Media> = {
     "fortress": {
         "cover": "/work/fortress.jpg"
     },
+    "freelane": {
+        "shots": [
+            "/work/freelane-2.jpg"
+        ],
+        "cover": "/work/freelane.jpg"
+    },
     "gopilates": {
         "poster": "/work/gopilates-poster.jpg",
         "cover": "/work/gopilates.jpg",
         "trailer": "/work/gopilates.mp4",
         "icon": "/icons/gopilates.webp"
+    },
+    "hope-hr": {
+        "shots": [
+            "/work/hope-hr-2.jpg",
+            "/work/hope-hr-3.jpg"
+        ],
+        "cover": "/work/hope-hr.jpg"
+    },
+    "hope-ledger": {
+        "cover": "/work/hope-ledger.jpg"
     },
     "infinitecs": {
         "shots": [
@@ -62,17 +105,22 @@ export const MEDIA: Record<string, Media> = {
     },
     "lessonforge": {
         "shots": [
-            "/work/lessonforge-2.jpg",
-            "/work/lessonforge-3.jpg"
+            "/work/lessonforge-2.jpg"
         ],
         "cover": "/work/lessonforge.jpg"
     },
     "lorani": {
         "shots": [
-            "/work/lorani-2.jpg",
-            "/work/lorani-3.jpg"
+            "/work/lorani-2.jpg"
         ],
         "cover": "/work/lorani.jpg"
+    },
+    "lumi": {
+        "shots": [
+            "/work/lumi-2.jpg",
+            "/work/lumi-3.jpg"
+        ],
+        "cover": "/work/lumi.jpg"
     },
     "maison-brume": {
         "shots": [
@@ -110,9 +158,17 @@ export const MEDIA: Record<string, Media> = {
         "cover": "/work/nota-parfum.jpg"
     },
     "practicesync": {
+        "shots": [
+            "/work/practicesync-2.jpg",
+            "/work/practicesync-3.jpg"
+        ],
         "night": "/work/practicesync-night.jpg",
         "cover": "/work/practicesync.jpg",
         "icon": "/icons/practicesync.webp"
+    },
+    "relay": {
+        "cover": "/work/relay.jpg",
+        "icon": "/icons/relay.webp"
     },
     "rudratek-dashboard": {
         "shots": [
@@ -133,6 +189,27 @@ export const MEDIA: Record<string, Media> = {
             "/work/strata-triage-3.jpg"
         ],
         "cover": "/work/strata-triage.jpg"
+    },
+    "studioos": {
+        "shots": [
+            "/work/studioos-2.jpg",
+            "/work/studioos-3.jpg"
+        ],
+        "cover": "/work/studioos.jpg"
+    },
+    "sunz": {
+        "shots": [
+            "/work/sunz-2.jpg"
+        ],
+        "cover": "/work/sunz.jpg",
+        "icon": "/icons/sunz.webp"
+    },
+    "together-tasks": {
+        "shots": [
+            "/work/together-tasks-2.jpg",
+            "/work/together-tasks-3.jpg"
+        ],
+        "cover": "/work/together-tasks.jpg"
     },
     "tryit": {
         "shots": [
@@ -156,22 +233,10 @@ export const MEDIA: Record<string, Media> = {
     "click2minimize": {
         "icon": "/icons/click2minimize.webp"
     },
-    "deck": {
-        "icon": "/icons/deck.webp"
-    },
-    "eli": {
-        "icon": "/icons/eli.webp"
-    },
     "fader": {
         "icon": "/icons/fader.webp"
     },
     "pause": {
         "icon": "/icons/pause.webp"
-    },
-    "relay": {
-        "icon": "/icons/relay.webp"
-    },
-    "sunz": {
-        "icon": "/icons/sunz.webp"
     }
 };
