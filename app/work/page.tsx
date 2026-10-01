@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, ExternalLink, Apple } from "lucide-react";
+import { ArrowUpRight, Github, ExternalLink, Apple, Play } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { projects, divisions, getProjectsByDivision, type Project } from "@/lib/projects";
@@ -43,6 +43,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                                 {project.appStore && (
                                     <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
                                         <Apple size={10} /> App Store
+                                    </span>
+                                )}
+                                {project.playStore && (
+                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-current/10 border border-current/30 font-mono text-[10px] font-bold uppercase tracking-wider">
+                                        <Play size={10} /> Google Play
                                     </span>
                                 )}
                                 {project.liveDemo && (

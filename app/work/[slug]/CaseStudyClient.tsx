@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Github, ExternalLink, Apple } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github, ExternalLink, Apple, Play } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -67,6 +67,15 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                                     className="inline-flex items-center gap-2 bg-ink text-cream px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider border-[2px] border-ink hover:bg-acid hover:text-ink transition-colors"
                                 >
                                     <Apple size={14} /> Download · App Store
+                                </a>
+                            )}
+                            {project.playStore && (
+                                <a
+                                    href={project.playStore}
+                                    target="_blank" rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 bg-ink text-cream px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider border-[2px] border-ink hover:bg-acid hover:text-ink transition-colors"
+                                >
+                                    <Play size={14} /> Download · Google Play
                                 </a>
                             )}
                             {project.liveDemo && (
@@ -236,6 +245,17 @@ export default function CaseStudyClient({ slug }: { slug: string }) {
                                 >
                                     <Apple size={16} />
                                     App Store
+                                    <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                </a>
+                            )}
+                            {project.playStore && (
+                                <a
+                                    href={project.playStore}
+                                    target="_blank" rel="noopener noreferrer"
+                                    className="neo-card bg-cream text-ink px-5 py-3 font-heading font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-acid transition-colors group"
+                                >
+                                    <Play size={16} />
+                                    Google Play
                                     <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                 </a>
                             )}

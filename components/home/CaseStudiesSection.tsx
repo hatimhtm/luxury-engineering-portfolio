@@ -6,9 +6,9 @@ import { projects, divisions } from "@/lib/projects";
 const PICKS: { slug: string; kicker: string; summary: string }[] = [
     {
         slug: "gopilates",
-        kicker: "iOS and watchOS, client app",
+        kicker: "iOS, watchOS and Android, client app",
         summary:
-            "A French-first Pilates subscription app, rated 4.4 from 208 ratings in France. SwiftUI by feature, SwiftData synced through CloudKit, RevenueCat entitlements, and an AI meal scan behind a server-side proxy.",
+            "A French-first Pilates subscription app on the App Store and Google Play, rated 4.4 from 208 ratings in France. SwiftUI and SwiftData with CloudKit on iOS, Kotlin and Compose on Android, RevenueCat on both.",
     },
     {
         slug: "practicesync",
