@@ -28,7 +28,7 @@ export default function SiteNav() {
 
     return (
         <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:pt-5">
-            <LiquidGlass as="nav" aria-label="Main" radius={999} bezel={12} strength={16} frost={6} tint="var(--gt-lo)" className="mx-auto flex w-full max-w-[1120px] items-center gap-2 py-2 pl-5 pr-2">
+            <LiquidGlass as="nav" aria-label="Main" radius={999} bezel={12} strength={16} frost={12} tint="var(--gt-hi)" className="mx-auto flex w-full max-w-[1120px] items-center gap-2 py-2 pl-5 pr-2">
                 <Link href="/" className="display whitespace-nowrap text-[18px] font-semibold tracking-[-0.01em] text-ink md:text-[19px]">
                     Hatim El Hassak
                 </Link>

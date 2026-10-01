@@ -44,7 +44,22 @@ export default function Hero() {
     return (
         <section ref={box} onPointerMove={onMove} className="relative min-h-[100dvh] overflow-hidden">
             <motion.div aria-hidden style={reduce ? undefined : { x: bgX, y: bgY, scale: bgScale }} className="absolute inset-x-0 top-0 h-[58vh] md:inset-0 md:h-auto">
-                <Image src="/work/hero-day.jpg" alt="" fill priority sizes="100vw" className="theme-day object-cover object-[80%_55%] md:object-[center_46%]" />
+                {reduce ? (
+                    <Image src="/work/hero-day.jpg" alt="" fill priority sizes="100vw" className="theme-day object-cover object-[80%_55%] md:object-[center_46%]" />
+                ) : (
+                    // a slow 3D camera drift around the devices, rendered in Blender, looping
+                    <video
+                        className="theme-day absolute inset-0 h-full w-full object-cover object-[80%_55%] md:object-[center_46%]"
+                        src="/work/hero-loop.mp4"
+                        poster="/work/hero-day.jpg"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        aria-hidden
+                    />
+                )}
                 <Image src="/work/hero-night.jpg" alt="" fill priority sizes="100vw" className="theme-night object-cover object-[80%_55%] md:object-[center_46%]" />
             </motion.div>
             <div aria-hidden className="absolute inset-x-0 top-[32vh] h-[30vh] bg-gradient-to-b from-transparent via-page/70 to-page md:bottom-0 md:top-auto md:h-40 md:via-transparent" />

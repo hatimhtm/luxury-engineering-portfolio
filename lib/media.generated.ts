@@ -35,6 +35,10 @@ export const MEDIA: Record<string, Media> = {
         ],
         "cover": "/work/china-global-travel.jpg"
     },
+    "click2minimize": {
+        "cover": "/work/click2minimize.jpg",
+        "icon": "/icons/click2minimize.webp"
+    },
     "cloneos": {
         "shots": [
             "/work/cloneos-2.jpg"
@@ -63,6 +67,10 @@ export const MEDIA: Record<string, Media> = {
         "poster": "/work/estelle-poster.jpg",
         "trailer": "/work/estelle.mp4",
         "icon": "/icons/estelle.webp"
+    },
+    "fader": {
+        "cover": "/work/fader.jpg",
+        "icon": "/icons/fader.webp"
     },
     "fortress": {
         "cover": "/work/fortress.jpg"
@@ -157,13 +165,19 @@ export const MEDIA: Record<string, Media> = {
         ],
         "cover": "/work/nota-parfum.jpg"
     },
+    "pause": {
+        "cover": "/work/pause.jpg",
+        "icon": "/icons/pause.webp"
+    },
     "practicesync": {
         "shots": [
             "/work/practicesync-2.jpg",
             "/work/practicesync-3.jpg"
         ],
         "night": "/work/practicesync-night.jpg",
+        "poster": "/work/practicesync-poster.jpg",
         "cover": "/work/practicesync.jpg",
+        "trailer": "/work/practicesync.mp4",
         "icon": "/icons/practicesync.webp"
     },
     "relay": {
@@ -229,14 +243,5 @@ export const MEDIA: Record<string, Media> = {
             "/work/virtual-tryon-poc-2.jpg"
         ],
         "cover": "/work/virtual-tryon-poc.jpg"
-    },
-    "click2minimize": {
-        "icon": "/icons/click2minimize.webp"
-    },
-    "fader": {
-        "icon": "/icons/fader.webp"
-    },
-    "pause": {
-        "icon": "/icons/pause.webp"
     }
 };

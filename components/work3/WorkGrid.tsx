@@ -30,7 +30,7 @@ export default function WorkGrid({ items }: { items: GridItem[] }) {
     return (
         <LayoutGroup>
             <div className="sticky top-[88px] z-30 flex justify-center px-4 md:top-[104px]">
-                <LiquidGlass radius={999} bezel={10} strength={14} frost={10} tint="var(--gt-mid)" className="flex max-w-full items-center gap-1 overflow-x-auto p-1.5 [scrollbar-width:none]">
+                <LiquidGlass radius={999} bezel={10} strength={14} frost={12} tint="var(--gt-hi)" className="flex max-w-full items-center gap-1 overflow-x-auto p-1.5 [scrollbar-width:none]">
                     {FILTERS.map((f) => (
                         <button
                             key={f.id}
