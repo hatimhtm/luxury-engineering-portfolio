@@ -7,7 +7,7 @@ import { BOOK_CALL, EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
     title: "Video work",
-    description: "Showreel, documentary and launch films edited, animated and scored by Hatim El Hassak.",
+    description: "Showreel, films for shops, a documentary and launch films edited, animated and scored by Hatim El Hassak.",
     openGraph: { images: [{ url: "/work/reel-poster.jpg", width: 1600, height: 900 }] },
 };
 
@@ -19,6 +19,12 @@ function Film({ src, poster, label, ratio = "aspect-video" }: { src: string; pos
         </div>
     );
 }
+
+/** Vertical films made for shops, each from the shop's own product photos. */
+const SHOP_FILMS = [
+    { slug: "arab-kandora", name: "Arab Kandora", place: "Dubai", note: "Four Gulf cuts drawn in tailor's chalk, then the shop's own photos in every colour.", src: "/work/arab-kandora.mp4", poster: "/work/arab-kandora-poster.jpg" },
+    { slug: "le-zent", name: "Le Zent", place: "Dubai", note: "A perfume range, each bottle on its own colour, from the shop's product shots.", src: "/work/le-zent.mp4", poster: "/work/le-zent-poster.jpg" },
+];
 
 const LAUNCH_FILMS = [
     { slug: "estelle", name: "Estelle", note: "Launch film for my own iPhone app. Motion design, a 3D phone and sound design.", src: "/work/estelle.mp4", poster: "/work/estelle-poster.jpg" },
@@ -32,7 +38,7 @@ export default function ReelPage() {
                 <SplitReveal as="h1" text="Video work" className="display text-[4.2rem] text-ink md:text-[8rem]" />
                 <Reveal delay={0.3}>
                     <p className="mt-2 max-w-2xl text-[19px] leading-relaxed text-ink2">
-                        Short-form edits, a narrated documentary and launch films. I cut, animate, caption and mix them myself.
+                        Short films for shops, a narrated documentary and launch films. I cut, animate, caption and mix them myself.
                     </p>
                 </Reveal>
             </header>
@@ -42,6 +48,25 @@ export default function ReelPage() {
                     <Film src="/work/reel.mp4" poster="/work/reel-poster.jpg" label="Showreel, 34 seconds" />
                     <p className="mt-4 text-[15px] text-ink3">Showreel, 34 seconds. Sound on.</p>
                 </Reveal>
+            </section>
+
+            <section className="mx-auto mt-20 grid max-w-[1280px] gap-8 px-5 md:mt-28 md:grid-cols-12 md:px-10">
+                <div className="md:col-span-4">
+                    <h2 className="display text-[2.4rem] leading-[1.05] text-ink md:text-[3rem]">Films for shops</h2>
+                    <p className="mt-4 text-[17px] leading-relaxed text-ink2">
+                        Twenty seconds, vertical, made for Reels, TikTok and WhatsApp status. Each one is built from the shop&apos;s own product photos and carries its name, logo and number.
+                    </p>
+                </div>
+                <div className="grid grid-cols-2 gap-4 md:col-span-8 md:gap-8">
+                    {SHOP_FILMS.map((f) => (
+                        <Reveal key={f.slug}>
+                            <Film src={f.src} poster={f.poster} label={`Film for ${f.name}`} ratio="aspect-[9/16]" />
+                            <p className="mt-4 text-[16px] leading-relaxed text-ink2">
+                                <span className="font-semibold text-ink">{f.name}</span>, {f.place}. {f.note}
+                            </p>
+                        </Reveal>
+                    ))}
+                </div>
             </section>
 
             <section className="mx-auto mt-20 grid max-w-[1280px] gap-8 px-5 md:mt-28 md:grid-cols-12 md:px-10">
