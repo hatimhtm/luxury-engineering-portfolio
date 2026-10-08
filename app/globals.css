@@ -123,6 +123,16 @@ body {
     backdrop-filter: none !important;
   }
 }
+/* On a phone, glass that scrolls with the page is a plain raised surface: a backdrop blur there costs frames. */
+@media (hover: none) and (pointer: coarse) {
+  .lg-plain {
+    background: rgb(var(--raised) / 0.94);
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: inset 0 0 0 1px rgb(var(--ink) / 0.07), 0 10px 28px -14px rgb(16 22 44 / 0.3);
+  }
+  .lg-plain::before { display: none; }
+}
 
 /* A specular highlight that follows the pointer. Components set --mx / --my. */
 .glass-light {
@@ -186,6 +196,33 @@ body {
 .theme-night { display: none; }
 [data-theme="dark"] .theme-day { display: none; }
 [data-theme="dark"] .theme-night { display: block; }
+
+/* The hero on a phone. The headline starts under the portrait picture (110vw down), and on a short screen it
+   rises so the two buttons stay in the first view; never higher than 86vw, so the phones in the picture stay in sight.
+   svh is the height with the browser's bars showing: it does not change as they hide, so nothing jumps on scroll. */
+@media (max-width: 767px) {
+  .hero-copy {
+    --copy: clamp(86vw, calc(100vh - 430px), 110vw);
+    --copy: clamp(86vw, calc(100svh - 366px), 110vw);
+    padding-top: var(--copy);
+  }
+  /* the picture melts into the page above the headline: a short mist when the phones stand clear of the words,
+     a longer one when the words have risen over their feet */
+  .hero-fade { height: calc(56px + (110vw - var(--copy)) * 0.7); }
+}
+/* The lens where the backdrop can't be bent: the picture under it, enlarged, behind the same rim of light. */
+.loupe {
+  border-radius: 999px;
+  background-color: rgb(var(--page));
+  background-repeat: no-repeat;
+  box-shadow:
+    inset 0 1px 0.5px rgb(255 255 255 / 0.9),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.5),
+    inset 0 0 22px rgb(255 255 255 / 0.3),
+    inset 0 -12px 26px -8px rgb(16 22 44 / 0.2),
+    0 14px 34px -12px rgb(16 22 44 / 0.45),
+    0 2px 6px rgb(16 22 44 / 0.08);
+}
 
 /* Darkens the left of the night hero so the headline keeps its contrast. */
 .hero-scrim { display: none; }
@@ -292,6 +329,19 @@ body {
     rgb(var(--page));
 }
 
+}
+
+/* Things that sharpen out of a blur as they arrive do it without the blur on a phone: a filter that animates while
+   the page scrolls is the costliest thing a phone can be asked to paint. They still rise and fade in. */
+@media (hover: none) and (pointer: coarse) {
+  .calm-touch { filter: none !important; }
+}
+
+/* Full-screen scenes on a phone. lvh is the height with the browser's bars hidden and svh with them showing; neither
+   changes while you scroll, unlike dvh, which resizes the scene under your thumb. vh comes first for old browsers. */
+@layer utilities {
+  .h-screen-l { height: 100vh; height: 100lvh; }
+  .min-h-screen-s { min-height: 100vh; min-height: 100svh; }
 }
 
 /* Long-form reading (case studies) */

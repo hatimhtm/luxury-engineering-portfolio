@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, type MotionValue } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
 import LiquidGlass from "@/components/glass/LiquidGlass";
 import { MEDIA } from "@/lib/media.generated";
 
@@ -62,6 +62,51 @@ function Icon({ app, index, mouseX, centers, reduce }: { app: (typeof APPS)[numb
     );
 }
 
+/**
+ * The apps on a phone: laid out like a home screen, one tap each, under a row of their real screens that
+ * slides sideways as the page moves. A dock twelve icons wide has no place on a screen four icons wide.
+ */
+function PhoneApps({ reduce }: { reduce: boolean }) {
+    const ref = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+    const slide = useTransform(scrollYProgress, [0, 1], ["2%", "-56%"]);
+    return (
+        <div className="md:hidden">
+            <div ref={ref} aria-hidden className="mt-9 overflow-hidden">
+                <motion.div style={reduce ? undefined : { x: slide }} className="h-[236px] w-[836px] bg-[url('/work/screens-wall.webp')] bg-contain bg-left bg-no-repeat" />
+            </div>
+            <div className="mt-7 px-4">
+                <div className="tray">
+                    <ul className="plate grid grid-cols-3 gap-x-1 gap-y-6 px-3 py-7">
+                        {APPS.map((a, i) => {
+                            const src = MEDIA[a.slug]?.icon;
+                            return (
+                                <motion.li
+                                    key={a.slug}
+                                    initial={reduce ? false : { opacity: 0, scale: 0.86, y: 10 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                    viewport={{ once: true, amount: 0.4 }}
+                                    transition={{ type: "spring", duration: 0.55, bounce: 0.24, delay: (i % 3) * 0.045 + Math.floor(i / 3) * 0.05 }}
+                                >
+                                    <Link href={`/work/${a.slug}`} aria-label={`${a.name}, ${a.where}`} className="group flex flex-col items-center gap-2">
+                                        <span className="relative block h-[64px] w-[64px] transition-transform duration-150 ease-out group-active:scale-[0.92]">
+                                            {src && <Image src={src} alt="" fill sizes="64px" quality={95} className={`object-cover ${a.full ? "rounded-[22%] shadow-[0_6px_14px_-6px_rgb(16_22_44/0.45)]" : "drop-shadow-[0_6px_10px_rgb(16_22_44/0.3)]"}`} />}
+                                        </span>
+                                        <span className="text-center">
+                                            <span className="block text-[13.5px] font-bold leading-tight text-ink">{a.name}</span>
+                                            <span className="mt-0.5 block text-[12px] leading-tight text-ink3">{a.where.replace("iPhone, Apple Watch, Android", "iPhone, Android")}</span>
+                                        </span>
+                                    </Link>
+                                </motion.li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 /** The apps, in a dock you can run your cursor along, like the one on a Mac. */
 export default function AppDock() {
     const reduce = Boolean(useReducedMotion());
@@ -80,12 +125,16 @@ export default function AppDock() {
     }, []);
 
     return (
-        <section className="relative overflow-hidden py-24 md:py-32" aria-labelledby="dock-title">
+        <section className="relative overflow-hidden py-20 md:py-32" aria-labelledby="dock-title">
             <div className="mx-auto max-w-[1280px] px-5 md:px-10">
                 <h2 id="dock-title" className="display max-w-3xl text-[2.6rem] text-ink md:text-[4rem]">Apps for iPhone, Mac and Android.</h2>
-                <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-ink2">Four are on the App Store, one is also on Google Play. Run your cursor along the dock and click one to see how it was built.</p>
+                <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-ink2">
+                    Four are on the App Store, one is also on Google Play. <span className="md:hidden">Tap one to see how it was built.</span>
+                    <span className="hidden md:inline">Run your cursor along the dock and click one to see how it was built.</span>
+                </p>
             </div>
-            <div className="relative mt-12 overflow-x-auto px-5 pb-10 [scrollbar-width:none] md:overflow-visible">
+            <PhoneApps reduce={reduce} />
+            <div className="relative mt-12 hidden px-5 pb-10 md:block">
                 {/* real screens from the apps, behind the dock, for the glass to bend */}
                 <motion.div
                     aria-hidden

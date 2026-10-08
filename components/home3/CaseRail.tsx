@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "@phosphor-icons/react";
 import LiquidGlass from "@/components/glass/LiquidGlass";
+import Reveal from "@/components/v2/Reveal";
 import { MEDIA } from "@/lib/media.generated";
 
 const CASES = [
@@ -39,7 +41,93 @@ function Card({ c }: { c: (typeof CASES)[number] }) {
     );
 }
 
-/** Case studies on a rail: the page scrolls down, the rail moves sideways. */
+const two = (n: number) => String(n).padStart(2, "0");
+
+/** On a phone a case study is a card you swipe to: the whole picture at its own shape, the words under it. */
+function PhoneCard({ c }: { c: (typeof CASES)[number] }) {
+    const m = MEDIA[c.slug] ?? {};
+    const img = m.cover ?? m.poster;
+    return (
+        <Link href={`/work/${c.slug}`} data-case className="tray block w-[84vw] max-w-[400px] flex-none snap-start transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.985]">
+            <div className="plate flex h-full flex-col">
+                <div className="relative aspect-[16/10] w-full bg-ink/5">
+                    {img ? (
+                        <Image quality={90} src={img} alt={`${c.name}, edited screenshot`} fill sizes="(max-width: 767px) 84vw, 1px" className="object-cover" />
+                    ) : (
+                        <div className="field flex h-full w-full items-center justify-center">
+                            {m.icon ? <Image quality={90} src={m.icon} alt="" width={96} height={96} className="rounded-[22%] shadow-xl" /> : <span className="display text-[2.4rem] text-ink/75">{c.name}</span>}
+                        </div>
+                    )}
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                    <p className="text-[13px] font-semibold text-ink2">{c.kind}</p>
+                    <p className="display mt-1.5 text-[1.8rem] text-ink">{c.name}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink2">{c.line}</p>
+                    <span className="link mt-auto inline-flex items-center gap-1 pt-4 text-[15px]">
+                        Read the case study <ArrowUpRight size={14} weight="bold" />
+                    </span>
+                </div>
+            </div>
+        </Link>
+    );
+}
+
+/** The phone's rail moves under a thumb, sideways, with a counter and a line that fills as you go. */
+function PhoneRail() {
+    const rail = useRef<HTMLDivElement>(null);
+    const [at, setAt] = useState(0);
+    const { scrollXProgress } = useScroll({ container: rail });
+    const fill = useTransform(scrollXProgress, [0, 1], [1 / CASES.length, 1]);
+
+    useEffect(() => {
+        const el = rail.current;
+        if (!el) return;
+        let raf = 0;
+        const read = () => {
+            raf = 0;
+            const card = el.querySelector<HTMLElement>("[data-case]");
+            const step = card ? card.offsetWidth + parseFloat(getComputedStyle(el).columnGap || "14") : 1;
+            const end = el.scrollLeft >= el.scrollWidth - el.clientWidth - 4;
+            const i = end ? CASES.length - 1 : Math.round(el.scrollLeft / step);
+            setAt((p) => (p === i ? p : i));
+        };
+        const onScroll = () => {
+            if (!raf) raf = requestAnimationFrame(read);
+        };
+        el.addEventListener("scroll", onScroll, { passive: true });
+        return () => {
+            el.removeEventListener("scroll", onScroll);
+            if (raf) cancelAnimationFrame(raf);
+        };
+    }, []);
+
+    return (
+        <section className="py-20 md:hidden" aria-labelledby="rail-title-phone">
+            <Reveal className="px-5">
+                <h2 id="rail-title-phone" className="display text-[2.6rem] text-ink">Case studies</h2>
+                <p className="mt-3 text-[16.5px] leading-relaxed text-ink2">Six projects written up: the problem, what I built, and what came of it.</p>
+            </Reveal>
+            <Reveal delay={0.08} className="mt-7">
+                <div ref={rail} role="list" aria-label="Case studies" className="flex snap-x snap-mandatory scroll-px-4 gap-3.5 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    {CASES.map((c) => (
+                        <PhoneCard key={c.slug} c={c} />
+                    ))}
+                </div>
+                <div className="mt-6 flex items-center gap-4 px-5">
+                    <span className="text-[15px] font-semibold tabular-nums text-ink3">
+                        <span className="text-ink">{two(at + 1)}</span> / {two(CASES.length)}
+                    </span>
+                    <div className="h-[3px] flex-1 overflow-hidden rounded-full bg-ink/10">
+                        <motion.div style={{ scaleX: fill }} className="h-full origin-left rounded-full bg-ink" />
+                    </div>
+                    <span className="text-[15px] font-medium text-ink3">Swipe</span>
+                </div>
+            </Reveal>
+        </section>
+    );
+}
+
+/** Case studies on a rail: on a desktop the page scrolls down and the rail moves sideways; on a phone you swipe it. */
 export default function CaseRail() {
     const ref = useRef<HTMLElement>(null);
     const track = useRef<HTMLDivElement>(null);
@@ -54,13 +142,18 @@ export default function CaseRail() {
 
     if (reduce) {
         return (
-            <section className="mx-auto max-w-[1280px] overflow-x-auto px-4 py-24 md:px-10">
-                <div className="flex gap-5">{CASES.map((c) => <Card key={c.slug} c={c} />)}</div>
-            </section>
+            <>
+                <PhoneRail />
+                <section className="mx-auto hidden max-w-[1280px] overflow-x-auto px-4 py-24 md:block md:px-10">
+                    <div className="flex gap-5">{CASES.map((c) => <Card key={c.slug} c={c} />)}</div>
+                </section>
+            </>
         );
     }
     return (
-        <section ref={ref} className="relative h-[420vh]" aria-labelledby="rail-title">
+        <>
+        <PhoneRail />
+        <section ref={ref} className="relative hidden h-[420vh] md:block" aria-labelledby="rail-title">
             <div className="sticky top-0 flex h-[100dvh] flex-col justify-center overflow-hidden">
                 <div className="mx-auto mb-8 w-full max-w-[1280px] px-5 md:px-10">
                     <h2 id="rail-title" className="display text-[2.6rem] text-ink md:text-[4.2rem]">Case studies</h2>
@@ -72,5 +165,6 @@ export default function CaseRail() {
                 </motion.div>
             </div>
         </section>
+        </>
     );
 }

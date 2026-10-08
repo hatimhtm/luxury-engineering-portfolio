@@ -33,13 +33,13 @@ export default function WorkGrid({ items, initialFilter = "all" }: { items: Grid
 
     // big tiles for flagships, a steady rhythm for the rest
     const span = (it: GridItem, idx: number) => {
-        if (filter === "all" && it.tier === "flagship") return idx % 3 === 0 ? "md:col-span-8 md:row-span-2 min-h-[460px]" : "md:col-span-4 md:row-span-2 min-h-[460px]";
-        return "md:col-span-4 min-h-[320px]";
+        if (filter === "all" && it.tier === "flagship") return idx % 3 === 0 ? "md:col-span-8 md:row-span-2 md:min-h-[460px]" : "md:col-span-4 md:row-span-2 md:min-h-[460px]";
+        return "md:col-span-4 md:min-h-[320px]";
     };
 
     return (
         <LayoutGroup>
-            <div className="sticky top-[88px] z-30 flex justify-center px-4 md:top-[104px]">
+            <div className="sticky top-[80px] z-30 flex justify-center px-3 md:top-[104px] md:px-4">
                 <LiquidGlass radius={999} bezel={10} strength={14} frost={12} tint="var(--gt-hi)" className="flex max-w-full items-center gap-1 overflow-x-auto p-1.5 [scrollbar-width:none]">
                     {FILTERS.map((f) => (
                         <button
@@ -74,7 +74,7 @@ export default function WorkGrid({ items, initialFilter = "all" }: { items: Grid
                                 filter: { duration: 0.6, delay: (idx % 3) * 0.07 },
                                 layout: { type: "spring", bounce: 0.12, duration: 0.6 },
                             }}
-                            className={span(it, idx)}
+                            className={`calm-touch ${span(it, idx)}`}
                         >
                             <Tile slug={it.slug} name={it.name} kind={it.kind} className="h-full" sizes={it.tier === "flagship" ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 100vw"} />
                         </motion.div>

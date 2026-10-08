@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, useEffect, useId, useImperativeHandle, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { displacementMap, supportsRefraction } from "./displacement";
+import { displacementMap, supportsRefraction, touchScreen } from "./displacement";
 
 export type LiquidGlassProps = {
     children?: ReactNode;
@@ -21,6 +21,12 @@ export type LiquidGlassProps = {
     chroma?: boolean;
     /** Tint over the glass, any CSS colour. */
     tint?: string;
+    /**
+     * What the glass does on phones and tablets. "frost" (the default) blurs what is behind it, which is cheap enough
+     * for bars that stay put. "refract" bends the backdrop like on a desktop: keep it for one small hero piece.
+     * "plain" drops the backdrop filter: use it for anything that scrolls with the page, where a blur costs frames.
+     */
+    touch?: "frost" | "refract" | "plain";
     as?: "div" | "nav" | "header" | "section" | "span";
 } & Omit<React.HTMLAttributes<HTMLElement>, "style" | "className" | "children">;
 
@@ -28,9 +34,10 @@ export type LiquidGlassProps = {
  * Liquid Glass on the web. In Chromium the backdrop is bent through an SVG displacement filter
  * (real refraction, rim highlight, slight colour split). Elsewhere it falls back to frosted glass,
  * and to a solid surface when the system asks for reduced transparency (see .lg in globals.css).
+ * On touch screens it frosts unless told otherwise (see `touch`), so scrolling stays smooth on a phone.
  */
 const LiquidGlass = forwardRef<HTMLElement, LiquidGlassProps>(function LiquidGlass(
-    { children, className = "", style, radius = 999, bezel = 16, strength = 26, magnify = 0, frost = 1.5, chroma = true, tint, as = "div", ...rest },
+    { children, className = "", style, radius = 999, bezel = 16, strength = 26, magnify = 0, frost = 1.5, chroma = true, tint, touch = "frost", as = "div", ...rest },
     outer,
 ) {
     const ref = useRef<HTMLElement>(null);
@@ -40,7 +47,7 @@ const LiquidGlass = forwardRef<HTMLElement, LiquidGlassProps>(function LiquidGla
     const [refract, setRefract] = useState(false);
     const [map, setMap] = useState("");
 
-    useEffect(() => setRefract(supportsRefraction()), []);
+    useEffect(() => setRefract(supportsRefraction() && (touch === "refract" || !touchScreen())), [touch]);
 
     useEffect(() => {
         const el = ref.current;
@@ -95,7 +102,8 @@ const LiquidGlass = forwardRef<HTMLElement, LiquidGlassProps>(function LiquidGla
             <Tag
                 ref={ref as React.Ref<HTMLDivElement>}
                 {...(rest as React.HTMLAttributes<HTMLDivElement>)}
-                className={`lg ${className}`}
+                className={`lg ${touch === "plain" ? "lg-plain " : ""}${className}`}
+                data-glass={live ? "refract" : "frost"}
                 style={{
                     borderRadius: r,
                     backdropFilter: backdrop,

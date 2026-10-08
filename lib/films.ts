@@ -8,6 +8,7 @@
 export type ShortFilm = { slug: string; name: string; place: string; kind: string; seconds: number; note: string };
 
 export const SHORT_FILMS: ShortFilm[] = [
+    { slug: "fragrosense", name: "Fragrosense", place: "Dubai", kind: "Perfume", seconds: 23, note: "A misted pane of glass clears onto the shop's own bottles, then its Scent on Demand service." },
     { slug: "arab-kandora", name: "Arab Kandora", place: "Dubai", kind: "Fashion", seconds: 23, note: "Four Gulf cuts drawn in tailor's chalk, then the shop's own photos in every colour." },
     { slug: "le-zent", name: "Le Zent", place: "Dubai", kind: "Perfume", seconds: 19, note: "A perfume range, each bottle on its own colour, from the shop's product shots." },
 ];

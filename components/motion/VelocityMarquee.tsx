@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useAnimationFrame, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity, wrap } from "framer-motion";
+import { motion, useAnimationFrame, useInView, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity, wrap } from "framer-motion";
 
 /** A band of type that drifts on its own and speeds up, and leans, with your scroll. */
 export default function VelocityMarquee({ words, baseSpeed = 2.2 }: { words: string[]; baseSpeed?: number }) {
@@ -12,10 +12,12 @@ export default function VelocityMarquee({ words, baseSpeed = 2.2 }: { words: str
     const boost = useTransform(v, [-2000, 0, 2000], [-4, 0, 4], { clamp: false });
     const skew = useTransform(v, [-2500, 0, 2500], [7, 0, -7]);
     const dir = useRef(1);
+    const band = useRef<HTMLElement>(null);
+    const seen = useInView(band, { margin: "200px 0px" });
     const xPct = useTransform(x, (val) => `${wrap(-50, 0, val)}%`);
 
     useAnimationFrame((_, delta) => {
-        if (reduce) return;
+        if (reduce || !seen) return; // nothing to move while the band is off screen
         const b = boost.get();
         if (b < 0) dir.current = -1;
         else if (b > 0) dir.current = 1;
@@ -24,7 +26,7 @@ export default function VelocityMarquee({ words, baseSpeed = 2.2 }: { words: str
 
     const row = [...words, ...words];
     return (
-        <section aria-label="Tools I use" className="overflow-hidden border-y border-hairline py-8 md:py-10">
+        <section ref={band} aria-label="Tools I use" className="overflow-hidden border-y border-hairline py-8 md:py-10">
             <motion.div style={{ x: xPct, skewX: reduce ? 0 : skew }} className="flex w-max items-center gap-10 whitespace-nowrap">
                 {row.map((w, i) => (
                     <span key={i} className="flex items-center gap-10">

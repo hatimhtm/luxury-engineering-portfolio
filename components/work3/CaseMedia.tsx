@@ -13,10 +13,13 @@ export function LeadMedia({ m, name }: { m: Media; name: string }) {
             initial={reduce ? false : { opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className="relative overflow-hidden rounded-[34px] bg-ink/5"
+            className="calm-touch relative overflow-hidden rounded-[26px] bg-ink/5 md:rounded-[34px]"
         >
             {m.trailer ? (
-                <AutoVideo src={m.trailer} poster={m.poster ?? ""} label={`${name} trailer`} className="aspect-video w-full" />
+                <>
+                    {m.tall && <AutoVideo src={m.tall} poster={m.tallPoster ?? ""} label={`${name} trailer`} className="aspect-[4/5] w-full md:hidden" full corner="bottom-left" />}
+                    <AutoVideo src={m.trailer} phoneSrc={m.trailerPhone} poster={m.poster ?? ""} label={`${name} trailer`} className={`aspect-video w-full ${m.tall ? "hidden md:block" : ""}`} full />
+                </>
             ) : m.cover ? (
                 <div className="relative aspect-[16/10] w-full">
                     <Image quality={90} src={m.cover} alt={`${name}, edited screenshot`} fill priority sizes="(min-width: 1280px) 1200px, 100vw" className={`${m.night ? "theme-day " : ""}object-cover`} />
@@ -44,7 +47,7 @@ export function Gallery({ shots, name }: { shots: string[]; name: string }) {
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     viewport={{ once: true, amount: 0.25 }}
                     transition={{ duration: 0.8, delay: (i % 2) * 0.08, ease: [0.23, 1, 0.32, 1] }}
-                    className={`relative overflow-hidden rounded-[28px] ${shots.length % 2 === 1 && i === 0 ? "md:col-span-2" : ""}`}
+                    className={`calm-touch relative overflow-hidden rounded-[22px] md:rounded-[28px] ${shots.length % 2 === 1 && i === 0 ? "md:col-span-2" : ""}`}
                 >
                     <div className="relative aspect-[16/10] w-full">
                         <Image quality={90} src={src} alt={`${name}, screen ${i + 2}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />

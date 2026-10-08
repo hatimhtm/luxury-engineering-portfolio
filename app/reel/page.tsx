@@ -6,6 +6,7 @@ import Reveal from "@/components/v2/Reveal";
 import FilmPlayer from "@/components/reel/FilmPlayer";
 import FilmRail from "@/components/reel/FilmRail";
 import { LAUNCH_FILMS, SHORT_FILMS } from "@/lib/films";
+import { MEDIA } from "@/lib/media.generated";
 import { BOOK_CALL, EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -19,7 +20,9 @@ function Wide({ slug, label, seconds, poster }: { slug: string; label: string; s
     return (
         <div className="tray">
             <div className="plate">
-                <FilmPlayer src={`/work/${slug}.mp4`} poster={poster ?? `/work/${slug}-poster.jpg`} label={label} seconds={seconds} />
+                {/* a film that has a cut for upright phones shows that one below 768 px */}
+                {MEDIA[slug]?.tall && <FilmPlayer tall shape="aspect-[4/5]" className="md:hidden" src={MEDIA[slug].tall!} poster={MEDIA[slug].tallPoster ?? ""} label={label} seconds={seconds} />}
+                <FilmPlayer className={MEDIA[slug]?.tall ? "hidden md:block" : ""} src={`/work/${slug}.mp4`} phoneSrc={MEDIA[slug]?.trailerPhone} poster={poster ?? `/work/${slug}-poster.jpg`} label={label} seconds={seconds} />
             </div>
         </div>
     );

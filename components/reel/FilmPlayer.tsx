@@ -8,15 +8,14 @@ import { clock } from "@/lib/films";
 let playing: HTMLVideoElement | null = null;
 
 /** A film behind its poster. Nothing downloads until the viewer presses play; then it plays with sound and real controls. */
-export default function FilmPlayer({ src, poster, label, seconds, tall = false }: { src: string; poster: string; label: string; seconds?: number; tall?: boolean }) {
+export default function FilmPlayer({ src, phoneSrc, poster, label, seconds, tall = false, shape, className = "" }: { src: string; phoneSrc?: string; poster: string; label: string; seconds?: number; tall?: boolean; shape?: string; className?: string }) {
     const ref = useRef<HTMLVideoElement>(null);
     const [started, setStarted] = useState(false);
 
     return (
-        <div className={`relative bg-black ${tall ? "aspect-[9/16]" : "aspect-video"}`}>
+        <div className={`relative bg-black ${shape ?? (tall ? "aspect-[9/16]" : "aspect-video")} ${className}`}>
             <video
                 ref={ref}
-                src={src}
                 poster={poster}
                 controls={started}
                 playsInline
@@ -34,8 +33,12 @@ export default function FilmPlayer({ src, poster, label, seconds, tall = false }
                     aria-label={`Play ${label}`}
                     onClick={() => {
                         setStarted(true);
+                        const v = ref.current;
+                        if (!v) return;
+                        // a phone gets the lighter copy of a wide film; the file is only named now, so nothing loads before the tap
+                        v.src = phoneSrc && window.matchMedia("(max-width: 767px)").matches ? phoneSrc : src;
                         // called inside the tap, so phones let it start with sound
-                        ref.current?.play().catch(() => {});
+                        v.play().catch(() => {});
                     }}
                     className="group absolute inset-0 grid place-items-center bg-gradient-to-t from-black/45 via-black/0 to-black/0"
                 >

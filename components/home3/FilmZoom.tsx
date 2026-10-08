@@ -5,9 +5,14 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import LiquidGlass from "@/components/glass/LiquidGlass";
 import AutoVideo from "@/components/v2/AutoVideo";
+import Reveal from "@/components/v2/Reveal";
 import { MEDIA } from "@/lib/media.generated";
 
-/** The GoPilates film starts as a card and grows to fill the screen as you scroll; the facts arrive on glass. */
+/**
+ * The GoPilates film. On a desktop it starts as a card and grows to fill the screen as you scroll, and the facts
+ * arrive on glass. A phone held upright can't be filled by a wide film without cutting most of it away, so there
+ * the film keeps its shape, plays in place, and one tap opens it full screen, turned to landscape, with sound.
+ */
 export default function FilmZoom() {
     const ref = useRef<HTMLElement>(null);
     const reduce = useReducedMotion();
@@ -30,8 +35,40 @@ export default function FilmZoom() {
         );
     }
 
+    const facts = (
+        <>
+            <p className="text-[13px] font-semibold text-ink2">Client app, iPhone, Apple Watch and Android</p>
+            <p className="display mt-2 text-[2.2rem] text-ink">GoPilates</p>
+            <p className="mt-3 text-[15.5px] leading-relaxed text-ink2">
+                A French-first Pilates subscription app, rated 4.4 by 208 people in France. About 16,000 lines of Swift, a native Kotlin app on Android, and an Apple Watch companion.
+            </p>
+            <Link href="/work/gopilates" className="link pointer-events-auto mt-4 inline-block">Read the case study</Link>
+        </>
+    );
+
     return (
-        <section ref={ref} className="relative h-[260vh]" aria-labelledby="film-title">
+        <>
+        <section className="px-4 pb-4 pt-2 md:hidden" aria-labelledby="film-title-phone">
+            <Reveal className="px-1">
+                <h2 id="film-title-phone" className="display text-[2.5rem] text-ink">GoPilates, in 40 seconds.</h2>
+                <p className="mt-3 text-[16.5px] leading-relaxed text-ink2">
+                    {m.tall ? "The launch film I made for the app, cut again for a phone held upright. Tap the speaker for sound." : "The launch film I made for the app. Tap the arrows to watch it full screen, with sound."}
+                </p>
+            </Reveal>
+            <Reveal delay={0.08} className="mt-7">
+                <div className="tray">
+                    <div className="plate">
+                        {m.tall ? (
+                            <AutoVideo src={m.tall} poster={m.tallPoster ?? ""} label="GoPilates film" className="aspect-[4/5] w-full" full corner="bottom-left" />
+                        ) : (
+                            m.trailer && <AutoVideo src={m.trailer} phoneSrc={m.trailerPhone} poster={m.poster ?? ""} label="GoPilates film" className="aspect-video w-full" full />
+                        )}
+                        <div className="p-6">{facts}</div>
+                    </div>
+                </div>
+            </Reveal>
+        </section>
+        <section ref={ref} className="relative hidden h-[260vh] md:block" aria-labelledby="film-title">
             <div className="sticky top-0 flex h-[100dvh] items-center justify-center overflow-hidden">
                 <motion.div style={{ y: titleY, opacity: titleOpacity }} className="pointer-events-none absolute inset-x-0 top-[12%] z-10 px-5 text-center">
                     <h2 id="film-title" className="display text-[2.6rem] text-ink md:text-[4.6rem]">GoPilates, in 40 seconds.</h2>
@@ -44,15 +81,11 @@ export default function FilmZoom() {
                 </motion.div>
                 <motion.div style={{ opacity: panelOpacity, y: panelY }} className="absolute bottom-6 left-4 right-4 z-10 md:bottom-10 md:left-10 md:right-auto md:w-[460px]">
                     <LiquidGlass radius={28} bezel={18} strength={26} frost={14} tint="var(--gt-hi)" className="p-7 md:p-8">
-                        <p className="text-[13px] font-semibold text-ink2">Client app, iPhone, Apple Watch and Android</p>
-                        <p className="display mt-2 text-[2.2rem] text-ink">GoPilates</p>
-                        <p className="mt-3 text-[15.5px] leading-relaxed text-ink2">
-                            A French-first Pilates subscription app, rated 4.4 by 208 people in France. About 16,000 lines of Swift, a native Kotlin app on Android, and an Apple Watch companion.
-                        </p>
-                        <Link href="/work/gopilates" className="link pointer-events-auto mt-4 inline-block">Read the case study</Link>
+                        {facts}
                     </LiquidGlass>
                 </motion.div>
             </div>
         </section>
+        </>
     );
 }

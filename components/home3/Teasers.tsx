@@ -12,7 +12,7 @@ const WAYS = [
 
 export function ServicesTeaser() {
     return (
-        <section className="mx-auto max-w-[1280px] px-5 py-24 md:px-10 md:py-32" aria-labelledby="ways-title">
+        <section className="mx-auto max-w-[1280px] px-5 py-20 md:px-10 md:py-32" aria-labelledby="ways-title">
             <Reveal className="flex flex-wrap items-end justify-between gap-6">
                 <h2 id="ways-title" className="display max-w-2xl text-[2.6rem] text-ink md:text-[4rem]">Three ways to work together.</h2>
                 <Link href="/services" className="link text-[16px]">How each one works</Link>
@@ -38,7 +38,7 @@ export function ServicesTeaser() {
 
 export function AboutTeaser() {
     return (
-        <section className="mx-auto max-w-[1280px] px-5 pb-24 md:px-10 md:pb-32" aria-labelledby="about-teaser-title">
+        <section className="mx-auto max-w-[1280px] px-5 pb-20 md:px-10 md:pb-32" aria-labelledby="about-teaser-title">
             <Reveal>
                 <div className="tray">
                     <div className="plate grid items-center gap-10 p-8 md:grid-cols-[280px_1fr] md:p-12">
@@ -65,11 +65,16 @@ export function AboutTeaser() {
 export function CtaBand() {
     return (
         <section className="relative overflow-hidden bg-[#0d0f14]" aria-labelledby="cta-title">
-            <Image quality={90} src="/work/hero-night.jpg" alt="" fill sizes="100vw" className="object-cover object-[70%_50%] opacity-80" />
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-[#0d0f14] via-[#0d0f14]/70 to-transparent" />
-            <div className="relative mx-auto flex max-w-[1280px] flex-col items-start gap-8 px-5 py-28 md:flex-row md:items-end md:justify-between md:px-10 md:py-40">
+            <Image quality={90} src="/work/hero-night.jpg" alt="" fill sizes="(max-width: 767px) 1px, 100vw" className="hidden object-cover object-[70%_50%] opacity-80 md:block" />
+            <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-[#0d0f14] via-[#0d0f14]/70 to-transparent md:block" />
+            {/* on a phone the words come first and the scene stands under them, the same one as the hero, at night */}
+            <div aria-hidden className="absolute inset-x-0 bottom-0 aspect-[4/5] md:hidden">
+                <Image quality={90} src="/work/hero-phone-night.jpg" alt="" fill sizes="(max-width: 767px) 100vw, 1px" className="object-cover object-top" />
+                <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#0d0f14] via-[#0d0f14]/80 to-transparent" />
+            </div>
+            <div className="relative mx-auto flex max-w-[1280px] flex-col items-start gap-7 px-5 pb-[114vw] pt-20 md:flex-row md:items-end md:justify-between md:gap-8 md:px-10 md:py-40">
                 <Reveal>
-                    <h2 id="cta-title" className="display max-w-3xl text-[3rem] text-white md:text-[5.2rem]">Have an app in mind?</h2>
+                    <h2 id="cta-title" className="display max-w-3xl text-[clamp(2.4rem,11.5vw,3rem)] text-white md:text-[5.2rem]">Have an app in mind?</h2>
                     <p className="mt-4 text-[18px] text-white/75">Tell me about it. I reply the same day.</p>
                 </Reveal>
                 <Reveal delay={0.08}>

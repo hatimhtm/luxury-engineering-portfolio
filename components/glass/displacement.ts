@@ -76,9 +76,17 @@ export function displacementMap({ w, h, radius, bezel, magnify = 0, scale = 1 }:
     return url;
 }
 
-/** Chromium is the only engine that runs SVG filters as backdrop-filter. Everyone else gets frosted glass. */
+/**
+ * Chromium is the only engine that runs SVG filters as backdrop-filter, on desktop and on Android alike.
+ * Every browser on an iPhone is WebKit whatever its name says, so those get frosted glass with everyone else.
+ */
 export function supportsRefraction(): boolean {
     if (typeof navigator === "undefined") return false;
     const ua = navigator.userAgent;
-    return /Chrome\/\d+/.test(ua) && !/Mobile.*Safari\/\d+(?!.*Chrome)/.test(ua) && !/CriOS|FxiOS/.test(ua);
+    return /Chrome\/\d+/.test(ua) && !/CriOS|FxiOS|EdgiOS|Edge\/\d+/.test(ua);
+}
+
+/** Phones and tablets: a finger, no hover. */
+export function touchScreen(): boolean {
+    return typeof window !== "undefined" && window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 }
